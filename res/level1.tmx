@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="32" height="100" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="speed" value="80"/>
+ </properties>
+ <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32">
+  <image source="tile_set.png" width="256" height="128"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="32" height="100" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3NuREAIAzAsFBDw/7LQpEdwiPduXYEAAAAAAAAAAA3G5Ik6ahaVvWfu579+Jck6dUW0kObEgAyAAA=
+  </data>
+ </layer>
+ <layer name="platform" width="32" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2X6wrCMAyFM/GH7fCy939ZrTUYQoeDrknU80FQ6NbTy2nSEQEAAAAAAAAAAAAAAAAAAAAwloMK8Cb6evSOr/f9ufP9XtKOfXmfg6QiEtHPwb+gPWq9L9qj2qfwiR+3R1wd9c/O+rOzfgqof6R6Ji/2w3myUB2XV15gfa97yvLS3rueb60DPP+99T/VgdH6W4mw/xH8b6H/7fdnzpVr4x999yp7NVEde260Z9G+9kyvfunzRO31Y13OZyP0S788R2tkror2/fUr8Lnxuo+wtyzvaTJfsLcs9aWny/yzg35Wv17z91h/nrPM3db6snZMxvrSe7J2terpiGBt9r4+DxO1PbL2fOu/7EuHbLsDX0RtMwAyAAA=
+  </data>
+ </layer>
+ <objectgroup name="collision" width="32" height="100">
+  <object type="ladder" x="0" y="2880" width="96" height="320"/>
+  <object x="96" y="3136" width="832" height="64"/>
+  <object x="928" y="3104" width="96" height="96"/>
+  <object x="928" y="2912" width="96" height="192"/>
+  <object type="ladder" x="224" y="2656" width="96" height="160"/>
+  <object x="320" y="2656" width="32" height="160"/>
+  <object x="480" y="2656" width="160" height="96"/>
+  <object x="736" y="2592" width="128" height="64"/>
+  <object x="576" y="2432" width="160" height="64"/>
+  <object type="ladder" x="896" y="2304" width="96" height="288"/>
+  <object type="ladder" x="736" y="2176" width="64" height="160"/>
+  <object x="512" y="2048" width="160" height="64"/>
+  <object x="224" y="1888" width="128" height="64"/>
+  <object x="448" y="1952" width="32" height="32"/>
+  <object x="640" y="1792" width="32" height="96"/>
+  <object x="128" y="1824" width="32" height="32"/>
+  <object x="160" y="1696" width="128" height="32"/>
+  <object x="384" y="1760" width="32" height="32"/>
+  <object x="768" y="2080" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="static" width="32" height="100">
+  <object type="player_start" x="192" y="3104" width="32" height="32"/>
+ </objectgroup>
+</map>
