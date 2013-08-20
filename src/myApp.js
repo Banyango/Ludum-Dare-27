@@ -25,22 +25,78 @@
  ****************************************************************************/
 
 var Keys = {};
+var spawner = [];
+var remotePlayers = [];
+var history = [];
 
 var Helloworld = cc.Layer.extend({
 
     player:null,
     tileMap:null,
     camera:null,
+    rayCaster:null,
+    socket:null,
+    ghost:null,
+    shouldUpdatePosition:null,
+    onSocketConnect:function () {
+        console.log("Connected to socket server");
+    },
+    onSocketDisconnect:function () {
+        console.log("Disconnected from socket server");
+    },
+    onNewPlayer:function (data) {
+        console.log("New player connected: " + data.id);
 
+        var player = new Remote();
+        player = player.init();
+        player.id = data.id;
+        remotePlayers.push(player);
+
+        spawner.push(player);
+    },
+    onMovePlayer:function (data) {
+        var player = findPlayerById(data.id);
+
+        if (player) {
+            player.position = cc.p(data.x, data.y);
+        }
+    },
+    onRemovePlayer:function (data) {
+        if (data == null) {
+            console.log("data undefined");
+            return;
+        }
+
+        var player = findPlayerById(data.id);
+        if (player) {
+            remotePlayers.pop(player);
+        }
+    },
+    requestHistory:function(data){
+        if (data != null) {
+            history = data;
+        }
+    },
     init:function () {
 
         this._super();
+
+        this.socket = io.connect("http://localhost:5000");
+
+        remotePlayers = [];
+
+        this.socket.on("connect", this.onSocketConnect);
+        this.socket.on("disconnect", this.onSocketDisconnect);
+        this.socket.on("new player", this.onNewPlayer);
+        this.socket.on("move player", this.onMovePlayer);
+        this.socket.on("remove player", this.onRemovePlayer);
+        this.socket.on("get history", this.requestHistory);
 
         this.camera = new Camera();
 
         this.camera.hold = false;
 
-        this.camera.isPlatformLockCamera = true;
+        this.camera.isPlatformLockCamera = false;
 
         this.setKeyboardEnabled(true);
 
@@ -54,7 +110,7 @@ var Helloworld = cc.Layer.extend({
 
         var mapXML = cc.SAXParser.getInstance().tmxParse(tmxFile);
 
-        this.player = new PlatformPlayer();
+        this.player = new TopDownPlayer();
         this.player.init();
         this.player.id = Math.random();
         this.player.desiredPosition = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
@@ -62,14 +118,7 @@ var Helloworld = cc.Layer.extend({
 
         this.tileMap.addChild(this.player.sprite);
 
-        var background = new cc.Sprite();
-        background.initWithFile("/res/mountain_background.png");
-        background.setScaleX(18.0);
-        background.setScaleY(18.0);
-        background.setPosition(cc.p(400, 500));
-        background.getTexture().setAliasTexParameters();
-
-        this.addChild(background);
+        this.socket.emit("new player", {id:this.player.id, x:this.player.getPosition().x, y:this.player.getPosition().y});
 
         this.tileMap.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
 
@@ -87,10 +136,17 @@ var Helloworld = cc.Layer.extend({
                 this.tileMap.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
                 this.camera.updateHard(this.tileMap, cc.p(obj.x, obj.y));
             }
-
         }
 
         this.scheduleUpdate();
+
+        this.ghost = new Ghost();
+
+        this.schedule(function(){
+            this.socket.emit("save location", {id:this.player.id, x:this.player.position.x, y:this.player.position.y});
+        });
+
+        this.socket.emit("request history");
 
         return true;
     },
@@ -98,11 +154,33 @@ var Helloworld = cc.Layer.extend({
         this.camera.update(this.tileMap, this.player);
     },
     update:function (delta) {
-        this.player.update(delta);
+        this.player.update(delta, this.socket);
 
         this.setViewPointCenter();
 
         this.player.testCollision(this.tileMap.getObjectGroup("collision"), this.camera);
+
+        this.socket.emit("move player", {id:this.player.id, x:this.player.position.x, y:this.player.position.y});
+
+        if (spawner.length > 0) {
+            for (var i = 0; i < spawner.length; i++) {
+                var obj = spawner[i];
+                var layer = new cc.Layer();
+                this.tileMap.addChild(obj.sprite);
+            }
+            spawner = [];
+        }
+
+        for (var i = 0; i < remotePlayers.length; i++) {
+            var obj1 = remotePlayers[i];
+            obj1.update(delta);
+        }
+
+        if (history != null) {
+            var history = history.pop();
+
+            this.ghost.position = cc.p(history.x, history.y);
+        }
 
     },
     onKeyDown:function (e) {
@@ -110,8 +188,19 @@ var Helloworld = cc.Layer.extend({
     },
     onKeyUp:function (e) {
         Keys[e] = false;
+        this.shouldUpdatePosition = true;
     }
 });
+
+function findPlayerById(id) {
+    for (var i = 0; i < remotePlayers.length; i++) {
+        var obj = remotePlayers[i];
+        if (obj.id == id) {
+            return obj;
+        }
+    }
+    return null;
+}
 
 var HelloWorldScene = cc.Scene.extend({
     onEnter:function () {
@@ -121,4 +210,3 @@ var HelloWorldScene = cc.Scene.extend({
         this.addChild(layer);
     }
 });
-

@@ -1,3 +1,5 @@
+var TWO_PI = 2 * Math.PI;
+
 //noinspection JSValidateTypes
 var TopDownPlayer = cc.Node.extend({
     id:null,
@@ -8,52 +10,54 @@ var TopDownPlayer = cc.Node.extend({
     desiredPosition:null,
     isOnGround:null,
     init:function () {
-        this.sprite = cc.Sprite.create("/resources/player.png");
-        this.sprite.position = this.position;
-        this.sprite.setAnchorPoint(cc.ccp(0, 0));
 
-        this.velocity = cc.ccp();
+        this.sprite = new cc.Sprite();
+        this.sprite.initWithSpriteFrame(cc.SpriteFrameCache.getInstance().getSpriteFrame("player.png"));
+        this.sprite.position = this.position;
+        this.sprite.setAnchorPoint(cc.p(0, 0));
+
+        this.velocity = cc.p();
 
         return this;
     },
     update:function (delta) {
 
-        var xMove = cc.ccp(950, 0);
-        var forwardStep = cc.ccpMult(xMove, delta);
+        var xMove = cc.p(950, 0);
+        var forwardStep = cc.pMult(xMove, delta);
 
-        var yMove = cc.ccp(0, 950);
-        var upStep = cc.ccpMult(yMove, delta);
+        var yMove = cc.p(0, 950);
+        var upStep = cc.pMult(yMove, delta);
 
-        this.velocity = cc.ccp(this.velocity.x * 0.93, this.velocity.y * 0.93);
+        this.velocity = cc.p(this.velocity.x * 0.93, this.velocity.y * 0.93);
 
         if ((Keys[cc.KEY.w] || Keys[cc.KEY.up])) {
-            this.velocity = cc.ccpAdd(this.velocity, upStep);
+            this.velocity = cc.pAdd(this.velocity, upStep);
         }
 
         if ((Keys[cc.KEY.s] || Keys[cc.KEY.down])) {
-            this.velocity = cc.ccpSub(this.velocity, upStep);
+            this.velocity = cc.pSub(this.velocity, upStep);
         }
 
         if ((Keys[cc.KEY.a] || Keys[cc.KEY.left])) {
-            this.velocity = cc.ccpSub(this.velocity, forwardStep);
+            this.velocity = cc.pSub(this.velocity, forwardStep);
         }
 
         if ((Keys[cc.KEY.t])) {
-            player.position = cc.ccp(cc.sharedDirector._winSizeInPixels.width/2,cc.sharedDirector._winSizeInPixels.height/2);
+            player.position = cc.p(cc.sharedDirector._winSizeInPixels.width/2,cc.sharedDirector._winSizeInPixels.height/2);
         }
 
         if ((Keys[cc.KEY.d] || Keys[cc.KEY.right])) {
-            this.velocity = cc.ccpAdd(this.velocity, forwardStep);
+            this.velocity = cc.pAdd(this.velocity, forwardStep);
         }
 
-        var minMovement = cc.ccp(-850, -850);
-        var maxMovement = cc.ccp(850, 850);
+        var minMovement = cc.p(-850, -850);
+        var maxMovement = cc.p(850, 850);
 
-        this.velocity = cc.ccpClamp(this.velocity, minMovement, maxMovement);
+        this.velocity = cc.pClamp(this.velocity, minMovement, maxMovement);
 
-        var stepVelocity = cc.ccpMult(this.velocity, delta);
+        var stepVelocity = cc.pMult(this.velocity, delta);
 
-        this.desiredPosition = cc.ccpAdd(this.position, stepVelocity);
+        this.desiredPosition = cc.pAdd(this.position, stepVelocity);
 
         this.sprite.setPosition(this.position);
 
@@ -78,19 +82,19 @@ var TopDownPlayer = cc.Node.extend({
 
                 if (intersection.size.width < intersection.size.height) {
                     if (intersection.origin.x > this.desiredPosition.x) {
-                        this.desiredPosition = cc.ccp(this.desiredPosition.x - intersection.size.width, this.desiredPosition.y);
-                        this.velocity = cc.ccp(0, this.velocity.y);
+                        this.desiredPosition = cc.p(this.desiredPosition.x - intersection.size.width, this.desiredPosition.y);
+                        this.velocity = cc.p(0, this.velocity.y);
                     } else {
-                        this.desiredPosition = cc.ccp(this.desiredPosition.x + intersection.size.width, this.desiredPosition.y);
-                        this.velocity = cc.ccp(0, this.velocity.y);
+                        this.desiredPosition = cc.p(this.desiredPosition.x + intersection.size.width, this.desiredPosition.y);
+                        this.velocity = cc.p(0, this.velocity.y);
                     }
                 } else if (intersection.size.width > intersection.size.height) {
                     if (intersection.origin.y > this.desiredPosition.y) {
-                        this.desiredPosition = cc.ccp(this.desiredPosition.x, this.desiredPosition.y - intersection.size.height);
-                        this.velocity = cc.ccp(this.velocity.x, 0);
+                        this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y - intersection.size.height);
+                        this.velocity = cc.p(this.velocity.x, 0);
                     } else if (intersection.origin.y == this.desiredPosition.y) {
-                        this.desiredPosition = cc.ccp(this.desiredPosition.x, this.desiredPosition.y + intersection.size.height);
-                        this.velocity = cc.ccp(this.velocity.x, 0);
+                        this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y + intersection.size.height);
+                        this.velocity = cc.p(this.velocity.x, 0);
                         this.isOnGround = true;
                     }
                 }
@@ -98,7 +102,7 @@ var TopDownPlayer = cc.Node.extend({
             }
         }
 
-        this.position = cc.ccp(this.desiredPosition.x, this.desiredPosition.y);
+        this.position = cc.p(this.desiredPosition.x, this.desiredPosition.y);
     }
 
 

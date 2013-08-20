@@ -40,6 +40,9 @@
         appFiles:[
             'src/resource.js',
             'src/PlatformPlayer.js',
+            'src/TopDownPlayer.js',
+            'src/Remote.js',
+            'src/Ghost.js',
             'src/Camera.js',
             'src/myApp.js'
         ]
