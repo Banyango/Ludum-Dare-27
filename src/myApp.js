@@ -81,7 +81,7 @@ var Helloworld = cc.Layer.extend({
 
         this._super();
 
-        this.socket = io.connect("http://localhost:5000");
+        this.socket = io.connect(window.location.hostname);
 
         remotePlayers = [];
 
