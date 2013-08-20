@@ -18,6 +18,7 @@ var sockets, players;
 server.use('/cocos2d', express.static(__dirname + '/cocos2d'));
 server.use('/CocosDenshion', express.static(__dirname + '/CocosDenshion'));
 server.use('/src', express.static(__dirname + '/src'));
+server.use('/socket.io', express.static(__dirname + '/node_modules/socket.io/lib/'));
 
 server.use('/res', express.static(__dirname + '/res'));
 
