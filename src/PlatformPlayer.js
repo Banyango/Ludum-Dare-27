@@ -25,6 +25,25 @@ var PlatformPlayer = cc.Node.extend({
     displayedFrame:null,
     direction:DirectionEnum.UP,
     nextDirection:null,
+    isDead:false,
+    kill:function() {
+        this.isDead = true;
+
+        this.sprite.removeFromParent(true);
+    },
+    spawnJump:function(){
+        var jumpVelocity;
+
+        this.velocity = cc.p(0, 0);
+
+        if (this.direction == DirectionEnum.UP) {
+            jumpVelocity = cc.p(0, 9500);
+            this.velocity = cc.pAdd(this.velocity, jumpVelocity);
+        } else if (this.direction == DirectionEnum.DOWN) {
+            jumpVelocity = cc.p(0, -9500);
+            this.velocity = cc.pAdd(this.velocity, jumpVelocity);
+        }
+    },
     velocityUp:function (delta) {
         var gravity = cc.p(0.0, -640.0);
         var gravityStep = cc.pMult(gravity, delta);
@@ -118,29 +137,31 @@ var PlatformPlayer = cc.Node.extend({
     },
     update:function (delta, camera) {
 
-        this.sprite.setPosition(cc.p(this.position.x + this.sprite.getTextureRect().size.width / 2, this.position.y + this.sprite.getTextureRect().size.height / 2));
+        if (!this.isDead) {
+            this.sprite.setPosition(cc.p(this.position.x + this.sprite.getTextureRect().size.width / 2, this.position.y + this.sprite.getTextureRect().size.height / 2));
 
-        if (this.collisionRect == null) {
-            this.collisionRect = cc.RectMake(
-                0,
-                0,
-                this.sprite.getTextureRect().size.width,
-                this.sprite.getTextureRect().size.height);
+            if (this.collisionRect == null) {
+                this.collisionRect = cc.RectMake(
+                    0,
+                    0,
+                    this.sprite.getTextureRect().size.width,
+                    this.sprite.getTextureRect().size.height);
+            }
+
+            if (this.direction == DirectionEnum.UP) {
+                this.velocityUp(delta);
+                this.renderSpritesUp(camera);
+            } else if (this.direction == DirectionEnum.DOWN) {
+                this.velocityDown(delta);
+                this.renderSpritesDown(camera);
+            }
+
+            var stepVelocity = cc.pMult(this.velocity, delta);
+
+            this.desiredPosition = cc.pAdd(this.position, stepVelocity);
+
+            this.collisionRect.origin = this.desiredPosition;
         }
-
-        if (this.direction == DirectionEnum.UP) {
-            this.velocityUp(delta);
-            this.renderSpritesUp(camera);
-        } else if (this.direction == DirectionEnum.DOWN) {
-            this.velocityDown(delta);
-            this.renderSpritesDown(camera);
-        }
-
-        var stepVelocity = cc.pMult(this.velocity, delta);
-
-        this.desiredPosition = cc.pAdd(this.position, stepVelocity);
-
-        this.collisionRect.origin = this.desiredPosition;
 
     },
     testCollisionUp:function (rect, obj, camera, collisionRect) {
@@ -345,7 +366,7 @@ var PlatformPlayer = cc.Node.extend({
             var rect = obj.collisionBox;
 
             if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
-                this.lastSpawnBeacon = cc.p(rect.origin.x + rect.size.width / 2, rect.origin.y + rect.size.height / 2);
+                this.lastSpawnBeacon = obj;
                 this.nextDirection = obj.direction;
 
                 if (!obj.isActive) {

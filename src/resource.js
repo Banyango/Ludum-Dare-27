@@ -9,10 +9,11 @@ var g_ressources = [
     //plist
     {type:"plist", src:"/res/player_spritesheet.plist"},
     {type:"plist", src:"/res/spore.plist"},
+    {type:"plist", src:"/res/player_die_particle.plist"},
     //fnt
 //    {type:"fnt", src:"/res/2plyrFont2PlyrFont.fnt"},
     //tmx
-    {type:"tmx", src:"/res/level1.tmx"},
+    {type:"tmx", src:"/res/level1.tmx"}
     //bgm
 //
 //    //effect

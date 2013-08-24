@@ -33,7 +33,7 @@ var Helloworld = cc.Layer.extend({
     camera:null,
     timeStep:(1.0/60.0),
     delta:0,
-    secondCounter:null,
+    secondCounter:10,
     font:null,
     spores:[],
     init:function () {
@@ -140,12 +140,46 @@ var Helloworld = cc.Layer.extend({
 
         return true;
     },
-    blowUp:function(){
-        this.player.position = this.player.lastSpawnBeacon;
+    moveCameraToLastBeacon:function(){
+        var rect = this.player.lastSpawnBeacon.collisionBox;
+        var position = cc.p(rect.origin.x + rect.size.width / 2, rect.origin.y + rect.size.height / 2);
+
+        this.camera.updateHard(this.tileMap, position);
+    },
+    respawnPlayer:function() {
+        this.tileMap.addChild(this.player.sprite);
+        this.player.position = cc.p(this.player.lastSpawnBeacon.position.x + this.player.lastSpawnBeacon.getBoundingBox().size.width / 2, this.player.lastSpawnBeacon.position.y + this.player.lastSpawnBeacon.getBoundingBox().size.height / 2);
+        this.player.spawnJump();
         if (this.player.nextDirection != null) {
             this.player.direction = this.player.nextDirection;
         }
-        this.camera.updateHard(this.tileMap, this.player.position);
+        this.player.isDead = false;
+    },
+    animateSpawnBeacon:function() {
+        this.player.lastSpawnBeacon.sprite.stopAllActions();
+        var animate = cc.Animate.create(this.player.lastSpawnBeacon.spawnAnimation);
+        this.player.lastSpawnBeacon.sprite.runAction(animate);
+    },
+    blowUp:function(){
+        if (this.player.lastSpawnBeacon != null && this.player.lastSpawnBeacon instanceof Spore ) {
+            this.player.kill();
+
+            var particle = cc.ParticleSystemQuad.create("/res/player_die_particle.plist");
+            particle.setPosition(cc.p(this.player.position.x + this.player.getBoundingBox().size.width / 2, this.player.position.y + this.player.getBoundingBox().size.height / 2));
+
+            this.tileMap.addChild(particle);
+
+            var delay = cc.DelayTime.create(1);
+            var moveCamera = cc.CallFunc.create(this.moveCameraToLastBeacon, this, null);
+            var delay2 = cc.DelayTime.create(0.1);
+            var animate = cc.CallFunc.create(this.animateSpawnBeacon, this, null);
+            var delay3 = cc.DelayTime.create(0.4);
+            var respawnPlayer = cc.CallFunc.create(this.respawnPlayer, this, null);
+
+            var sequence = cc.Sequence.create([delay, moveCamera, delay2, animate, delay3, respawnPlayer]);
+
+            this.runAction(sequence);
+        }
     },
     setViewPointCenter:function () {
         this.camera.update(this.tileMap, this.player);
