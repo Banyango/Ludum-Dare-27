@@ -9,7 +9,7 @@ var g_ressources = [
     {type:"plist", src:"/res/player_spritesheet.plist"},
 
     //fnt
-    {type:"fnt", src:"/res/2plyrFont2PlyrFont.fnt"},
+//    {type:"fnt", src:"/res/2plyrFont2PlyrFont.fnt"},
 
     //tmx
     {type:"tmx", src:"/res/level1.tmx"},
