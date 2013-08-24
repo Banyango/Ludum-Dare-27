@@ -36,6 +36,7 @@ var Helloworld = cc.Layer.extend({
     secondCounter:10,
     font:null,
     spores:[],
+    isResetting:false,
     init:function () {
 
         this._super();
@@ -130,11 +131,8 @@ var Helloworld = cc.Layer.extend({
         this.schedule(function () {
 
             if (this.secondCounter <= 0) {
-                this.secondCounter = 10;
-
                 this.blowUp();
             }
-
             this.secondCounter--;
         }, 1);
 
@@ -147,6 +145,7 @@ var Helloworld = cc.Layer.extend({
         this.camera.updateHard(this.tileMap, position);
     },
     respawnPlayer:function() {
+        this.player.sprite.setOpacity(255);
         this.tileMap.addChild(this.player.sprite);
         this.player.position = cc.p(this.player.lastSpawnBeacon.position.x + this.player.lastSpawnBeacon.getBoundingBox().size.width / 2, this.player.lastSpawnBeacon.position.y + this.player.lastSpawnBeacon.getBoundingBox().size.height / 2);
         this.player.spawnJump();
@@ -154,6 +153,7 @@ var Helloworld = cc.Layer.extend({
             this.player.direction = this.player.nextDirection;
         }
         this.player.isDead = false;
+        this.isResetting = false;
     },
     animateSpawnBeacon:function() {
         this.player.lastSpawnBeacon.sprite.stopAllActions();
@@ -167,6 +167,9 @@ var Helloworld = cc.Layer.extend({
             var particle = cc.ParticleSystemQuad.create("/res/player_die_particle.plist");
             particle.setPosition(cc.p(this.player.position.x + this.player.getBoundingBox().size.width / 2, this.player.position.y + this.player.getBoundingBox().size.height / 2));
 
+//            particle.setStartColor(new cc.Color3B(46,153,102));
+//            particle.setEndColor(new cc.Color3B(46,153,102));
+
             this.tileMap.addChild(particle);
 
             var delay = cc.DelayTime.create(1);
@@ -179,6 +182,8 @@ var Helloworld = cc.Layer.extend({
             var sequence = cc.Sequence.create([delay, moveCamera, delay2, animate, delay3, respawnPlayer]);
 
             this.runAction(sequence);
+
+            this.secondCounter = 10;
         }
     },
     setViewPointCenter:function () {
@@ -201,6 +206,11 @@ var Helloworld = cc.Layer.extend({
             }
 
             this.setViewPointCenter();
+
+            if (Keys[cc.KEY.y] && !this.isResetting) {
+                this.isResetting = true;
+                this.blowUp();
+            }
         }
 
     },

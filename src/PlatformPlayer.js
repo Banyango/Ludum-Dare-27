@@ -29,7 +29,9 @@ var PlatformPlayer = cc.Node.extend({
     kill:function() {
         this.isDead = true;
 
-        this.sprite.removeFromParent(true);
+        var fadeOut = cc.FadeOut.create(0.5);
+
+        this.sprite.runAction(fadeOut);
     },
     spawnJump:function(){
         var jumpVelocity;
