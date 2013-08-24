@@ -55,13 +55,25 @@ var Helloworld = cc.Layer.extend({
 
         this.tileMap = cc.TMXTiledMap.create(tmxFile);
 
-//        this.font = cc.BMFontConfiguration.create("/res/2plyrFont2PlyrFont.fnt");
-//
-//        this.font.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height - 50);
-//
-//        this.addChild(this.font);
+        this.font = cc.LabelTTF.create('label text',  'Press Start 2P', 32, cc.size(32,16), cc.TEXT_ALIGNMENT_LEFT);
+
+        this.font.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height - 50);
+
+        this.addChild(this.font);
 
         var mapXML = cc.SAXParser.getInstance().tmxParse(tmxFile);
+
+        var parallaxNode = cc.ParallaxNode.create();
+
+        var background = new cc.Sprite();
+        background.initWithFile("/res/ludum_dare_background.png");
+        background.setPosition(cc.p(400, 500));
+        background.setScaleX(8);
+        background.setScaleY(8);
+        background.getTexture().setAliasTexParameters();
+
+        parallaxNode.addChild(background, 1, cc.p(0.02,0.02), cc.p(512,256));
+        this.addChild(parallaxNode, 0);
 
         this.player = new PlatformPlayer();
         this.player.init();
