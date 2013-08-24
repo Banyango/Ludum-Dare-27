@@ -25,72 +25,19 @@
  ****************************************************************************/
 
 var Keys = {};
-var spawner = [];
-var remotePlayers = [];
-var history = [];
 
 var Helloworld = cc.Layer.extend({
 
     player:null,
     tileMap:null,
     camera:null,
-    rayCaster:null,
-    socket:null,
-    ghost:null,
-    shouldUpdatePosition:null,
-    onSocketConnect:function () {
-        console.log("Connected to socket server");
-    },
-    onSocketDisconnect:function () {
-        console.log("Disconnected from socket server");
-    },
-    onNewPlayer:function (data) {
-        console.log("New player connected: " + data.id);
-
-        var player = new Remote();
-        player = player.init();
-        player.id = data.id;
-        remotePlayers.push(player);
-
-        spawner.push(player);
-    },
-    onMovePlayer:function (data) {
-        var player = findPlayerById(data.id);
-
-        if (player) {
-            player.position = cc.p(data.x, data.y);
-        }
-    },
-    onRemovePlayer:function (data) {
-        if (data == null) {
-            console.log("data undefined");
-            return;
-        }
-
-        var player = findPlayerById(data.id);
-        if (player) {
-            remotePlayers.pop(player);
-        }
-    },
-    requestHistory:function(data){
-        if (data != null) {
-            history = data;
-        }
-    },
+    timeStep:(1.0/60.0),
+    delta:0,
+    secondCounter:null,
+    font:null,
     init:function () {
 
         this._super();
-
-        this.socket = io.connect(window.location.hostname);
-
-        remotePlayers = [];
-
-        this.socket.on("connect", this.onSocketConnect);
-        this.socket.on("disconnect", this.onSocketDisconnect);
-        this.socket.on("new player", this.onNewPlayer);
-        this.socket.on("move player", this.onMovePlayer);
-        this.socket.on("remove player", this.onRemovePlayer);
-        this.socket.on("get history", this.requestHistory);
 
         this.camera = new Camera();
 
@@ -108,17 +55,21 @@ var Helloworld = cc.Layer.extend({
 
         this.tileMap = cc.TMXTiledMap.create(tmxFile);
 
+//        this.font = cc.BMFontConfiguration.create("/res/2plyrFont2PlyrFont.fnt");
+//
+//        this.font.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height - 50);
+//
+//        this.addChild(this.font);
+
         var mapXML = cc.SAXParser.getInstance().tmxParse(tmxFile);
 
-        this.player = new TopDownPlayer();
+        this.player = new PlatformPlayer();
         this.player.init();
         this.player.id = Math.random();
         this.player.desiredPosition = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
         this.player.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
 
         this.tileMap.addChild(this.player.sprite);
-
-        this.socket.emit("new player", {id:this.player.id, x:this.player.getPosition().x, y:this.player.getPosition().y});
 
         this.tileMap.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
 
@@ -135,51 +86,47 @@ var Helloworld = cc.Layer.extend({
                 this.tileMap.stopActionByTag(7);
                 this.tileMap.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
                 this.camera.updateHard(this.tileMap, cc.p(obj.x, obj.y));
+                this.player.lastSpawnBeacon = cc.p(obj.x, obj.y);
             }
         }
 
         this.scheduleUpdate();
 
-        this.ghost = new Ghost();
+        this.schedule(function () {
 
-        this.schedule(function(){
-            this.socket.emit("save location", {id:this.player.id, x:this.player.position.x, y:this.player.position.y});
-        });
+            if (this.secondCounter <= 0) {
+                this.secondCounter = 10;
 
-        this.socket.emit("request history");
+                this.blowUp();
+            }
+
+            this.secondCounter--;
+        }, 1);
 
         return true;
+    },
+    blowUp:function(){
+        this.player.position = this.player.lastSpawnBeacon;
+        if (this.player.nextDirection != null) {
+            this.player.direction = this.player.nextDirection;
+        }
+        this.camera.updateHard(this.tileMap, this.player.position);
     },
     setViewPointCenter:function () {
         this.camera.update(this.tileMap, this.player);
     },
     update:function (delta) {
-        this.player.update(delta, this.socket);
 
-        this.setViewPointCenter();
+        this.delta+=delta;
 
-        this.player.testCollision(this.tileMap.getObjectGroup("collision"), this.camera);
+        if (this.delta >= this.timeStep) {
+            this.player.update(delta, this.camera);
 
-        this.socket.emit("move player", {id:this.player.id, x:this.player.position.x, y:this.player.position.y});
+            this.player.testCollision(this.tileMap.getObjectGroup("collision"), this.camera);
 
-        if (spawner.length > 0) {
-            for (var i = 0; i < spawner.length; i++) {
-                var obj = spawner[i];
-                var layer = new cc.Layer();
-                this.tileMap.addChild(obj.sprite);
-            }
-            spawner = [];
-        }
+            this.player.testBeacon(this.tileMap.getObjectGroup("Beacon"), this.camera);
 
-        for (var i = 0; i < remotePlayers.length; i++) {
-            var obj1 = remotePlayers[i];
-            obj1.update(delta);
-        }
-
-        if (history != null) {
-            var history = history.pop();
-
-            this.ghost.position = cc.p(history.x, history.y);
+            this.setViewPointCenter();
         }
 
     },
@@ -188,19 +135,8 @@ var Helloworld = cc.Layer.extend({
     },
     onKeyUp:function (e) {
         Keys[e] = false;
-        this.shouldUpdatePosition = true;
     }
 });
-
-function findPlayerById(id) {
-    for (var i = 0; i < remotePlayers.length; i++) {
-        var obj = remotePlayers[i];
-        if (obj.id == id) {
-            return obj;
-        }
-    }
-    return null;
-}
 
 var HelloWorldScene = cc.Scene.extend({
     onEnter:function () {

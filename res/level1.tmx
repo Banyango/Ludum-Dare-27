@@ -14,18 +14,18 @@
  </layer>
  <layer name="platform" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2X6wrCMAyFM/GH7fCy939ZrTUYQoeDrknU80FQ6NbTy2nSEQEAAAAAAAAAAAAAAAAAAAAwloMK8Cb6evSOr/f9ufP9XtKOfXmfg6QiEtHPwb+gPWq9L9qj2qfwiR+3R1wd9c/O+rOzfgqof6R6Ji/2w3myUB2XV15gfa97yvLS3rueb60DPP+99T/VgdH6W4mw/xH8b6H/7fdnzpVr4x999yp7NVEde260Z9G+9kyvfunzRO31Y13OZyP0S788R2tkror2/fUr8Lnxuo+wtyzvaTJfsLcs9aWny/yzg35Wv17z91h/nrPM3db6snZMxvrSe7J2terpiGBt9r4+DxO1PbL2fOu/7EuHbLsDX0RtMwAyAAA=
+   H4sIAAAAAAAAA+2X6w7CIAyFmfGHY/Ey3/9h3dwamwaUCLSNni9pNGFwyuiFhQAAAAAAAAAAAAAAAAAAAABAXw7CwAvv76PWv9r5U+X8WsaGa1nnwSjME97z4F+QMap9LjJGZZwiTuy4LXY11D8b60/G+qND/WPYcvKi786TOWx+WdUF0re6p8y7dut+XtoHaP+t9T/1gd76pXg4fw/x/0t9+d5pXaqVuXwqzblv7/HrWQ37nJgYj2w890yt/rrmKTOP1qN6JvVr85xilfaoDa9Vpfoev9WsKIk7yhvt+wjVDIotzXsarxf0bjT1+Zms+49K+lw3il9tfWk99aUW7ZnXbm193juGRvq8D7971zz2uE+pftrDSJtiX/o0hLy/qedT//la0vjYA7k9X7wAMgAA
   </data>
  </layer>
  <objectgroup name="collision" width="32" height="100">
   <object type="ladder" x="0" y="2880" width="96" height="320"/>
   <object x="96" y="3136" width="832" height="64"/>
   <object x="928" y="3104" width="96" height="96"/>
-  <object x="928" y="2912" width="96" height="192"/>
+  <object x="704" y="3104" width="96" height="32"/>
   <object type="ladder" x="224" y="2656" width="96" height="160"/>
   <object x="320" y="2656" width="32" height="160"/>
   <object x="480" y="2656" width="160" height="96"/>
-  <object x="736" y="2592" width="128" height="64"/>
+  <object x="800" y="2656" width="128" height="64"/>
   <object x="576" y="2432" width="160" height="64"/>
   <object type="ladder" x="896" y="2304" width="96" height="288"/>
   <object type="ladder" x="736" y="2176" width="64" height="160"/>
@@ -37,8 +37,20 @@
   <object x="160" y="1696" width="128" height="32"/>
   <object x="384" y="1760" width="32" height="32"/>
   <object x="768" y="2080" width="32" height="32"/>
+  <object x="800" y="3040" width="128" height="96"/>
+  <object x="864" y="2976" width="64" height="64"/>
+  <object x="736" y="2848" width="128" height="32"/>
+  <object x="928" y="2912" width="96" height="192"/>
+  <object x="640" y="2784" width="64" height="32"/>
+  <object x="736" y="2720" width="64" height="32"/>
  </objectgroup>
  <objectgroup name="static" width="32" height="100">
-  <object type="player_start" x="192" y="3104" width="32" height="32"/>
+  <object type="player_start" x="576" y="2400" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="Beacon" width="32" height="100">
+  <object type="UP" x="608" y="3104" width="32" height="32"/>
+  <object type="UP" x="960" y="2880" width="32" height="32"/>
+  <object type="UP" x="544" y="2624" width="32" height="32"/>
+  <object type="DOWN" x="768" y="2752" width="32" height="32"/>
  </objectgroup>
 </map>

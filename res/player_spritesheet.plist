@@ -5,50 +5,6 @@
 	<key>frames</key>
 	<dict>
 		
-		<key>player.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{16, 4}, {30, 58}}</string>
-			<key>spriteOffset</key>
-			<string>{-1, -1}</string>
-			<key>spriteSize</key>
-			<string>{30, 58}</string>
-			<key>spriteSourceSize</key>
-			<string>{64, 64}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{32, 60}, {30, 58}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>player_clinging.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{14, 4}, {32, 58}}</string>
-			<key>spriteOffset</key>
-			<string>{-2, -1}</string>
-			<key>spriteSize</key>
-			<string>{32, 58}</string>
-			<key>spriteSourceSize</key>
-			<string>{64, 64}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{34, 0}, {32, 58}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
 		<key>player_jumping.png</key>
 		<dict>
 			<key>aliases</key>
@@ -56,83 +12,105 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{16, 4}, {32, 58}}</string>
+			<string>{{0, 0}, {35, 41}}</string>
 			<key>spriteOffset</key>
-			<string>{0, -1}</string>
+			<string>{0, 2}</string>
 			<key>spriteSize</key>
-			<string>{32, 58}</string>
+			<string>{35, 41}</string>
 			<key>spriteSourceSize</key>
-			<string>{64, 64}</string>
+			<string>{35, 45}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {32, 58}}</string>
+			<string>{{0, 0}, {35, 41}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>player_running_1.png</key>
+		<key>player_walking 1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{16, 4}, {30, 58}}</string>
+			<string>{{0, 0}, {25, 35}}</string>
 			<key>spriteOffset</key>
-			<string>{-1, -1}</string>
+			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{30, 58}</string>
+			<string>{25, 35}</string>
 			<key>spriteSourceSize</key>
-			<string>{64, 64}</string>
+			<string>{25, 35}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{64, 62}, {30, 58}}</string>
+			<string>{{37, 0}, {25, 35}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>player_running_2.png</key>
+		<key>player_walking 2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{14, 4}, {30, 58}}</string>
+			<string>{{0, 0}, {21, 35}}</string>
 			<key>spriteOffset</key>
-			<string>{-3, -1}</string>
+			<string>{-2, -0}</string>
 			<key>spriteSize</key>
-			<string>{30, 58}</string>
+			<string>{21, 35}</string>
 			<key>spriteSourceSize</key>
-			<string>{64, 64}</string>
+			<string>{25, 35}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 60}, {30, 58}}</string>
+			<string>{{87, 0}, {21, 35}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>player_running_3.png</key>
+		<key>player_walking 3.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{16, 4}, {30, 60}}</string>
+			<string>{{5, 0}, {15, 35}}</string>
 			<key>spriteOffset</key>
-			<string>{-1, -2}</string>
+			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{30, 60}</string>
+			<string>{15, 35}</string>
 			<key>spriteSourceSize</key>
-			<string>{64, 64}</string>
+			<string>{25, 35}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{68, 0}, {30, 60}}</string>
+			<string>{{110, 0}, {15, 35}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>player_walking 4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{4, 0}, {21, 35}}</string>
+			<key>spriteOffset</key>
+			<string>{2, -0}</string>
+			<key>spriteSize</key>
+			<string>{21, 35}</string>
+			<key>spriteSourceSize</key>
+			<string>{25, 35}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{64, 0}, {21, 35}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -145,9 +123,9 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{128, 128}</string>
+		<string>{128, 64}</string>
 		<key>name</key>
-		<string>Untitled</string>
+		<string>player.zwd</string>
 		<key>premultipliedAlpha</key>
 		<false/>
 		<key>target</key>
