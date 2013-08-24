@@ -4,9 +4,11 @@ var g_ressources = [
     {type:"image", src:"/res/player_spritesheet.png"},
     {type:"image", src:"/res/tile_set.png"},
     {type:"image", src:"/res/ludum_dare_background.png"},
+    {type:"image", src:"/res/spore.png"},
 
     //plist
     {type:"plist", src:"/res/player_spritesheet.plist"},
+    {type:"plist", src:"/res/spore.plist"},
     //fnt
 //    {type:"fnt", src:"/res/2plyrFont2PlyrFont.fnt"},
     //tmx

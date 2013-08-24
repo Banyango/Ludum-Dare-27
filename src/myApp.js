@@ -35,6 +35,7 @@ var Helloworld = cc.Layer.extend({
     delta:0,
     secondCounter:null,
     font:null,
+    spores:[],
     init:function () {
 
         this._super();
@@ -48,8 +49,12 @@ var Helloworld = cc.Layer.extend({
         this.setKeyboardEnabled(true);
 
         cc.SpriteFrameCache.getInstance().addSpriteFrames("/res/player_spritesheet.plist");
-        var spriteSheet = cc.SpriteBatchNode.create("/res/player_spritesheet.png", 1);
-        this.addChild(spriteSheet);
+        var playerSpriteSheet = cc.SpriteBatchNode.create("/res/player_spritesheet.png", 1);
+        this.addChild(playerSpriteSheet);
+
+        cc.SpriteFrameCache.getInstance().addSpriteFrames("/res/spore.plist");
+        var sporeSpriteSheet = cc.SpriteBatchNode.create("/res/spore.png", 1);
+        this.addChild(sporeSpriteSheet);
 
         var tmxFile = "/res/level1.tmx";
 
@@ -102,6 +107,24 @@ var Helloworld = cc.Layer.extend({
             }
         }
 
+        objectGroup = this.tileMap.getObjectGroup("Beacon");
+
+        for (var i = 0; i < objectGroup.getObjects().length; i++) {
+
+            var obj = objectGroup.getObjects()[i];
+
+            var spore = new Spore();
+
+            spore.initialize();
+            spore.collisionBox = cc.RectMake(obj.x, obj.y, obj.width, obj.height);
+            spore.position = cc.p(obj.x, obj.y);
+            spore.direction = obj.type;
+
+            this.tileMap.addChild(spore.sprite);
+
+            this.spores.push(spore);
+        }
+
         this.scheduleUpdate();
 
         this.schedule(function () {
@@ -136,7 +159,12 @@ var Helloworld = cc.Layer.extend({
 
             this.player.testCollision(this.tileMap.getObjectGroup("collision"), this.camera);
 
-            this.player.testBeacon(this.tileMap.getObjectGroup("Beacon"), this.camera);
+            this.player.testBeacon(this.spores, this.camera);
+
+            for (var i = 0; i < this.spores.length; i++) {
+                var obj = this.spores[i];
+                obj.update(delta)
+            }
 
             this.setViewPointCenter();
         }

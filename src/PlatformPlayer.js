@@ -20,7 +20,7 @@ var PlatformPlayer = cc.Node.extend({
     collisionRect:null,
     isOnGround:null,
     isLeft:false,
-    runAnimation:null,
+    idleAnimation:null,
     lastSpawnBeacon:null,
     displayedFrame:null,
     direction:DirectionEnum.UP,
@@ -100,15 +100,15 @@ var PlatformPlayer = cc.Node.extend({
 
         this.sprite.getTexture().setAliasTexParameters();
 
-        this.runAnimation = new cc.Animation();
+        this.idleAnimation = new cc.Animation();
 
-        this.runAnimation.initWithSpriteFrames(
+        this.idleAnimation.initWithSpriteFrames(
             [cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 1.png"),
                 cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 2.png"),
                 cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 3.png"),
                 cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 4.png"),
                 cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 3.png"),
-                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 2.png")], 0.14);
+                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 2.png")], 0.08);
 
         this.sprite.position = this.position;
 
@@ -242,7 +242,7 @@ var PlatformPlayer = cc.Node.extend({
 
             animate.setTag(1);
 
-            animate.initWithAnimation(this.runAnimation);
+            animate.initWithAnimation(this.idleAnimation);
             var repeat = cc.RepeatForever.create(animate);
 
             this.sprite.runAction(repeat);
@@ -292,7 +292,7 @@ var PlatformPlayer = cc.Node.extend({
 
             animate.setTag(1);
 
-            animate.initWithAnimation(this.runAnimation);
+            animate.initWithAnimation(this.idleAnimation);
             var repeat = cc.RepeatForever.create(animate);
 
             this.sprite.runAction(repeat);
@@ -340,13 +340,22 @@ var PlatformPlayer = cc.Node.extend({
             this.sprite.getTextureRect().size.width,
             this.sprite.getTextureRect().size.height);
 
-        for (var i = 0; i < objects.getObjects().length; i++) {
-            var obj = objects.getObjects()[i];
-            var rect = cc.RectMake(obj.x, obj.y, obj.width, obj.height);
+        for (var i = 0; i < objects.length; i++) {
+            var obj = objects[i];
+            var rect = obj.collisionBox;
 
             if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
-                this.lastSpawnBeacon = cc.p(obj.x + obj.width / 2, obj.y + obj.height / 2);
-                this.nextDirection = obj.type;
+                this.lastSpawnBeacon = cc.p(rect.origin.x + rect.size.width / 2, rect.origin.y + rect.size.height / 2);
+                this.nextDirection = obj.direction;
+
+                if (!obj.isActive) {
+                    for (var j = 0; j < objects.length; j++) {
+                        var obj1 = objects[j];
+                        obj1.deActivate();
+                    }
+
+                    obj.activate();
+                }
             }
         }
     }
