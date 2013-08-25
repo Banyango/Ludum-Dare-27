@@ -39,6 +39,7 @@ var Helloworld = cc.Layer.extend({
     eaters:[],
     isResetting:false,
     egg:null,
+    colourLayer:null,
     init:function () {
 
         this._super();
@@ -71,11 +72,22 @@ var Helloworld = cc.Layer.extend({
 
         this.tileMap = cc.TMXTiledMap.create(tmxFile);
 
-        this.font = cc.LabelTTF.create('label text', 'Press Start 2P', 32, cc.size(32, 16), cc.TEXT_ALIGNMENT_LEFT);
+        this.font = cc.LabelTTF.create('10', 'Press Start 2P', 32);
 
-        this.font.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height - 50);
+        this.font.position = cc.p(0,0);
+        var scoreLayer = new cc.Layer();
 
-        this.addChild(this.font);
+        scoreLayer.addChild(this.font);
+        scoreLayer.setPosition(cc.p(cc.Director.getInstance().getWinSize().width/2, cc.Director.getInstance().getWinSize().height - 50));
+        this.addChild(scoreLayer, 10);
+
+        this.colourLayer = new cc.LayerColor();
+
+        this.colourLayer.init(new cc.Color3B(255, 0, 0), cc.Director.getInstance().getWinSize().width, cc.Director.getInstance().getWinSize().height);
+        this.colourLayer.setPosition(0,0);
+        this.colourLayer.setOpacity(0);
+
+        this.addChild(this.colourLayer, 12);
 
         var mapXML = cc.SAXParser.getInstance().tmxParse(tmxFile);
 
@@ -169,10 +181,27 @@ var Helloworld = cc.Layer.extend({
 
         this.schedule(function () {
 
-            if (this.secondCounter <= 0) {
-                this.blowUp();
+            if (!this.player.isDead && this.secondCounter >= 0) {
+                if (this.secondCounter <= 0) {
+                    this.blowUp();
+                }
+                this.secondCounter--;
+
+                if (this.secondCounter <= 2 && this.secondCounter >= 0 && this.colourLayer.numberOfRunningActions() == 0) {
+                    var sequence = new cc.Sequence();
+
+                    var fadeIn = new cc.FadeTo();
+                    fadeIn.initWithDuration(0.1, 100);
+
+                    var fadeOut = new cc.FadeTo();
+                    fadeOut.initWithDuration(0.1, 0);
+
+                    sequence.initOneTwo(fadeIn, fadeOut);
+                    this.colourLayer.runAction(sequence);
+                }
+
+                this.font.setString(this.secondCounter);
             }
-            this.secondCounter--;
         }, 1);
 
         return true;
@@ -206,7 +235,7 @@ var Helloworld = cc.Layer.extend({
             var particle = cc.ParticleSystemQuad.create("/res/player_die_particle.plist");
             particle.setPosition(cc.p(this.player.position.x + this.player.sprite.getBoundingBox().size.width / 2, this.player.position.y + this.player.sprite.getBoundingBox().size.height / 2));
             particle.setAutoRemoveOnFinish(true);
-            this.tileMap.addChild(particle, 0);
+            this.tileMap.addChild(particle, 7);
 
             var delay = cc.DelayTime.create(1);
             var moveCamera = cc.CallFunc.create(this.moveCameraToLastBeacon, this, null);
@@ -219,7 +248,7 @@ var Helloworld = cc.Layer.extend({
 
             this.runAction(sequence);
 
-            this.secondCounter = 10;
+            this.secondCounter = 11;
         }
     },
     setViewPointCenter:function () {
