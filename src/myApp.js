@@ -236,6 +236,22 @@ var Helloworld = cc.Layer.extend({
             this.eaters.push(eater);
         }
 
+        objectGroup = this.tileMap.getObjectGroup("Particles");
+
+        if (objectGroup) {
+            for (var n = 0; n < objectGroup.getObjects().length; n++) {
+
+                var particleObj = objectGroup.getObjects()[n];
+
+                var particle = new cc.ParticleSystemQuad();
+                particle.initWithFile("/res/" + particleObj.type);
+                particle.setPosition(cc.p(particleObj.x + particleObj.width / 2, particleObj.y + particleObj.height / 2));
+                particle.setPositionType(cc.PARTICLE_TYPE_RELATIVE);
+
+                this.tileMap.addChild(particle, 10);
+            }
+        }
+
         this.scheduleUpdate();
 
         this.schedule(function () {

@@ -16,6 +16,7 @@ var g_ressources = [
     {type:"plist", src:"/res/spore.plist"},
     {type:"plist", src:"/res/player_die_particle.plist"},
     {type:"plist", src:"/res/egg_goal_spritesheet.plist"},
+    {type:"plist", src:"/res/water_particle.plist"},
     //fnt
 //    {type:"fnt", src:"/res/2plyrFont2PlyrFont.fnt"},
     //tmx
