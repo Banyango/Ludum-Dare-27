@@ -369,7 +369,7 @@ var Helloworld = cc.Layer.extend({
                 this.spores[i].update(delta);
             }
 
-            for (var j = 0; j < this.eaters.length; j++) {
+            for (var j = this.eaters.length-1; j >=0 ; j--) {
                 this.eaters[j].update(delta);
                 this.eaters[j].testCollision(this.tileMap.getObjectGroup("Collision"));
                 this.eaters[j].testPathFinding(this.tileMap.getObjectGroup("PathFinding"));
@@ -379,6 +379,9 @@ var Helloworld = cc.Layer.extend({
                     this.blowUp();
                 }
 
+                if (this.eaters[j].isCleanUp) {
+                    this.eaters.split(j, 1);
+                }
             }
 
             for (var k = 0; k < this.doors.length; k++) {

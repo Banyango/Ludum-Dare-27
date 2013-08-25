@@ -16,6 +16,8 @@ var Eater = cc.Node.extend({
     collisionRect:null,
     lastPathFindingCollidedWith:null,
     isEating:false,
+    isDead:false,
+    isCleanUp:false,
     init:function () {
         this.walkAnimation = new cc.Animation();
 
@@ -45,10 +47,31 @@ var Eater = cc.Node.extend({
         this.sprite.getTexture().setAliasTexParameters();
 
         this.velocity = cc.p(0, 0);
+
+        this.isDead = false;
+    },
+    kill:function() {
+        if (!this.isDead) {
+            this.isDead = true;
+
+            var fadeOut = cc.FadeOut.create(0.5);
+
+            var particle = cc.ParticleSystemQuad.create("/res/player_die_particle.plist");
+            particle.setPosition(cc.p(this.position.x + this.sprite.getBoundingBox().size.width / 2, this.position.y + this.sprite.getBoundingBox().size.height / 2));
+            particle.setAutoRemoveOnFinish(true);
+
+            this.sprite.getParent().addChild(particle, 7);
+
+            this.sprite.runAction(fadeOut);
+        }
     },
     update:function (delta) {
 
-        if (!this.isEating) {
+        if (this.isDead && this.sprite.numberOfRunningActions() == 0) {
+            this.isCleanUp = true;
+        }
+
+        if (!this.isEating && !this.isDead) {
             this.sprite.setPosition(cc.p(this.position.x + this.sprite.getBoundingBox().size.width / 2, this.position.y + this.sprite.getBoundingBox().size.height / 2));
 
             if (this.collisionRect == null) {
@@ -122,6 +145,10 @@ var Eater = cc.Node.extend({
             var rect = cc.RectMake(obj.x, obj.y, obj.width, obj.height);
 
             if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
+
+                if (obj.type == "LAVA" || obj.type == "WATER") {
+                    this.kill();
+                }
 
                 var intersection = cc.Rect.CCRectIntersection(rect, collisionRect);
 
