@@ -24,7 +24,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-var Keys = {};
+var Keys = {},
+    levelIndex = 1;
 
 var Helloworld = cc.Layer.extend({
 
@@ -43,7 +44,7 @@ var Helloworld = cc.Layer.extend({
     isPaused:false,
     pauseFont:null,
     pauseButtonTick:0,
-    init:function () {
+    init:function (tmxFile) {
 
         this._super();
 
@@ -70,8 +71,6 @@ var Helloworld = cc.Layer.extend({
         cc.SpriteFrameCache.getInstance().addSpriteFrames("/res/eater.plist");
         var eaterSpriteSheet = cc.SpriteBatchNode.create("/res/eater.png", 1);
         this.addChild(eaterSpriteSheet);
-
-        var tmxFile = "/res/level1.tmx";
 
         this.tileMap = cc.TMXTiledMap.create(tmxFile);
 
@@ -151,6 +150,8 @@ var Helloworld = cc.Layer.extend({
             }
         }
 
+        this.spores = [];
+
         objectGroup = this.tileMap.getObjectGroup("Beacon");
 
         for (var k = 0; k < objectGroup.getObjects().length; k++) {
@@ -169,6 +170,8 @@ var Helloworld = cc.Layer.extend({
 
             this.spores.push(spore);
         }
+
+        this.eaters = [];
 
         objectGroup = this.tileMap.getObjectGroup("Enemies");
 
@@ -210,7 +213,7 @@ var Helloworld = cc.Layer.extend({
 
                 this.font.setString(this.secondCounter);
             }
-        }, 1);
+        }, 1, null ,10);
 
         return true;
     },
@@ -291,6 +294,7 @@ var Helloworld = cc.Layer.extend({
             if (this.player.testGoal(this.egg)) {
                 this.player.isDead = true;
                 this.unscheduleAllCallbacks();
+                this.gotoNextLevel();
             }
 
             for (var i = 0; i < this.spores.length; i++) {
@@ -338,6 +342,10 @@ var Helloworld = cc.Layer.extend({
 
         this.pauseButtonTick-=delta;
     },
+    gotoNextLevel:function() {
+        levelIndex++;
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(12, new HelloWorldScene(), new cc.Color3B(0,0,0)));
+    },
     onKeyDown:function (e) {
         Keys[e] = true;
     },
@@ -349,8 +357,22 @@ var Helloworld = cc.Layer.extend({
 var HelloWorldScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
-        var layer = new Helloworld();
-        layer.init();
+
+        var level;
+
+        if (level == null) {
+            level = "/res/level" + levelIndex + ".tmx";
+        }
+
+        var layer;
+        if (levelIndex > 12) {
+//        layer = GameOverScene.layer();
+        } else {
+            layer = new Helloworld();
+            layer.init(level);
+        }
+
         this.addChild(layer);
     }
 });
+

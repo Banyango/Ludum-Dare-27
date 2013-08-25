@@ -17,7 +17,8 @@ var g_ressources = [
     //fnt
 //    {type:"fnt", src:"/res/2plyrFont2PlyrFont.fnt"},
     //tmx
-    {type:"tmx", src:"/res/level1.tmx"}
+    {type:"tmx", src:"/res/level1.tmx"},
+    {type:"tmx", src:"/res/level2.tmx"}
     //bgm
 //
 //    //effect
