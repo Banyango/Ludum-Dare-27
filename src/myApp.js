@@ -37,6 +37,7 @@ var Helloworld = cc.Layer.extend({
     font:null,
     spores:[],
     isResetting:false,
+    egg:null,
     init:function () {
 
         this._super();
@@ -56,6 +57,10 @@ var Helloworld = cc.Layer.extend({
         cc.SpriteFrameCache.getInstance().addSpriteFrames("/res/spore.plist");
         var sporeSpriteSheet = cc.SpriteBatchNode.create("/res/spore.png", 1);
         this.addChild(sporeSpriteSheet);
+
+        cc.SpriteFrameCache.getInstance().addSpriteFrames("/res/egg_goal_spritesheet.plist");
+        var eggSpriteSheet = cc.SpriteBatchNode.create("/res/egg_goal_spritesheet.png", 1);
+        this.addChild(eggSpriteSheet);
 
         var tmxFile = "/res/level1.tmx";
 
@@ -87,7 +92,7 @@ var Helloworld = cc.Layer.extend({
         this.player.desiredPosition = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
         this.player.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
 
-        this.tileMap.addChild(this.player.sprite);
+        this.tileMap.addChild(this.player.sprite, 5);
 
         this.tileMap.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
 
@@ -105,6 +110,20 @@ var Helloworld = cc.Layer.extend({
                 this.tileMap.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
                 this.camera.updateHard(this.tileMap, cc.p(obj.x, obj.y));
                 this.player.lastSpawnBeacon = cc.p(obj.x, obj.y);
+            }
+
+            if (obj.type == "goal_up" || obj.type == "goal_down") {
+                this.egg = new Egg();
+                this.egg.position = cc.p(obj.x, obj.y);
+                this.egg.init();
+                this.tileMap.addChild(this.egg.sprite);
+                this.egg.collisionBox = cc.RectMake(obj.x, obj.y, obj.width, obj.height);
+
+                if (obj.type == "goal_down") {
+                    this.egg.direction = "DOWN"
+                } else {
+                    this.egg.direction = "UP";
+                }
             }
         }
 
@@ -146,7 +165,6 @@ var Helloworld = cc.Layer.extend({
     },
     respawnPlayer:function() {
         this.player.sprite.setOpacity(255);
-        this.tileMap.addChild(this.player.sprite);
         this.player.position = cc.p(this.player.lastSpawnBeacon.position.x + this.player.lastSpawnBeacon.getBoundingBox().size.width / 2, this.player.lastSpawnBeacon.position.y + this.player.lastSpawnBeacon.getBoundingBox().size.height / 2);
         this.player.spawnJump();
         if (this.player.nextDirection != null) {
@@ -165,12 +183,9 @@ var Helloworld = cc.Layer.extend({
             this.player.kill();
 
             var particle = cc.ParticleSystemQuad.create("/res/player_die_particle.plist");
-            particle.setPosition(cc.p(this.player.position.x + this.player.getBoundingBox().size.width / 2, this.player.position.y + this.player.getBoundingBox().size.height / 2));
-
-//            particle.setStartColor(new cc.Color3B(46,153,102));
-//            particle.setEndColor(new cc.Color3B(46,153,102));
-
-            this.tileMap.addChild(particle);
+            particle.setPosition(cc.p(this.player.position.x + this.player.sprite.getBoundingBox().size.width / 2, this.player.position.y + this.player.sprite.getBoundingBox().size.height / 2));
+            particle.setAutoRemoveOnFinish(true);
+            this.tileMap.addChild(particle, 0);
 
             var delay = cc.DelayTime.create(1);
             var moveCamera = cc.CallFunc.create(this.moveCameraToLastBeacon, this, null);
@@ -196,9 +211,16 @@ var Helloworld = cc.Layer.extend({
         if (this.delta >= this.timeStep) {
             this.player.update(delta, this.camera);
 
+            this.egg.update(delta);
+
             this.player.testCollision(this.tileMap.getObjectGroup("collision"), this.camera);
 
             this.player.testBeacon(this.spores, this.camera);
+
+            if (this.player.testGoal(this.egg)) {
+                this.player.isDead = true;
+                this.unscheduleAllCallbacks();
+            }
 
             for (var i = 0; i < this.spores.length; i++) {
                 var obj = this.spores[i];

@@ -66,10 +66,6 @@ var PlatformPlayer = cc.Node.extend({
             this.isLeft = false;
         }
 
-        if ((Keys[cc.KEY.t])) {
-            this.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
-        }
-
         if ((Keys[cc.KEY.d] || Keys[cc.KEY.right])) {
             this.velocity = cc.pAdd(this.velocity, forwardStep);
             this.isLeft = true;
@@ -381,6 +377,24 @@ var PlatformPlayer = cc.Node.extend({
                 }
             }
         }
+    },
+    testGoal:function (egg) {
+
+        var collisionRect = cc.RectMake(
+            this.desiredPosition.x,
+            this.desiredPosition.y,
+            this.sprite.getTextureRect().size.width,
+            this.sprite.getTextureRect().size.height);
+
+            var rect = egg.collisionBox;
+
+            if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
+                this.sprite.setVisible(false);
+                egg.runWinAnimation();
+                return true;
+            }
+
+        return false;
     }
 
 

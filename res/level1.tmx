@@ -5,16 +5,16 @@
   <property name="speed" value="80"/>
  </properties>
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32">
-  <image source="tile_set.png" width="256" height="128"/>
+  <image source="tile_set.png" width="1536" height="288"/>
  </tileset>
  <layer name="Tile Layer 1" width="32" height="100" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3NuREAIAzAsFBDw/7LQpEdwiPduXYEAAAAAAAAAAA3G5Ik6ahaVvWfu579+Jck6dUW0kObEgAyAAA=
+   H4sIAAAAAAAAA+3NwQkAIAwAsbr/uHYAEbqDVhO490UAAAAAAAAAANBZSpKkqxrVqf82qx//kiS92gKn5JMzADIAAA==
   </data>
  </layer>
  <layer name="platform" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2X0Q6CMAxFF9QHRF70//9VltjYNEMmcyvCOcl9Ucdl7e3AEAAAAAAAAAAAAAAAAADq0hnBm63Xo/T+StcPhetL6X94Le856I22xNbn4CjYjLbui82ozSk58SPW/uzo/5h0x9+N66Sb+Sxm4hT8chFrMga/uuzVX/oqmutvLf+YtUHJ5q62fy5H95c+zfXnH6lVyzhTl5dS85Q7c13Gb1JIVubyor//lCk9m9/0fcl/aeZlz2tZ8q/NmrqV7nlPnIxSyH+W1u8jkieP81i/g3n4a8+W/nKeevmLV2t/2becZa397XOilr++hn52jiHPX6+pqTHh76Ho/wSN9JvsADIAAA==
+   H4sIAAAAAAAAA+2Xa26DQAyE/SOk6eM4EJGeh1Zp73+ArltGcVYGgWAxVeaTRhB2YdaOvSQihBBCCCGEEEIIIYQQQgghhJTllHQ2Ijf2no+l64u+fylr+p96PSe9rPjcqZxlv324t/U8Kk8SW6cfmT6zcdZJHFobdaC/Vw9bckl6D/T/SvoO9Pfyj/2i2n45v2g9NhK3L3QSW5fqXaIu9Xuteh1luO/1eom6bI3G4ovOP9YW5Y/cP2r9/ye0p/T31GvS28B4ZeTNyefNeR/XRo0zfpX7fvPmTHnOEG3vcRW/n20t4dyCuDujfM4Y8J677rWAv8Y3db9GzOQvFwe51b7HWH9tAWpry/pCTvSI/pnTF0vRmLWuGxn+31YCxN0F+WMPRF/DFyqFjRuxW//S+xvixv4LP5v7tf0R89H45vHma8B1e+8hU+WMe+f1iI/9bNeG8XahLk7M9mh9fwC3W6JoADIAAA==
   </data>
  </layer>
  <objectgroup name="collision" width="32" height="100">
@@ -46,6 +46,7 @@
  </objectgroup>
  <objectgroup name="static" width="32" height="100">
   <object type="player_start" x="576" y="2400" width="32" height="32"/>
+  <object type="goal_up" x="160" y="3104" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Beacon" width="32" height="100">
   <object type="UP" x="608" y="3104" width="32" height="32"/>

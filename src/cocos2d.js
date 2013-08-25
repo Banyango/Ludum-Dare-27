@@ -42,6 +42,7 @@
             'src/PlatformPlayer.js',
             'src/Camera.js',
             'src/Spore.js',
+            'src/Egg.js',
             'src/myApp.js'
         ]
     };
