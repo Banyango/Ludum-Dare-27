@@ -7,6 +7,8 @@ var g_ressources = [
     {type:"image", src:"/res/spore.png"},
     {type:"image", src:"/res/egg_goal_spritesheet.png"},
     {type:"image", src:"/res/eater.png"},
+    {type:"image", src:"/res/door.png"},
+    {type:"image", src:"/res/key.png"},
 
     //plist
     {type:"plist", src:"/res/player_spritesheet.plist"},

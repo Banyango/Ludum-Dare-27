@@ -44,6 +44,8 @@
             'src/Spore.js',
             'src/Egg.js',
             'src/Eater.js',
+            'src/Door.js',
+            'src/Key.js',
             'src/myApp.js'
         ]
     };

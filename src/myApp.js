@@ -27,6 +27,13 @@
 var Keys = {},
     levelIndex = 1;
 
+var keyColors = [
+    new cc.Color3B(100,230,45), new cc.Color3B(12,14,45),
+    new cc.Color3B(11,44,45), new cc.Color3B(255,230,45),
+    new cc.Color3B(3,230,255), new cc.Color3B(100,230,45),
+    new cc.Color3B(100,230,45), new cc.Color3B(100,230,45),
+    new cc.Color3B(100,230,45), new cc.Color3B(100,230,45)];
+
 var Helloworld = cc.Layer.extend({
 
     player:null,
@@ -38,6 +45,8 @@ var Helloworld = cc.Layer.extend({
     font:null,
     spores:[],
     eaters:[],
+    keys:[],
+    doors:[],
     isResetting:false,
     egg:null,
     colourLayer:null,
@@ -123,6 +132,9 @@ var Helloworld = cc.Layer.extend({
 
         var objectGroup = this.tileMap.getObjectGroup("Static");
 
+        this.keys = [];
+        this.doors = [];
+
         for (var i = 0; i < objectGroup.getObjects().length; i++) {
 
             var obj = objectGroup.getObjects()[i];
@@ -148,6 +160,16 @@ var Helloworld = cc.Layer.extend({
                     this.egg.direction = "UP";
                 }
             }
+
+            if (obj.type.match("key_object") != null) {
+                var key = new Key();
+                key.init(obj);
+
+                this.tileMap.addChild(key.sprite, 12);
+
+                this.keys.push(key);
+            }
+
         }
 
         this.spores = [];
@@ -169,6 +191,32 @@ var Helloworld = cc.Layer.extend({
             this.tileMap.addChild(spore.sprite, 4);
 
             this.spores.push(spore);
+        }
+
+        objectGroup = this.tileMap.getObjectGroup("Collision");
+
+        for (var l = 0; l < objectGroup.getObjects().length; l++) {
+
+            var doorObj = objectGroup.getObjects()[l];
+
+            if (doorObj.type.match("door_object") != null) {
+                var door = new Door();
+
+                door.init(doorObj);
+
+                this.tileMap.addChild(door.sprite);
+
+                for (var m = 0; m < this.keys.length; m++) {
+                    var obj1 = this.keys[m];
+
+                    if (obj1.key == door.key) {
+                        obj1.sprite.setColor(keyColors[m]);
+                        door.sprite.setColor(keyColors[m]);
+                    }
+                }
+
+                this.doors.push(door);
+            }
         }
 
         this.eaters = [];
@@ -291,6 +339,10 @@ var Helloworld = cc.Layer.extend({
 
             this.player.testBeacon(this.spores, this.camera);
 
+            this.player.testDoors(this.doors, this.tileMap.getObjectGroup("Collision"), this.keys);
+
+            this.player.testKeys(this.keys);
+
             if (this.player.testGoal(this.egg)) {
                 this.player.isDead = true;
                 this.unscheduleAllCallbacks();
@@ -298,22 +350,27 @@ var Helloworld = cc.Layer.extend({
             }
 
             for (var i = 0; i < this.spores.length; i++) {
-                var obj = this.spores[i];
-                obj.update(delta);
+                this.spores[i].update(delta);
             }
 
             for (var j = 0; j < this.eaters.length; j++) {
-                var obj1 = this.eaters[j];
+                this.eaters[j].update(delta);
+                this.eaters[j].testCollision(this.tileMap.getObjectGroup("Collision"));
+                this.eaters[j].testPathFinding(this.tileMap.getObjectGroup("PathFinding"));
 
-                obj1.update(delta);
-                obj1.testCollision(this.tileMap.getObjectGroup("Collision"));
-                obj1.testPathFinding(this.tileMap.getObjectGroup("PathFinding"));
-
-                if (obj1.testPlayer(this.player) && !this.isResetting) {
+                if (this.eaters[j].testPlayer(this.player) && !this.isResetting) {
                     this.isResetting = true;
                     this.blowUp();
                 }
 
+            }
+
+            for (var k = 0; k < this.doors.length; k++) {
+                this.doors[k].update(delta);
+            }
+
+            for (var m = 0; m < this.keys.length; m++) {
+                this.keys[m].update(delta);
             }
 
             if (this.player.shouldBlowUp && !this.isResetting) {

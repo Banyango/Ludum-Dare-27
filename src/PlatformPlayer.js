@@ -168,88 +168,58 @@ var PlatformPlayer = cc.Node.extend({
         }
 
     },
-    testCollisionUp:function (rect, obj, camera, collisionRect) {
-        if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
+    doOnCollisionUp:function (rect, obj, camera, intersection) {
 
-            var intersection = cc.Rect.CCRectIntersection(rect, collisionRect);
+        if (intersection.size.width < intersection.size.height) {
+            if (intersection.origin.x > this.desiredPosition.x) {
+                this.desiredPosition = cc.p(this.desiredPosition.x - intersection.size.width, this.desiredPosition.y);
+                this.velocity = cc.p(0, this.velocity.y);
+            } else {
+                this.desiredPosition = cc.p(this.desiredPosition.x + intersection.size.width, this.desiredPosition.y);
 
-            if (obj.type == "LAVA" && !this.powerUp.isFireProof()) {
-                this.shouldBlowUp = true;
-                return;
-            } else if (obj.type == "WATER" && !this.powerUp.isWaterProof()) {
-                this.shouldBlowUp = true;
-                return;
-            } else if (obj.type == "WATER" && this.powerUp.isWaterProof()) {
-                return;
+                this.velocity = cc.p(0, this.velocity.y);
             }
+        } else if (intersection.size.width > intersection.size.height) {
+            if (intersection.origin.y > this.desiredPosition.y) {
+                this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y - intersection.size.height);
+                this.velocity = cc.p(this.velocity.x, 0);
+            } else if (intersection.origin.y == this.desiredPosition.y) {
+                this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y + intersection.size.height);
 
-            if (intersection.size.width < intersection.size.height) {
-                if (intersection.origin.x > this.desiredPosition.x) {
-                    this.desiredPosition = cc.p(this.desiredPosition.x - intersection.size.width, this.desiredPosition.y);
-                    this.velocity = cc.p(0, this.velocity.y);
-                } else {
-                    this.desiredPosition = cc.p(this.desiredPosition.x + intersection.size.width, this.desiredPosition.y);
-
-                    this.velocity = cc.p(0, this.velocity.y);
+                if (camera != null) {
+                    camera.updatePosition(cc.p(this.desiredPosition.x, this.desiredPosition.y));
                 }
-            } else if (intersection.size.width > intersection.size.height) {
-                if (intersection.origin.y > this.desiredPosition.y) {
-                    this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y - intersection.size.height);
-                    this.velocity = cc.p(this.velocity.x, 0);
-                } else if (intersection.origin.y == this.desiredPosition.y) {
-                    this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y + intersection.size.height);
 
-                    if (camera != null) {
-                        camera.updatePosition(cc.p(this.desiredPosition.x, this.desiredPosition.y));
-                    }
-
-                    this.velocity = cc.p(this.velocity.x, 0);
-                    this.isOnGround = true;
-                    camera.isPlatformLockCamera = true;
-                }
+                this.velocity = cc.p(this.velocity.x, 0);
+                this.isOnGround = true;
+                camera.isPlatformLockCamera = true;
             }
         }
+
     },
-    testCollisionDown:function (rect, obj, camera, collisionRect) {
-        if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
+    doOnCollisionDown:function (rect, obj, camera, intersection) {
+        if (intersection.size.width < intersection.size.height) {
+            if (intersection.origin.x > this.desiredPosition.x) {
+                this.desiredPosition = cc.p(this.desiredPosition.x - intersection.size.width, this.desiredPosition.y);
+                this.velocity = cc.p(0, this.velocity.y);
+            } else {
+                this.desiredPosition = cc.p(this.desiredPosition.x + intersection.size.width, this.desiredPosition.y);
 
-            if (obj.type == "LAVA" && !this.powerUp.isFireProof()) {
-                this.shouldBlowUp = true;
-                return;
-            } else if (obj.type == "WATER" && !this.powerUp.isWaterProof()) {
-                this.shouldBlowUp = true;
-                return;
-            } else if (obj.type == "WATER" && this.powerUp.isWaterProof()) {
-                return;
+                this.velocity = cc.p(0, this.velocity.y);
             }
-
-            var intersection = cc.Rect.CCRectIntersection(rect, collisionRect);
-
-            if (intersection.size.width < intersection.size.height) {
-                if (intersection.origin.x > this.desiredPosition.x) {
-                    this.desiredPosition = cc.p(this.desiredPosition.x - intersection.size.width, this.desiredPosition.y);
-                    this.velocity = cc.p(0, this.velocity.y);
-                } else {
-                    this.desiredPosition = cc.p(this.desiredPosition.x + intersection.size.width, this.desiredPosition.y);
-
-                    this.velocity = cc.p(0, this.velocity.y);
+        } else if (intersection.size.width > intersection.size.height) {
+            if (intersection.origin.y > this.desiredPosition.y) {
+                this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y - intersection.size.height);
+                this.velocity = cc.p(this.velocity.x, 0);
+                if (camera != null) {
+                    camera.updatePosition(cc.p(this.desiredPosition.x, this.desiredPosition.y));
                 }
-            } else if (intersection.size.width > intersection.size.height) {
-                if (intersection.origin.y > this.desiredPosition.y) {
-                    this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y - intersection.size.height);
-                    this.velocity = cc.p(this.velocity.x, 0);
-                    if (camera != null) {
-                        camera.updatePosition(cc.p(this.desiredPosition.x, this.desiredPosition.y));
-                    }
-                    this.isOnGround = true;
-                    camera.isPlatformLockCamera = true;
-                } else if (intersection.origin.y == this.desiredPosition.y) {
-                    this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y + intersection.size.height);
-                    this.velocity = cc.p(this.velocity.x, 0);
-                }
-
+                this.isOnGround = true;
+                camera.isPlatformLockCamera = true;
+            } else if (intersection.origin.y == this.desiredPosition.y) {
+                this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y + intersection.size.height);
+                this.velocity = cc.p(this.velocity.x, 0);
             }
-
         }
     },
     renderSpritesUp:function(camera) {
@@ -352,7 +322,7 @@ var PlatformPlayer = cc.Node.extend({
             this.displayedFrame = AnimationEnum.IDLE;
         }
     },
-    testCollision:function (objects, camera) {
+    testCollision:function (objects, camera, keys) {
         this.isOnGround = false;
 
         var collisionRect = cc.RectMake(
@@ -366,11 +336,28 @@ var PlatformPlayer = cc.Node.extend({
             var obj = objects.getObjects()[i];
             var rect = cc.RectMake(obj.x, obj.y, obj.width, obj.height);
 
-            if (this.direction == DirectionEnum.UP) {
-                this.testCollisionUp(rect, obj, camera, collisionRect);
-            } else if (this.direction == DirectionEnum.DOWN) {
-                this.testCollisionDown(rect, obj, camera, collisionRect);
+            if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
+
+                var intersection = cc.Rect.CCRectIntersection(rect, collisionRect);
+                var skipCollision = false;
+
+                if (obj.type == "LAVA" && !this.powerUp.isFireProof()) {
+                    this.shouldBlowUp = true;
+                } else if (obj.type == "WATER" && !this.powerUp.isWaterProof()) {
+                    this.shouldBlowUp = true;
+                } else if (obj.type == "WATER" && this.powerUp.isWaterProof()) {
+                    skipCollision = true;
+                }
+
+                if (!skipCollision) {
+                    if (this.direction == DirectionEnum.UP) {
+                        this.doOnCollisionUp(rect, obj, camera, intersection);
+                    } else if (this.direction == DirectionEnum.DOWN) {
+                        this.doOnCollisionDown(rect, obj, camera, intersection);
+                    }
+                }
             }
+
         }
 
         this.position = cc.p(this.desiredPosition.x, this.desiredPosition.y);
@@ -398,6 +385,50 @@ var PlatformPlayer = cc.Node.extend({
                     }
 
                     obj.activate();
+                }
+            }
+        }
+    },
+    testDoors:function (objects, collisionObjects, keysOnLevel) {
+
+        var collisionRect = cc.RectMake(
+            this.desiredPosition.x,
+            this.desiredPosition.y,
+            this.sprite.getTextureRect().size.width,
+            this.sprite.getTextureRect().size.height);
+
+        for (var i = 0; i < objects.length; i++) {
+            var obj = objects[i];
+            var rect = obj.collisionBox;
+
+            if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
+                if (!obj.isOpen) {
+                    for (var j = 0; j < keysOnLevel.length; j++) {
+                        var key = keysOnLevel[j];
+
+                        if (key.isCollected && key.key == obj.key) {
+                            obj.open(collisionObjects);
+                        }
+                    }
+                }
+            }
+        }
+    },
+    testKeys:function (objects) {
+
+        var collisionRect = cc.RectMake(
+            this.desiredPosition.x,
+            this.desiredPosition.y,
+            this.sprite.getTextureRect().size.width,
+            this.sprite.getTextureRect().size.height);
+
+        for (var i = 0; i < objects.length; i++) {
+            var obj = objects[i];
+            var rect = obj.collisionBox;
+
+            if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
+                if (!obj.isCollected) {
+                    obj.collect();
                 }
             }
         }
