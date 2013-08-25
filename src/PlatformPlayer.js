@@ -50,14 +50,14 @@ var PlatformPlayer = cc.Node.extend({
         var gravity = cc.p(0.0, -640.0);
         var gravityStep = cc.pMult(gravity, delta);
 
-        var forwardMove = cc.p(990, 0);
+        var forwardMove = cc.p(680, 0);
         var forwardStep = cc.pMult(forwardMove, delta);
 
         this.velocity = cc.pAdd(this.velocity, gravityStep);
         this.velocity = cc.p(this.velocity.x * 0.89, this.velocity.y);
 
         if (this.isOnGround && (Keys[cc.KEY.space])) {
-            var jumpVelocity = cc.p(0, 9500);
+            var jumpVelocity = cc.p(0, 8700);
             this.velocity = cc.pAdd(this.velocity, jumpVelocity);
         }
 
@@ -87,7 +87,7 @@ var PlatformPlayer = cc.Node.extend({
         this.velocity = cc.p(this.velocity.x * 0.89, this.velocity.y);
 
         if (this.isOnGround && (Keys[cc.KEY.space])) {
-            var jumpVelocity = cc.p(0, -9500);
+            var jumpVelocity = cc.p(0, -8700);
             this.velocity = cc.pAdd(this.velocity, jumpVelocity);
         }
 
