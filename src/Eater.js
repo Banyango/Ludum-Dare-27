@@ -18,6 +18,7 @@ var Eater = cc.Node.extend({
     isEating:false,
     isDead:false,
     isCleanUp:false,
+    forewardStepX:null,
     init:function () {
         this.walkAnimation = new cc.Animation();
 
@@ -48,6 +49,8 @@ var Eater = cc.Node.extend({
 
         this.velocity = cc.p(0, 0);
 
+        this.forewardStepX = 1090;
+
         this.isDead = false;
     },
     kill:function() {
@@ -72,7 +75,7 @@ var Eater = cc.Node.extend({
         }
 
         if (!this.isEating && !this.isDead) {
-            this.sprite.setPosition(cc.p(this.position.x + this.sprite.getBoundingBox().size.width / 2, this.position.y + this.sprite.getBoundingBox().size.height / 2));
+            this.sprite.setPosition(cc.p(this.position.x + this.sprite.getTextureRect().size.width/2, this.position.y + this.sprite.getBoundingBox().size.height / 2));
 
             if (this.collisionRect == null) {
                 this.collisionRect = cc.RectMake(
@@ -85,7 +88,7 @@ var Eater = cc.Node.extend({
             var gravity = cc.p(0.0, -640.0);
             var gravityStep = cc.pMult(gravity, delta);
 
-            var forwardMove = cc.p(1090, 0);
+            var forwardMove = cc.p(this.forewardStepX, 0);
             var forwardStep = cc.pMult(forwardMove, delta);
 
             this.velocity = cc.pAdd(this.velocity, gravityStep);
@@ -146,32 +149,41 @@ var Eater = cc.Node.extend({
 
             if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
 
-                if (obj.type == "LAVA" || obj.type == "WATER") {
+                var skipCollision = false;
+
+                if (obj.type == "LAVA") {
                     this.kill();
+                }
+
+                if(obj.type == "WATER") {
+                    skipCollision = true;
+                    this.forewardStepX = 500;
                 }
 
                 var intersection = cc.Rect.CCRectIntersection(rect, collisionRect);
 
-                if (intersection.size.width < intersection.size.height) {
-                    if (intersection.origin.x > this.desiredPosition.x) {
-                        this.desiredPosition = cc.p(this.desiredPosition.x - intersection.size.width, this.desiredPosition.y);
-                        this.velocity = cc.p(0, this.velocity.y);
-                        this.isLeft = !this.isLeft;
-                    } else {
-                        this.desiredPosition = cc.p(this.desiredPosition.x + intersection.size.width, this.desiredPosition.y);
-                        this.velocity = cc.p(0, this.velocity.y);
-                        this.isLeft = !this.isLeft;
-                    }
-                } else if (intersection.size.width > intersection.size.height) {
-                    if (intersection.origin.y > this.desiredPosition.y) {
-                        this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y - intersection.size.height);
-                        this.velocity = cc.p(this.velocity.x, 0);
-                    } else if (intersection.origin.y == this.desiredPosition.y) {
-                        this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y + intersection.size.height);
-                        this.velocity = cc.p(this.velocity.x, 0);
-                        this.isOnGround = true;
-                    }
+                if (!skipCollision) {
+                    if (intersection.size.width < intersection.size.height) {
+                        if (intersection.origin.x > this.desiredPosition.x) {
+                            this.desiredPosition = cc.p(this.desiredPosition.x - intersection.size.width, this.desiredPosition.y);
+                            this.velocity = cc.p(0, this.velocity.y);
+                            this.isLeft = !this.isLeft;
+                        } else {
+                            this.desiredPosition = cc.p(this.desiredPosition.x + intersection.size.width, this.desiredPosition.y);
+                            this.velocity = cc.p(0, this.velocity.y);
+                            this.isLeft = !this.isLeft;
+                        }
+                    } else if (intersection.size.width > intersection.size.height) {
+                        if (intersection.origin.y > this.desiredPosition.y) {
+                            this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y - intersection.size.height);
+                            this.velocity = cc.p(this.velocity.x, 0);
+                        } else if (intersection.origin.y == this.desiredPosition.y) {
+                            this.desiredPosition = cc.p(this.desiredPosition.x, this.desiredPosition.y + intersection.size.height);
+                            this.velocity = cc.p(this.velocity.x, 0);
+                            this.isOnGround = true;
+                        }
 
+                    }
                 }
 
             }
@@ -202,9 +214,9 @@ var Eater = cc.Node.extend({
     },
     testPlayer:function (player) {
         var collisionRect = cc.RectMake(
-            this.desiredPosition.x+10,
+            this.desiredPosition.x,
             this.desiredPosition.y,
-            this.sprite.getTextureRect().size.width+10,
+            this.sprite.getTextureRect().size.width,
             this.sprite.getTextureRect().size.height);
 
         if (cc.Rect.CCRectIntersectsRect(player.collisionRect, collisionRect) && !this.isEating) {
