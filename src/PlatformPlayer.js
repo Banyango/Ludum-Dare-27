@@ -27,6 +27,34 @@ var PlatformPlayer = cc.Node.extend({
     nextDirection:null,
     isDead:false,
     shouldBlowUp:null,
+    powerUp:null,
+    init:function () {
+        this.sprite = new cc.Sprite();
+
+        this.sprite.initWithSpriteFrame(cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 1.png"));
+
+        this.sprite.getTexture().setAliasTexParameters();
+
+        this.idleAnimation = new cc.Animation();
+
+        this.idleAnimation.initWithSpriteFrames(
+            [cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 1.png"),
+                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 2.png"),
+                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 3.png"),
+                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 4.png"),
+                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 3.png"),
+                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 2.png")], 0.08);
+
+        this.sprite.position = this.position;
+
+        this.velocity = cc.p(0, 0);
+
+        this.powerUp = noPowerUp;
+
+        this.sprite.setColor(noPowerUp.playerColour());
+
+        return this;
+    },
     kill:function() {
         this.isDead = true;
 
@@ -111,29 +139,6 @@ var PlatformPlayer = cc.Node.extend({
 
         this.velocity = cc.pClamp(this.velocity, minMovement, maxMovement);
     },
-    init:function () {
-        this.sprite = new cc.Sprite();
-
-        this.sprite.initWithSpriteFrame(cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 1.png"));
-
-        this.sprite.getTexture().setAliasTexParameters();
-
-        this.idleAnimation = new cc.Animation();
-
-        this.idleAnimation.initWithSpriteFrames(
-            [cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 1.png"),
-                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 2.png"),
-                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 3.png"),
-                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 4.png"),
-                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 3.png"),
-                cc.SpriteFrameCache.getInstance().getSpriteFrame("player_walking 2.png")], 0.08);
-
-        this.sprite.position = this.position;
-
-        this.velocity = cc.p(0, 0);
-
-        return this;
-    },
     update:function (delta, camera) {
 
         if (!this.isDead) {
@@ -168,8 +173,13 @@ var PlatformPlayer = cc.Node.extend({
 
             var intersection = cc.Rect.CCRectIntersection(rect, collisionRect);
 
-            if(obj.type == "KILL") {
+            if (obj.type == "LAVA" && !this.powerUp.isFireProof()) {
                 this.shouldBlowUp = true;
+                return;
+            } else if (obj.type == "WATER" && !this.powerUp.isWaterProof()) {
+                this.shouldBlowUp = true;
+                return;
+            } else if (obj.type == "WATER" && this.powerUp.isWaterProof()) {
                 return;
             }
 
@@ -197,16 +207,19 @@ var PlatformPlayer = cc.Node.extend({
                     this.isOnGround = true;
                     camera.isPlatformLockCamera = true;
                 }
-
             }
-
         }
     },
     testCollisionDown:function (rect, obj, camera, collisionRect) {
         if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
 
-            if(obj.type == "KILL") {
+            if (obj.type == "LAVA" && !this.powerUp.isFireProof()) {
                 this.shouldBlowUp = true;
+                return;
+            } else if (obj.type == "WATER" && !this.powerUp.isWaterProof()) {
+                this.shouldBlowUp = true;
+                return;
+            } else if (obj.type == "WATER" && this.powerUp.isWaterProof()) {
                 return;
             }
 
@@ -407,8 +420,77 @@ var PlatformPlayer = cc.Node.extend({
 
         return false;
     }
-
-
-
 });
+
+var noPowerUp = {
+    isFireProof:function () {
+        return false;
+    },
+    isWaterProof:function () {
+        return false;
+    },
+    canFloat:function () {
+        return false;
+    },
+    antiGravityAmount:function () {
+        return cc.p(0,0);
+    },
+    playerColour:function () {
+        return new cc.Color3B(46,153,102);
+    }
+};
+
+var firePowerUp = {
+    isFireProof:function () {
+        return true;
+    },
+    isWaterProof:function () {
+        return false;
+    },
+    canFloat:function () {
+        return false;
+    },
+    antiGravityAmount:function () {
+        return cc.p(0,0);
+    },
+    playerColour:function () {
+        return new cc.Color3B(201,44,52);
+    }
+};
+
+var waterPowerUp = {
+    isFireProof:function () {
+        return false;
+    },
+    isWaterProof:function () {
+        return true;
+    },
+    canFloat:function () {
+        return false;
+    },
+    antiGravityAmount:function () {
+        return cc.p(0, 30);
+    },
+    playerColour:function () {
+        return new cc.Color3B(53,102,203);
+    }
+};
+
+var floatyPowerUp = {
+    isFireProof:function () {
+        return false;
+    },
+    isWaterProof:function () {
+        return false;
+    },
+    canFloat:function () {
+        return true;
+    },
+    antiGravityAmount:function () {
+
+    },
+    playerColour:function () {
+        return new cc.Color3B(50,50,30);
+    }
+};
 

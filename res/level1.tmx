@@ -43,7 +43,7 @@
   <object x="928" y="2912" width="96" height="192"/>
   <object x="640" y="2784" width="64" height="32"/>
   <object x="736" y="2720" width="64" height="32"/>
-  <object type="KILL" x="352" y="2720" width="128" height="64"/>
+  <object type="WATER" x="352" y="2720" width="128" height="64"/>
   <object x="480" y="2752" width="96" height="96"/>
   <object x="352" y="2784" width="128" height="64"/>
  </objectgroup>
@@ -56,6 +56,11 @@
   <object type="UP" x="960" y="2880" width="32" height="32"/>
   <object type="UP" x="544" y="2624" width="32" height="32"/>
   <object type="DOWN" x="768" y="2752" width="32" height="32"/>
+  <object type="UP WATER" x="384" y="2688" width="32" height="32">
+   <properties>
+    <property name="powerup" value="fire"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="PathFinding" width="32" height="100">
   <object x="256" y="3104" width="32" height="32"/>
@@ -70,7 +75,7 @@
  </objectgroup>
  <layer name="Transparent" width="32" height="100" opacity="0.68">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3NMQ0AIAwAQfxLABQBouhQCZAud8nP3xoAAAAAAAAAAAAA/NGzEc2C/8p2dAr+APDKBSMq/LMAMgAA
+   H4sIAAAAAAAAA+3NMQ0AIAwAQfx7ABQBluhQCZAud8nP3xoAAAAAAAAAAAAA/NGzEc2C/8p2dAr+APDKBbR65RgAMgAA
   </data>
  </layer>
 </map>

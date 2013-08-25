@@ -6,6 +6,12 @@
  * To change this template use File | Settings | File Templates.
  */
 
+var SporeTypeEnum = {
+    FIRE:"FIRE",
+    WATER:"WATER",
+    FLOAT:"FLOAT"
+};
+
 var Spore = cc.Node.extend({
 
     sprite:null,
@@ -15,6 +21,7 @@ var Spore = cc.Node.extend({
     activateAnimation:null,
     collisionBox:null,
     direction:null,
+    sporeType:null,
     initialize:function(){
         this.idleAnimation = new cc.Animation();
 
@@ -62,6 +69,12 @@ var Spore = cc.Node.extend({
         } else if (this.direction == "UP") {
             this.sprite.setFlipY(false);
             this.sprite.setPosition(cc.p(this.position.x + this.sprite.getBoundingBox().size.width / 2, this.position.y + this.sprite.getBoundingBox().size.height / 2));
+        }
+
+        if (this.sporeType == "FIRE") {
+            this.sprite.setColor(new cc.Color3B(200, 0, 0));
+        } else if (this.sporeType == "WATER") {
+            this.sprite.setColor(new cc.Color3B(0, 0, 200));
         }
 
     },

@@ -155,7 +155,8 @@ var Helloworld = cc.Layer.extend({
             spore.initialize();
             spore.collisionBox = cc.RectMake(sporeObj.x, sporeObj.y, sporeObj.width, sporeObj.height);
             spore.position = cc.p(sporeObj.x, sporeObj.y);
-            spore.direction = sporeObj.type;
+            spore.direction = sporeObj.type.replace("FIRE","").replace("WATER", "").replace("FLOAT","").trim();
+            spore.sporeType = sporeObj.type.replace("UP","").replace("DOWN","").trim();
 
             this.tileMap.addChild(spore.sprite, 4);
 
@@ -219,6 +220,19 @@ var Helloworld = cc.Layer.extend({
         if (this.player.nextDirection != null) {
             this.player.direction = this.player.nextDirection;
         }
+
+        if (this.player.lastSpawnBeacon.sporeType == SporeTypeEnum.FIRE) {
+            this.player.powerUp = firePowerUp;
+        } else if (this.player.lastSpawnBeacon.sporeType == SporeTypeEnum.WATER) {
+            this.player.powerUp = waterPowerUp;
+        } else if (this.player.lastSpawnBeacon.sporeType == SporeTypeEnum.FLOAT) {
+            this.player.powerUp = floatyPowerUp;
+        } else {
+            this.player.powerUp = noPowerUp;
+        }
+
+        this.player.sprite.setColor(this.player.powerUp.playerColour());
+
         this.player.isDead = false;
         this.isResetting = false;
         this.player.shouldBlowUp = false;
