@@ -6,9 +6,11 @@ var g_ressources = [
     {type:"image", src:"/res/ludum_dare_background.png"},
     {type:"image", src:"/res/spore.png"},
     {type:"image", src:"/res/egg_goal_spritesheet.png"},
+    {type:"image", src:"/res/eater.png"},
 
     //plist
     {type:"plist", src:"/res/player_spritesheet.plist"},
+    {type:"plist", src:"/res/eater.plist"},
     {type:"plist", src:"/res/spore.plist"},
     {type:"plist", src:"/res/player_die_particle.plist"},
     {type:"plist", src:"/res/egg_goal_spritesheet.plist"},

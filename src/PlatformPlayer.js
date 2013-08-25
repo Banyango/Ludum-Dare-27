@@ -80,7 +80,7 @@ var PlatformPlayer = cc.Node.extend({
         var gravity = cc.p(0.0, 640.0);
         var gravityStep = cc.pMult(gravity, delta);
 
-        var forwardMove = cc.p(990, 0);
+        var forwardMove = cc.p(680, 0);
         var forwardStep = cc.pMult(forwardMove, delta);
 
         this.velocity = cc.pAdd(this.velocity, gravityStep);

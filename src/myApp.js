@@ -31,11 +31,12 @@ var Helloworld = cc.Layer.extend({
     player:null,
     tileMap:null,
     camera:null,
-    timeStep:(1.0/60.0),
+    timeStep:(1.0 / 60.0),
     delta:0,
     secondCounter:10,
     font:null,
     spores:[],
+    eaters:[],
     isResetting:false,
     egg:null,
     init:function () {
@@ -62,11 +63,15 @@ var Helloworld = cc.Layer.extend({
         var eggSpriteSheet = cc.SpriteBatchNode.create("/res/egg_goal_spritesheet.png", 1);
         this.addChild(eggSpriteSheet);
 
+        cc.SpriteFrameCache.getInstance().addSpriteFrames("/res/eater.plist");
+        var eaterSpriteSheet = cc.SpriteBatchNode.create("/res/eater.png", 1);
+        this.addChild(eaterSpriteSheet);
+
         var tmxFile = "/res/level1.tmx";
 
         this.tileMap = cc.TMXTiledMap.create(tmxFile);
 
-        this.font = cc.LabelTTF.create('label text',  'Press Start 2P', 32, cc.size(32,16), cc.TEXT_ALIGNMENT_LEFT);
+        this.font = cc.LabelTTF.create('label text', 'Press Start 2P', 32, cc.size(32, 16), cc.TEXT_ALIGNMENT_LEFT);
 
         this.font.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height - 50);
 
@@ -83,7 +88,7 @@ var Helloworld = cc.Layer.extend({
         background.setScaleY(8);
         background.getTexture().setAliasTexParameters();
 
-        parallaxNode.addChild(background, 1, cc.p(0.02,0.02), cc.p(512,256));
+        parallaxNode.addChild(background, 1, cc.p(0.02, 0.02), cc.p(512, 256));
         this.addChild(parallaxNode, 0);
 
         this.player = new PlatformPlayer();
@@ -98,7 +103,7 @@ var Helloworld = cc.Layer.extend({
 
         this.addChild(this.tileMap);
 
-        var objectGroup = this.tileMap.getObjectGroup("static");
+        var objectGroup = this.tileMap.getObjectGroup("Static");
 
         for (var i = 0; i < objectGroup.getObjects().length; i++) {
 
@@ -129,20 +134,35 @@ var Helloworld = cc.Layer.extend({
 
         objectGroup = this.tileMap.getObjectGroup("Beacon");
 
-        for (var i = 0; i < objectGroup.getObjects().length; i++) {
+        for (var k = 0; k < objectGroup.getObjects().length; k++) {
 
-            var obj = objectGroup.getObjects()[i];
+            var sporeObj = objectGroup.getObjects()[k];
 
             var spore = new Spore();
 
             spore.initialize();
-            spore.collisionBox = cc.RectMake(obj.x, obj.y, obj.width, obj.height);
-            spore.position = cc.p(obj.x, obj.y);
-            spore.direction = obj.type;
+            spore.collisionBox = cc.RectMake(sporeObj.x, sporeObj.y, sporeObj.width, sporeObj.height);
+            spore.position = cc.p(sporeObj.x, sporeObj.y);
+            spore.direction = sporeObj.type;
 
             this.tileMap.addChild(spore.sprite, 4);
 
             this.spores.push(spore);
+        }
+
+        objectGroup = this.tileMap.getObjectGroup("Enemies");
+
+        for (var j = 0; j < objectGroup.getObjects().length; j++) {
+
+            var enemyObj = objectGroup.getObjects()[j];
+
+            var eater = new Eater();
+            eater.init();
+            eater.position = cc.p(enemyObj.x, enemyObj.y);
+
+            this.tileMap.addChild(eater.sprite);
+
+            this.eaters.push(eater);
         }
 
         this.scheduleUpdate();
@@ -157,13 +177,13 @@ var Helloworld = cc.Layer.extend({
 
         return true;
     },
-    moveCameraToLastBeacon:function(){
+    moveCameraToLastBeacon:function () {
         var rect = this.player.lastSpawnBeacon.collisionBox;
         var position = cc.p(rect.origin.x + rect.size.width / 2, rect.origin.y + rect.size.height / 2);
 
         this.camera.updateHard(this.tileMap, position);
     },
-    respawnPlayer:function() {
+    respawnPlayer:function () {
         this.player.sprite.setOpacity(255);
         this.player.position = cc.p(this.player.lastSpawnBeacon.position.x + this.player.lastSpawnBeacon.getBoundingBox().size.width / 2, this.player.lastSpawnBeacon.position.y + this.player.lastSpawnBeacon.getBoundingBox().size.height / 2);
         this.player.spawnJump();
@@ -173,13 +193,13 @@ var Helloworld = cc.Layer.extend({
         this.player.isDead = false;
         this.isResetting = false;
     },
-    animateSpawnBeacon:function() {
+    animateSpawnBeacon:function () {
         this.player.lastSpawnBeacon.sprite.stopAllActions();
         var animate = cc.Animate.create(this.player.lastSpawnBeacon.spawnAnimation);
         this.player.lastSpawnBeacon.sprite.runAction(animate);
     },
-    blowUp:function(){
-        if (this.player.lastSpawnBeacon != null && this.player.lastSpawnBeacon instanceof Spore ) {
+    blowUp:function () {
+        if (this.player.lastSpawnBeacon != null && this.player.lastSpawnBeacon instanceof Spore) {
             this.player.kill();
 
             var particle = cc.ParticleSystemQuad.create("/res/player_die_particle.plist");
@@ -206,14 +226,14 @@ var Helloworld = cc.Layer.extend({
     },
     update:function (delta) {
 
-        this.delta+=delta;
+        this.delta += delta;
 
         if (this.delta >= this.timeStep) {
             this.player.update(delta, this.camera);
 
             this.egg.update(delta);
 
-            this.player.testCollision(this.tileMap.getObjectGroup("collision"), this.camera);
+            this.player.testCollision(this.tileMap.getObjectGroup("Collision"), this.camera);
 
             this.player.testBeacon(this.spores, this.camera);
 
@@ -224,7 +244,21 @@ var Helloworld = cc.Layer.extend({
 
             for (var i = 0; i < this.spores.length; i++) {
                 var obj = this.spores[i];
-                obj.update(delta)
+                obj.update(delta);
+            }
+
+            for (var j = 0; j < this.eaters.length; j++) {
+                var obj1 = this.eaters[j];
+
+                obj1.update(delta);
+                obj1.testCollision(this.tileMap.getObjectGroup("Collision"));
+                obj1.testPathFinding(this.tileMap.getObjectGroup("PathFinding"));
+
+                if (obj1.testPlayer(this.player) && !this.isResetting) {
+                    this.isResetting = true;
+                    this.blowUp();
+                }
+
             }
 
             this.setViewPointCenter();

@@ -17,7 +17,7 @@
    H4sIAAAAAAAAA+3WYQ6CMAyG4d1Ab4Q30tMongg8EfjPNhlJY7AZS1yDvk/yhYWNLAWxpAQAAAAAAAAAAAAAAAAA+3DIOQbt3+WcgvY/51yC9leR9euzj6w/sna1tfabpJfcnTlvjVXz3g2SUfJw5rw1Vs29nySz5OnMeWus6PcO7UT2GLW3/5lfxe/gf7811Jb6bR8t6aef6LVjKuuJlu2jy/H93Np4WBmX9kTLXrMcp8pxC9dG+3zTC4HfWD4AMgAA
   </data>
  </layer>
- <objectgroup name="collision" width="32" height="100">
+ <objectgroup name="Collision" width="32" height="100">
   <object type="ladder" x="0" y="2880" width="96" height="320"/>
   <object x="96" y="3136" width="832" height="64"/>
   <object x="928" y="3104" width="96" height="96"/>
@@ -41,11 +41,11 @@
   <object x="864" y="2976" width="64" height="64"/>
   <object x="736" y="2848" width="128" height="32"/>
   <object x="928" y="2912" width="96" height="192"/>
-  <object x="640" y="2784" width="64" height="32"/>
+  <object x="576" y="2784" width="64" height="32"/>
   <object x="736" y="2720" width="64" height="32"/>
  </objectgroup>
- <objectgroup name="static" width="32" height="100">
-  <object type="player_start" x="576" y="2400" width="32" height="32"/>
+ <objectgroup name="Static" width="32" height="100">
+  <object type="player_start" x="288" y="2624" width="32" height="32"/>
   <object type="goal_up" x="160" y="3104" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Beacon" width="32" height="100">
@@ -53,5 +53,13 @@
   <object type="UP" x="960" y="2880" width="32" height="32"/>
   <object type="UP" x="544" y="2624" width="32" height="32"/>
   <object type="DOWN" x="768" y="2752" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="PathFinding" width="32" height="100">
+  <object x="256" y="3104" width="32" height="32"/>
+  <object x="832" y="2816" width="32" height="32"/>
+  <object x="672" y="3104" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="Enemies" width="32" height="100">
+  <object type="crawler" x="480" y="2624" width="32" height="32"/>
  </objectgroup>
 </map>

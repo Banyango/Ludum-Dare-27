@@ -43,6 +43,7 @@
             'src/Camera.js',
             'src/Spore.js',
             'src/Egg.js',
+            'src/Eater.js',
             'src/myApp.js'
         ]
     };
