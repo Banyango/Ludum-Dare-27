@@ -46,9 +46,6 @@ var Key = cc.Node.extend({
         if (this.isCollected) {
             this.sprite.setOpacity(0);
         }
-
-
-        this.sprite.setPosition(cc.p(this.position.x + this.sprite.getBoundingBox().size.width / 2, this.position.y + this.sprite.getBoundingBox().size.height / 2));
     },
     collect:function () {
         this.isCollected = true;
