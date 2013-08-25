@@ -192,6 +192,7 @@ var Helloworld = cc.Layer.extend({
         }
         this.player.isDead = false;
         this.isResetting = false;
+        this.player.shouldBlowUp = false;
     },
     animateSpawnBeacon:function () {
         this.player.lastSpawnBeacon.sprite.stopAllActions();
@@ -235,11 +236,6 @@ var Helloworld = cc.Layer.extend({
 
             this.player.testCollision(this.tileMap.getObjectGroup("Collision"), this.camera);
 
-            if (this.player.shouldBlowUp && !this.isResetting) {
-                this.isResetting = true;
-                this.blowUp();
-            }
-
             this.player.testBeacon(this.spores, this.camera);
 
             if (this.player.testGoal(this.egg)) {
@@ -264,6 +260,11 @@ var Helloworld = cc.Layer.extend({
                     this.blowUp();
                 }
 
+            }
+
+            if (this.player.shouldBlowUp && !this.isResetting) {
+                this.isResetting = true;
+                this.blowUp();
             }
 
             this.setViewPointCenter();
