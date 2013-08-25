@@ -235,6 +235,11 @@ var Helloworld = cc.Layer.extend({
 
             this.player.testCollision(this.tileMap.getObjectGroup("Collision"), this.camera);
 
+            if (this.player.shouldBlowUp && !this.isResetting) {
+                this.isResetting = true;
+                this.blowUp();
+            }
+
             this.player.testBeacon(this.spores, this.camera);
 
             if (this.player.testGoal(this.egg)) {

@@ -9,12 +9,12 @@
  </tileset>
  <layer name="Tile Layer 1" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2XWw6CMBBF+4EaE5eDRvejRvfDktQl+W2JTBwnDhYFauI5yU14lLltZ0ohBAAAAAAAAAAAAAAAAAAAGJq10uYP/eH3mUVNQr46KaOWGf3BR3KD/3/6b6N25pr0aTV+d/BX/n3XRb0PFOG+F0yjFk47qQlbF9+yNfLil2/uD414585/Tn/26TSK8LymvPttbVLieEievHytQ9o/gs55l7rTcV/FPhgdnf5/Su7/n7axebC2HqSuja7rok9yvI/1vOSobz3mw4j+MmbtL96p6+sbtK/1HzL/r8Y9pr/2FdXfQPvweLf17a/XdWmk+6LPC0fzqEvUqdE5qmqOJ84zOm6bp50X3aZsfCrjq8+vTlwbS67Xcy7foPXxDV1CAeMAMgAA
+   H4sIAAAAAAAAA+2YWU7DMBCG/ZCW9TgBlRdOU1B54TSVWI8DZT0Pbd8YC48YRpnUaVoPgv+TPqnZ/NvxkqQhAAAAAAAAAAAAAAAAAAAAAABAWU6d8y8dMnfJPXKfPHDIHwlPHPLB72eHHAS/cVKTR475wIb7Bvn/M39Mnql9XKfj8tVBvsjf9LiIz4EqfD0LhuShcR6PCT0u+jJWWuXXK45vG8727v+S+VfkNXmT8ks/p5/IZ/KlYKZkTi7IZcfrqvBzTlnH287JKceC+8nqr1HI+0aQfd5l3Mlyo7fJO/KenCgvjPqvi27ba/KNfO9Rbi5tbbNYt81/8fs6d250nRebxGM9lvfF47tJtnlSMJ/bLPM5O3d+9UHm6vxt9n9Tu7vmN60PuWuGzGXjO9B5+F7bVuU3rQ9ta4ac17VS1kVuV4bxP7gZ+ZB8JKfp98C4RpbblqnvizynTjlTlSu3P4xydVm8P95zfgeNvz8BR0Jb6QAyAAA=
   </data>
  </layer>
  <layer name="platform" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3WYQ6CMAyG4d1Ab4Q30tMongg8EfjPNhlJY7AZS1yDvk/yhYWNLAWxpAQAAAAAAAAAAAAAAAAA+3DIOQbt3+WcgvY/51yC9leR9euzj6w/sna1tfabpJfcnTlvjVXz3g2SUfJw5rw1Vs29nySz5OnMeWus6PcO7UT2GLW3/5lfxe/gf7811Jb6bR8t6aef6LVjKuuJlu2jy/H93Np4WBmX9kTLXrMcp8pxC9dG+3zTC4HfWD4AMgAA
+   H4sIAAAAAAAAA+2XTQ6CMBCF2Rjd6XHUhXoaoyzUq6iJP8cRjeBxdIPuHCJNGgJ1QMYJyfuSlza0zaOlMy2eBwAAAAAAAAAAAAAAAAAAAAAAAADDnnQgHZX8Q1JEuin5x6Qn6aXkX0RH0Xuk6J2wUPZvk1rK76DJNecZ8oRcnuCsbTdVT8Cfs7bjVBMBf87aLlOtBPy5SMz/QvK9T8xNHf2Sb685f6lvz6Xs3F0xZdq4Oa1K3LliyrRxc1qVtXfFlGnj5jTtuCvLiRSk9W1BnzVpI+R/Jz1I5y/9goI+ku+W0CcNSMOctrrPGONle7r8684zM9LcKv1MPUvT9roUUncNLk04b+w8Uzec+Zs8I0GZOLDP0V/+EZKxkVf+nm+fo6bMPsurhzn1Kvd8e4wp44r1f7BztEnuaQ7cPf0GMWqsoAAyAAA=
   </data>
  </layer>
  <objectgroup name="Collision" width="32" height="100">
@@ -41,8 +41,11 @@
   <object x="864" y="2976" width="64" height="64"/>
   <object x="736" y="2848" width="128" height="32"/>
   <object x="928" y="2912" width="96" height="192"/>
-  <object x="576" y="2784" width="64" height="32"/>
+  <object x="640" y="2784" width="64" height="32"/>
   <object x="736" y="2720" width="64" height="32"/>
+  <object type="KILL" x="352" y="2720" width="128" height="64"/>
+  <object x="480" y="2752" width="96" height="96"/>
+  <object x="352" y="2784" width="128" height="64"/>
  </objectgroup>
  <objectgroup name="Static" width="32" height="100">
   <object type="player_start" x="288" y="2624" width="32" height="32"/>

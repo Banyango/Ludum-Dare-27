@@ -26,6 +26,7 @@ var PlatformPlayer = cc.Node.extend({
     direction:DirectionEnum.UP,
     nextDirection:null,
     isDead:false,
+    shouldBlowUp:null,
     kill:function() {
         this.isDead = true;
 
@@ -167,6 +168,11 @@ var PlatformPlayer = cc.Node.extend({
 
             var intersection = cc.Rect.CCRectIntersection(rect, collisionRect);
 
+            if(obj.type == "KILL") {
+                this.shouldBlowUp = true;
+                return;
+            }
+
             if (intersection.size.width < intersection.size.height) {
                 if (intersection.origin.x > this.desiredPosition.x) {
                     this.desiredPosition = cc.p(this.desiredPosition.x - intersection.size.width, this.desiredPosition.y);
@@ -198,6 +204,11 @@ var PlatformPlayer = cc.Node.extend({
     },
     testCollisionDown:function (rect, obj, camera, collisionRect) {
         if (cc.Rect.CCRectIntersectsRect(rect, collisionRect)) {
+
+            if(obj.type == "KILL") {
+                this.shouldBlowUp = true;
+                return;
+            }
 
             var intersection = cc.Rect.CCRectIntersection(rect, collisionRect);
 
