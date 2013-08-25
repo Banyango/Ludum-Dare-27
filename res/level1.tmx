@@ -9,83 +9,39 @@
  </tileset>
  <layer name="Tile Layer 1" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2YW07DMBBF/ZG2PLqcgMoPqwko/HQ1kYD9AG03RMsfYzUjpqNM6vThQXCPdKU859oeP+KEAAAAAAAAAAAAAAAAAAAAAAAAebl39p87eF6QLklXpGsH/5nQnYM/+P1MSKPg109K0o2jP7Dh3MD/f/pXpAd1jct0m7848Bf+p+4XcR0ownYtGJOmxnPcJ3S/OJZKyYpf7rl/btjbO/85/Z9JL6TX1j/3Or0gLUmrjJ6SNWlD+hr4XhF2x5R1v++ZlDgWnCcrX7OQtkeQOR/S72Tcrti10pNR/kPx3v/01c3i0LL+xf116tgYOi5Oicd8LNvFo3/LOtcZ/bnO0p+9U8fXMUhf7X/O/HfVe6h/1/yQOmdIX1b8BnoMP3PbPv+u+aFvzpDjulSSZZHnhaH4D+6D9NbqndS0xyPjHRm3z1O3i3ymbH0a5SvPP424OhZfj23O36Dx+BverRuMADIAAA==
+   H4sIAAAAAAAAA+2XSUoDQRhG/0CM0ymccR+nLLyD8wWMGheCXka9TrtQT6Tu/Ir+CwoxqIHU7+I9eAQqgdddVenBDAAAAAAAAAAAAAAAAACgLvtB3Vt5J28C2nNyXi7IxYD+buFeQB9+Ju/PKGbljMXtk77cCuzDePLaAGTyntimH9qP+l+ey6EbQb84hghSO92jBkH9dP4jeV2xeS8f5KP3a9+nn+WLfPVu7fl/k+/yw9q5n2T+u9Y+Z/XcPNYtvtuxdl838sI/B19+07Pfk9dp3HqV7weNO/R2GntyyzX/y3WvfKb7rn9VmK8pqX3pY433JyX6/ac8v1FA/z+x1DFblityVa7JdbkhNzvT7x+ocSiP5LE8kafyrEIbAGAafAKR3Dz3ADIAAA==
   </data>
  </layer>
  <layer name="platform" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2XTQ6CMBCF2Rjd6XHUhXoaoyzUq6iJP8cRjeBxdIPuHCJNGgJ1QMYJyfuSlza0zaOlMy2eBwAAAAAAAAAAAAAAAAAAAAAAAADDnnQgHZX8Q1JEuin5x6Qn6aXkX0RH0Xuk6J2wUPZvk1rK76DJNecZ8oRcnuCsbTdVT8Cfs7bjVBMBf87aLlOtBPy5SMz/QvK9T8xNHf2Sb685f6lvz6Xs3F0xZdq4Oa1K3LliyrRxc1qVtXfFlGnj5jTtuCvLiRSk9W1BnzVpI+R/Jz1I5y/9goI+ku+W0CcNSMOctrrPGONle7r8684zM9LcKv1MPUvT9roUUncNLk04b+w8Uzec+Zs8I0GZOLDP0V/+EZKxkVf+nm+fo6bMPsurhzn1Kvd8e4wp44r1f7BztEnuaQ7cPf0GMWqsoAAyAAA=
+   H4sIAAAAAAAAA+3WQU7CQBjF8VkouqvHERbiYYQgC+AqygI9DiUEPA6wAHe+SWbSsWmTphA/Nf9f8kKHQN9ME4ZxDgAAAAAAAAAAAAAARAvlTXk36t8oW+XDqP+onJRPo/46t4bdD4bd3sS4/0a5Np4DfhfrfSJT7oy6vb7yaNg/VWaG/az//6w/nnmann0yd9nfXzzzND379EPaugrx/2kdV+xlTfe0qWv//H3vU8hAGVZ8Zl3x3qpFV7RU8nA9V15CXsPYJeO67y/P6N8pe1esId4vd9/XVR6n/eesv2o+cU4H5V7pKr0LdtSJXWnnT/aPlOfkdVy6BgD8LV8X6nZ1ADIAAA==
   </data>
  </layer>
  <objectgroup name="Collision" width="32" height="100">
-  <object type="ladder" x="0" y="2880" width="96" height="320"/>
-  <object x="96" y="3136" width="832" height="64"/>
-  <object x="928" y="3104" width="96" height="96"/>
-  <object x="704" y="3104" width="96" height="32"/>
-  <object type="ladder" x="224" y="2656" width="96" height="160"/>
+  <object type="ladder" x="224" y="2688" width="96" height="160"/>
   <object x="320" y="2656" width="32" height="160"/>
-  <object x="480" y="2656" width="160" height="96"/>
+  <object x="480" y="2656" width="320" height="96"/>
   <object x="800" y="2656" width="128" height="64"/>
-  <object x="576" y="2432" width="160" height="64"/>
-  <object type="ladder" x="896" y="2304" width="96" height="288"/>
-  <object type="ladder" x="736" y="2176" width="64" height="160"/>
-  <object x="512" y="2048" width="160" height="64"/>
-  <object x="224" y="1888" width="128" height="64"/>
-  <object x="448" y="1952" width="32" height="32"/>
-  <object x="640" y="1792" width="32" height="96"/>
-  <object x="128" y="1824" width="32" height="32"/>
-  <object x="160" y="1696" width="128" height="32"/>
-  <object x="384" y="1760" width="32" height="32"/>
-  <object x="768" y="2080" width="32" height="32"/>
-  <object x="800" y="3040" width="128" height="96"/>
-  <object x="864" y="2976" width="64" height="64"/>
-  <object x="736" y="2848" width="128" height="32"/>
-  <object x="928" y="2912" width="96" height="192"/>
-  <object x="640" y="2784" width="64" height="32"/>
-  <object x="736" y="2720" width="64" height="32"/>
-  <object type="WATER" x="352" y="2720" width="128" height="64"/>
+  <object type="ladder" x="896" y="2304" width="96" height="352"/>
   <object x="480" y="2752" width="96" height="96"/>
-  <object x="352" y="2784" width="128" height="64"/>
-  <object type="door_object 1" x="576" y="2496" width="32" height="160"/>
-  <object type="door_object 2" x="800" y="2880" width="32" height="160"/>
+  <object x="352" y="2624" width="128" height="224"/>
+  <object type="LAVA" x="-96" y="3072" width="1472" height="32"/>
  </objectgroup>
  <objectgroup name="Static" width="32" height="100">
-  <object type="player_start" x="224" y="2624" width="32" height="32"/>
-  <object type="goal_up" x="160" y="3104" width="32" height="32"/>
-  <object x="672" y="2880"/>
-  <object x="576" y="2912"/>
-  <object x="448" y="2880"/>
-  <object type="key_object 1" x="320" y="2624" width="32" height="32"/>
-  <object type="key_object 2" x="960" y="2592" width="32" height="32"/>
+  <object type="player_start" x="256" y="2656" width="32" height="32"/>
+  <object type="goal_up" x="800" y="2624" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Beacon" width="32" height="100">
-  <object type="UP" x="608" y="3104" width="32" height="32"/>
-  <object type="UP" x="960" y="2880" width="32" height="32"/>
-  <object type="UP" x="544" y="2624" width="32" height="32"/>
-  <object type="DOWN" x="768" y="2752" width="32" height="32"/>
-  <object type="UP WATER" x="384" y="2688" width="32" height="32">
-   <properties>
-    <property name="powerup" value="fire"/>
-   </properties>
-  </object>
+  <object type="UP" x="256" y="2656" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="PathFinding" width="32" height="100">
-  <object x="256" y="3104" width="32" height="32"/>
-  <object x="832" y="2816" width="32" height="32"/>
-  <object x="672" y="3104" width="32" height="32"/>
-  <object x="896" y="2624" width="32" height="32"/>
- </objectgroup>
- <objectgroup name="Enemies" width="32" height="100">
-  <object type="crawler" x="480" y="2624" width="32" height="32"/>
-  <object x="608" y="2624" width="32" height="32"/>
-  <object x="800" y="2624" width="32" height="32"/>
- </objectgroup>
+ <objectgroup name="PathFinding" width="32" height="100"/>
+ <objectgroup name="Enemies" width="32" height="100"/>
  <objectgroup name="Particles" width="32" height="100">
-  <object type="water_particle.plist" x="416" y="2752" width="32" height="32"/>
+  <object type="floaty_particle.plist" x="544" y="2624" width="32" height="32"/>
  </objectgroup>
  <layer name="Transparent" width="32" height="100" opacity="0.68">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3NMQ0AIAwAQfx7ABQBluhQCZAud8nP3xoAAAAAAAAAAAAA/NGzEc2C/8p2dAr+APDKBbR65RgAMgAA
+   H4sIAAAAAAAAA+3OMQ0AIBRDQfwLwA8gCQMwfAckdLlL3ty2BgAAAAAAAAAAAMAPPbA5brNKWeEPq0rZVVJ6H4B3BxX82hsAMgAA
   </data>
  </layer>
 </map>

@@ -14,29 +14,26 @@
  </layer>
  <layer name="platforms" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3RUQrCMAwG4B1Kd0/tiTZPNL2Ae6gYgvrSQsF9H/yUZrAkdJoAAAAAAAAAAADguOaU04+cB83YU9z1nx1lz2jZs9ZzCfdbqsX6pebaof+2517PLdwfqRbrJeQ1R+kwC21Gv8WI/rHn6P6lsX/e5ds++duntPbv8T/g7QkqwtqgADIAAA==
+   H4sIAAAAAAAAA+2WUW6EMAxEcyg+6J6HD8pt2JyI7on2BgUJq6PpOPRjF1RpkCzADrZfEsd0pZTuQhkulivZzW9+85vf/OY3v/nNb37zm9/85je/+c1vfvOb3/zmN7/5zW9+85vf/OY3v/nNb37zm9/8/5e/X+VjlRtIn+jZzuOO9Mof6qddxl0+QTcJO4870it/nGeM5ZxxzXqKw9xZHvE96jAG58x+2X/Gnfmvq8wNO+Y5J37ZfwVZhGTzw5y4N7o9/gx+vlZ5gFShU5fiiNhR/7wHBxF3aejiXV1qTmJ8xMb4cd/yvic+X3FF/fP8x9y8K374zeb+bP6s/s6Iz/xnx2d+POPO4uf9h7V/h2cU1WOUXdk2n7X88PMZyPxcu6pHcDy0h07V/iDit3o0n/1ZD0L7kW/Fr9753I61ibFj+Z0f9zG1z1QPznqy6ll4dvC46Ccqh7ozTCVfxxs9q3+c1reRVxVrEfGfYv1a0urJHKP13xU18Fe/qu9jPWGfPZqbWJvt229lGoQOADIAAA==
   </data>
  </layer>
  <objectgroup name="Collision" width="32" height="100">
   <object type="LAVA" x="-96" y="3072" width="1472" height="32"/>
-  <object x="256" y="2944" width="224" height="64"/>
-  <object x="576" y="2944" width="96" height="32"/>
-  <object x="672" y="2880" width="96" height="96"/>
-  <object x="768" y="2816" width="96" height="160"/>
-  <object x="672" y="2720" width="96" height="32"/>
-  <object x="576" y="2688" width="96" height="64"/>
-  <object x="160" y="2688" width="416" height="64"/>
-  <object x="256" y="2624" width="96" height="32"/>
-  <object x="448" y="2560" width="96" height="32"/>
-  <object x="576" y="2496" width="384" height="32"/>
+  <object x="256" y="2944" width="704" height="64"/>
+  <object x="192" y="2624" width="416" height="128"/>
+  <object x="768" y="2624" width="224" height="128"/>
+  <object x="608" y="2624" width="160" height="64"/>
+  <object x="896" y="2784" width="64" height="32"/>
+  <object x="192" y="2752" width="64" height="256"/>
+  <object x="960" y="2752" width="32" height="256"/>
  </objectgroup>
  <objectgroup name="Static" width="32" height="100">
   <object type="player_start" x="320" y="2912" width="32" height="32"/>
-  <object type="goal_up" x="864" y="2464" width="32" height="32"/>
+  <object type="goal_down" x="672" y="2688" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Beacon" width="32" height="100">
   <object type="UP" x="320" y="2912" width="32" height="32"/>
-  <object type="UP" x="384" y="2656" width="32" height="32"/>
+  <object type="DOWN" x="896" y="2816" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="PathFinding" width="32" height="100"/>
  <objectgroup name="Enemies" width="32" height="100"/>

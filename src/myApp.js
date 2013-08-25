@@ -25,7 +25,8 @@
  ****************************************************************************/
 
 var Keys = {},
-    levelIndex = 1;
+    levelIndex = 3,
+    isDebug = true;
 
 var keyColors = [
     new cc.Color3B(100,230,45), new cc.Color3B(12,14,45),
@@ -135,6 +136,10 @@ var Helloworld = cc.Layer.extend({
         this.keys = [];
         this.doors = [];
 
+        if (objectGroup.length == 0) {
+            console.log("statics are empty");
+        }
+
         for (var i = 0; i < objectGroup.getObjects().length; i++) {
 
             var obj = objectGroup.getObjects()[i];
@@ -176,6 +181,10 @@ var Helloworld = cc.Layer.extend({
 
         objectGroup = this.tileMap.getObjectGroup("Beacon");
 
+        if (objectGroup.length == 0) {
+            console.log("beacons are empty");
+        }
+
         for (var k = 0; k < objectGroup.getObjects().length; k++) {
 
             var sporeObj = objectGroup.getObjects()[k];
@@ -194,6 +203,10 @@ var Helloworld = cc.Layer.extend({
         }
 
         objectGroup = this.tileMap.getObjectGroup("Collision");
+
+        if (objectGroup.length == 0) {
+            console.log("collisions are empty");
+        }
 
         for (var l = 0; l < objectGroup.getObjects().length; l++) {
 
@@ -223,6 +236,10 @@ var Helloworld = cc.Layer.extend({
 
         objectGroup = this.tileMap.getObjectGroup("Enemies");
 
+        if (objectGroup.length == 0) {
+            console.log("enemies are empty");
+        }
+
         for (var j = 0; j < objectGroup.getObjects().length; j++) {
 
             var enemyObj = objectGroup.getObjects()[j];
@@ -237,6 +254,10 @@ var Helloworld = cc.Layer.extend({
         }
 
         objectGroup = this.tileMap.getObjectGroup("Particles");
+
+        if (objectGroup.length == 0) {
+            console.log("particles are empty");
+        }
 
         if (objectGroup) {
             for (var n = 0; n < objectGroup.getObjects().length; n++) {
@@ -253,6 +274,10 @@ var Helloworld = cc.Layer.extend({
         }
 
         this.scheduleUpdate();
+
+        if (this.egg == null) {
+            console.log("egg is null");
+        }
 
         this.schedule(function () {
 
@@ -277,7 +302,7 @@ var Helloworld = cc.Layer.extend({
 
                 this.font.setString(this.secondCounter);
             }
-        }, 1, null ,10);
+        }, 1, null , !isDebug ? 10 : 0);
 
         return true;
     },
