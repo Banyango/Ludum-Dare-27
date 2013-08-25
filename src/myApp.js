@@ -40,6 +40,9 @@ var Helloworld = cc.Layer.extend({
     isResetting:false,
     egg:null,
     colourLayer:null,
+    isPaused:false,
+    pauseFont:null,
+    pauseButtonTick:0,
     init:function () {
 
         this._super();
@@ -77,7 +80,11 @@ var Helloworld = cc.Layer.extend({
         this.font.position = cc.p(0,0);
         var scoreLayer = new cc.Layer();
 
+        this.pauseFont = cc.LabelTTF.create('Paused', 'Press Start 2P', 50);
+        this.pauseFont.setVisible(false);
+
         scoreLayer.addChild(this.font);
+        scoreLayer.addChild(this.pauseFont);
         scoreLayer.setPosition(cc.p(cc.Director.getInstance().getWinSize().width/2, cc.Director.getInstance().getWinSize().height - 50));
         this.addChild(scoreLayer, 10);
 
@@ -182,7 +189,7 @@ var Helloworld = cc.Layer.extend({
 
         this.schedule(function () {
 
-            if (!this.player.isDead && this.secondCounter >= 0) {
+            if (!this.player.isDead && this.secondCounter >= 0 && !this.isPaused) {
                 if (this.secondCounter <= 0) {
                     this.blowUp();
                 }
@@ -272,7 +279,7 @@ var Helloworld = cc.Layer.extend({
 
         this.delta += delta;
 
-        if (this.delta >= this.timeStep) {
+        if (this.delta >= this.timeStep && !this.isPaused) {
             this.player.update(delta, this.camera);
 
             this.egg.update(delta);
@@ -318,6 +325,18 @@ var Helloworld = cc.Layer.extend({
             }
         }
 
+        if (Keys[cc.KEY.escape] && this.pauseButtonTick <= 0) {
+            this.isPaused = !this.isPaused;
+            this.pauseButtonTick = 0.3;
+        }
+
+        if (this.isPaused) {
+            this.pauseFont.setVisible(true);
+        } else {
+            this.pauseFont.setVisible(false);
+        }
+
+        this.pauseButtonTick-=delta;
     },
     onKeyDown:function (e) {
         Keys[e] = true;
