@@ -23,7 +23,7 @@ var Eater = cc.Node.extend({
             [cc.SpriteFrameCache.getInstance().getSpriteFrame("eater_walk 1.png"),
                 cc.SpriteFrameCache.getInstance().getSpriteFrame("eater_walk 2.png"),
                 cc.SpriteFrameCache.getInstance().getSpriteFrame("eater_walk 3.png"),
-                cc.SpriteFrameCache.getInstance().getSpriteFrame("eater_walk 4.png")], 0.2);
+                cc.SpriteFrameCache.getInstance().getSpriteFrame("eater_walk 4.png")], 0.1);
 
         this.eatAnimation = new cc.Animation();
 
