@@ -116,7 +116,7 @@ var Helloworld = cc.Layer.extend({
                 this.egg = new Egg();
                 this.egg.position = cc.p(obj.x, obj.y);
                 this.egg.init();
-                this.tileMap.addChild(this.egg.sprite);
+                this.tileMap.addChild(this.egg.sprite, 4);
                 this.egg.collisionBox = cc.RectMake(obj.x, obj.y, obj.width, obj.height);
 
                 if (obj.type == "goal_down") {
@@ -140,7 +140,7 @@ var Helloworld = cc.Layer.extend({
             spore.position = cc.p(obj.x, obj.y);
             spore.direction = obj.type;
 
-            this.tileMap.addChild(spore.sprite);
+            this.tileMap.addChild(spore.sprite, 4);
 
             this.spores.push(spore);
         }

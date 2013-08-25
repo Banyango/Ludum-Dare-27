@@ -7,14 +7,14 @@
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32">
   <image source="tile_set.png" width="1536" height="288"/>
  </tileset>
- <layer name="Tile Layer 1" width="32" height="100" visible="0">
+ <layer name="Tile Layer 1" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3NwQkAIAwAsbr/uHYAEbqDVhO490UAAAAAAAAAANBZSpKkqxrVqf82qx//kiS92gKn5JMzADIAAA==
+   H4sIAAAAAAAAA+2XWw6CMBBF+4EaE5eDRvejRvfDktQl+W2JTBwnDhYFauI5yU14lLltZ0ohBAAAAAAAAAAAAAAAAAAAGJq10uYP/eH3mUVNQr46KaOWGf3BR3KD/3/6b6N25pr0aTV+d/BX/n3XRb0PFOG+F0yjFk47qQlbF9+yNfLil2/uD414585/Tn/26TSK8LymvPttbVLieEievHytQ9o/gs55l7rTcV/FPhgdnf5/Su7/n7axebC2HqSuja7rok9yvI/1vOSobz3mw4j+MmbtL96p6+sbtK/1HzL/r8Y9pr/2FdXfQPvweLf17a/XdWmk+6LPC0fzqEvUqdE5qmqOJ84zOm6bp50X3aZsfCrjq8+vTlwbS67Xcy7foPXxDV1CAeMAMgAA
   </data>
  </layer>
  <layer name="platform" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2Xa26DQAyE/SOk6eM4EJGeh1Zp73+ArltGcVYGgWAxVeaTRhB2YdaOvSQihBBCCCGEEEIIIYQQQgghhJTllHQ2Ijf2no+l64u+fylr+p96PSe9rPjcqZxlv324t/U8Kk8SW6cfmT6zcdZJHFobdaC/Vw9bckl6D/T/SvoO9Pfyj/2i2n45v2g9NhK3L3QSW5fqXaIu9Xuteh1luO/1eom6bI3G4ovOP9YW5Y/cP2r9/ye0p/T31GvS28B4ZeTNyefNeR/XRo0zfpX7fvPmTHnOEG3vcRW/n20t4dyCuDujfM4Y8J677rWAv8Y3db9GzOQvFwe51b7HWH9tAWpry/pCTvSI/pnTF0vRmLWuGxn+31YCxN0F+WMPRF/DFyqFjRuxW//S+xvixv4LP5v7tf0R89H45vHma8B1e+8hU+WMe+f1iI/9bNeG8XahLk7M9mh9fwC3W6JoADIAAA==
+   H4sIAAAAAAAAA+3WYQ6CMAyG4d1Ab4Q30tMongg8EfjPNhlJY7AZS1yDvk/yhYWNLAWxpAQAAAAAAAAAAAAAAAAA+3DIOQbt3+WcgvY/51yC9leR9euzj6w/sna1tfabpJfcnTlvjVXz3g2SUfJw5rw1Vs29nySz5OnMeWus6PcO7UT2GLW3/5lfxe/gf7811Jb6bR8t6aef6LVjKuuJlu2jy/H93Np4WBmX9kTLXrMcp8pxC9dG+3zTC4HfWD4AMgAA
   </data>
  </layer>
  <objectgroup name="collision" width="32" height="100">
