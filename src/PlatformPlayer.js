@@ -137,7 +137,7 @@ var PlatformPlayer = cc.Node.extend({
     update:function (delta, camera) {
 
         if (!this.isDead) {
-            this.sprite.setPosition(cc.p(this.position.x + this.sprite.getTextureRect().size.width / 2, this.position.y + this.sprite.getTextureRect().size.height / 2));
+            this.sprite.setPosition(cc.p(this.position.x + this.sprite.getBoundingBox().size.width / 2, this.position.y + this.sprite.getBoundingBox().size.height / 2));
 
             if (this.collisionRect == null) {
                 this.collisionRect = cc.RectMake(

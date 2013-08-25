@@ -175,9 +175,9 @@ var Eater = cc.Node.extend({
     },
     testPlayer:function (player) {
         var collisionRect = cc.RectMake(
-            this.desiredPosition.x,
+            this.desiredPosition.x+10,
             this.desiredPosition.y,
-            this.sprite.getTextureRect().size.width,
+            this.sprite.getTextureRect().size.width+10,
             this.sprite.getTextureRect().size.height);
 
         if (cc.Rect.CCRectIntersectsRect(player.collisionRect, collisionRect) && !this.isEating) {
