@@ -9,7 +9,7 @@
  </tileset>
  <layer name="platforms" width="100" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+1aC27qMBDcQ5EnteeBJ4FyGeiJaE5EuUATwaqTyWycuEUKxCON8vE6UXa83rXBbH3YLphrRPfdu5abltXCjmtFp8d2gce1osTHstB9/xLiocTHDY8a3+eWny2bzP5rBY5L9KEat2eyUePabS4tv1peA7sSHxqYP9DXatxe7mRdOB5QC/Uc1b/Exw04LtGPKh4asFO6eN+rjY//i6XjZ604m55j/BrvNTaMgyheSn2VB/brRRDHvdthzLAuU/JMyR8x0Nfo/2PLU8sP+/FVZUONOL8ofcbyUomP+XA9UuMafa/yu8pHJT7moxuzU/a7VH5X9Vtjcf1V4iMN1EOtV5CsRyPsUuuSgj6O1s8fmEPUeL8CMc9HtVnJH0Ogv6fa/7+z68P1lCLqxXHENbKz+vWXPSdy9HD7ThNVG0e1ckor/x2KY8X5qsDx6f5N6cJz1z+76XGyn3hxRnES1cI4f6lawWu6NeBoQ1+n7Du7aoSpOIlqAX6O6+H2fwX+5qg98sccfz0LeJ3ide8O+Eg9TsCo3WsYRn23qYP2ZwTuy6t669Hx0flybPxPaX81PTCP8D6kWpPkwsezx0PKn1PaT2DzCnMXrmNYE5yvcA2ai9r6/uVrxhw9+HnK7hl04nWl0sRr37/Sg333Wz2i/KLslg61D8a/heF/4+bo4f7kWp61yM0PmMtzfB3pxHsSjWjfCLtc4PNQD76O9rSmAv3J+QLjJPLnI/V4a/kujlP6bCbaex9nZB+tvzEG+BxjCOsezM14RKp5Cs9z4wP7fsA3O43uKR+9iX7vwb2OB9GmnufcW19HtQeFevBe1cb6WlR0vrO+HtiX/a1q5o31Y6QyrYev9abqMeaTMT/tM/pGeqbalc/VnLSltmieck3Qx9jffafeieT8oXSrhA3bp96Fmu+JrEsO8XkH8Q5uP1g/F3NeVucYC7wORF12NoyheuR9TNakhmeqNrTB68g+9a4x383hwfqxP+WY8x8GPH4D01VbwQAyAAA=
+   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
   </data>
  </layer>
  <objectgroup name="Collision" width="100" height="32">
@@ -33,7 +33,7 @@
   <object x="2336" y="512" width="576" height="128"/>
   <object x="2176" y="480" width="160" height="32"/>
   <object x="2016" y="352" width="288" height="32"/>
-  <object x="1856" y="576" width="96" height="32"/>
+  <object x="1824" y="576" width="128" height="32"/>
   <object x="2304" y="352" width="32" height="128"/>
   <object x="1952" y="512" width="96" height="128"/>
   <object x="2272" y="576" width="64" height="32"/>
@@ -46,7 +46,7 @@
   <object x="1984" y="64" width="352" height="288"/>
  </objectgroup>
  <objectgroup name="Static" width="100" height="32">
-  <object type="player_start" x="2208" y="800" width="32" height="32"/>
+  <object type="player_start" x="288" y="864" width="32" height="32"/>
   <object type="goal_up" x="2848" y="800" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Beacon" width="100" height="32">

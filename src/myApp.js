@@ -25,13 +25,13 @@
  ****************************************************************************/
 
 var Keys = {},
-    levelIndex = 5,
+    levelIndex = 6,
     isDebug = true;
 
 var keyColors = [
-    new cc.Color3B(100,230,45), new cc.Color3B(12,14,45),
-    new cc.Color3B(11,44,45), new cc.Color3B(255,230,45),
-    new cc.Color3B(3,230,255), new cc.Color3B(100,230,45),
+    new cc.Color3B(0,115,8), new cc.Color3B(0,115,255),
+    new cc.Color3B(255,115,255), new cc.Color3B(255,255,0),
+    new cc.Color3B(255,0,0), new cc.Color3B(255,0,149),
     new cc.Color3B(100,230,45), new cc.Color3B(100,230,45),
     new cc.Color3B(100,230,45), new cc.Color3B(100,230,45)];
 

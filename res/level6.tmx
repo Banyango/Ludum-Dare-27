@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="32" height="100" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="speed" value="80"/>
+ </properties>
+ <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32">
+  <image source="tile_set.png" width="1536" height="288"/>
+ </tileset>
+ <layer name="platforms" width="32" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2WbY6DMAxEc61WXAi6l9zeqOwF9g/WjkaObSBFq2qeZBVBwsuHHdqaEEIIIYQQQgghhBBCCCGEEPu5Udzp2b0Q2PdWvHdP3o/+JYl5i4V+o3sLXXOg/7FrRc8jf83/gKjkapRDR/w4DsxVznPPEeH5LXr+Gdr38rzqPjJ/WwMLc+J1BPY96p8puOYjN5L5zfdzIiKq88f3WdtpC3w2UZsj/mwPMOe/tmBsH6wm9vgzsN48N48hAv04r2gc3vfTg/fL62N+y90sDzH3s7lZLvC3kefR6N6o74D5I3gOV/v5efUc9vpW/ZgH/Jz3KPNPHe+r/Z0PDDqyOTR6F0avr/nX7TqqFW98nt/eVzlb2R/VSsXfg/0vJ3jNVuo30l+B8+lqP1I5Q9/p3/Nfqef3aoLH5bXDOOPHsJxfqZ3VQa+ORmH5PifterUwyp+B7lF+rPeKv7f+eHaszT9TemH7nI0v8nN7zqXe/T08/5n/mUTPv9J9r/bQiTHCz1TX5Yw/4lP8R7nCn61V1N/GN2r+R/drlP/biSv93ni4v/feK/0e7/Zna8B+Dm9fq1Gpj8x/dfwCUkpsdwAyAAA=
+  </data>
+ </layer>
+ <objectgroup name="Collision" width="32" height="100">
+  <object x="128" y="3136" width="448" height="32"/>
+  <object x="352" y="2944" width="288" height="32"/>
+  <object x="576" y="2976" width="64" height="192"/>
+  <object type="door_object 1" x="448" y="3040" width="32" height="96"/>
+  <object x="0" y="2784" width="128" height="352"/>
+  <object x="128" y="2720" width="128" height="192"/>
+  <object x="128" y="2688" width="512" height="32"/>
+  <object x="448" y="2976" width="128" height="64"/>
+  <object x="576" y="2592" width="64" height="96"/>
+  <object x="576" y="2528" width="96" height="64"/>
+  <object x="800" y="2688" width="96" height="32"/>
+  <object x="832" y="2944" width="64" height="32"/>
+  <object x="736" y="3040" width="96" height="32"/>
+  <object x="640" y="3136" width="288" height="32"/>
+  <object x="896" y="2528" width="32" height="608"/>
+  <object type="WATER" x="640" y="3072" width="256" height="64"/>
+  <object type="door_object 2" x="672" y="2528" width="96" height="64"/>
+  <object x="576" y="2784" width="64" height="160"/>
+  <object x="768" y="2528" width="128" height="64"/>
+  <object x="800" y="2784" width="96" height="32"/>
+  <object x="352" y="2720" width="96" height="128"/>
+  <object x="448" y="2784" width="32" height="32"/>
+  <object x="544" y="2784" width="32" height="32"/>
+  <object x="576" y="2400" width="352" height="32"/>
+  <object x="448" y="2272" width="32" height="320"/>
+  <object x="480" y="2528" width="96" height="64"/>
+  <object x="928" y="2528" width="96" height="64"/>
+  <object x="992" y="2208" width="32" height="320"/>
+  <object x="640" y="2304" width="128" height="96"/>
+  <object x="704" y="2080" width="64" height="224"/>
+  <object x="256" y="2336" width="192" height="64"/>
+  <object x="288" y="2016" width="480" height="64"/>
+  <object x="384" y="2080" width="96" height="128"/>
+  <object type="WATER" x="480" y="2080" width="224" height="64"/>
+  <object x="480" y="2304" width="41" height="32"/>
+  <object x="864" y="2432" width="32" height="32"/>
+  <object x="768" y="2336" width="64" height="64"/>
+  <object x="896" y="2272" width="64" height="64"/>
+  <object x="768" y="2144" width="128" height="64"/>
+  <object x="960" y="2464" width="32" height="64"/>
+  <object type="WATER" x="896" y="1984" width="128" height="32"/>
+  <object x="864" y="1984" width="32" height="32"/>
+  <object x="768" y="2080" width="32" height="32"/>
+  <object x="192" y="2272" width="64" height="64"/>
+  <object x="288" y="2176" width="96" height="32"/>
+  <object x="288" y="2016" height="32"/>
+  <object x="352" y="1856" width="320" height="160"/>
+  <object x="128" y="2080" width="32" height="32"/>
+  <object x="128" y="1920" width="64" height="32"/>
+  <object x="224" y="2016" width="64" height="32"/>
+  <object x="64" y="2144" width="135" height="190"/>
+  <object x="32" y="1696" width="96" height="480"/>
+  <object x="288" y="1856" width="64" height="32"/>
+  <object x="128" y="1696" width="864" height="64"/>
+  <object type="door_object 4" x="640" y="1760" width="32" height="96"/>
+  <object type="door_object 3" x="384" y="1760" width="32" height="96"/>
+  <object x="960" y="1920" width="64" height="32"/>
+  <object x="672" y="1856" width="224" height="32"/>
+  <object x="992" y="1760" width="32" height="448"/>
+  <object x="896" y="1952" width="96" height="32"/>
+  <object x="960" y="2176" width="32" height="32"/>
+  <object x="640" y="2592" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="Static" width="32" height="100">
+  <object type="player_start" x="192" y="3104" width="32" height="32"/>
+  <object type="goal_up" x="480" y="3104" width="32" height="32"/>
+  <object type="key_object 2" x="768" y="3008" width="32" height="32"/>
+  <object type="key_object 4" x="288" y="1824" width="32" height="32"/>
+  <object type="key_object 3" x="704" y="1984" width="32" height="32"/>
+  <object type="key_object 1" x="512" y="1824" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="Beacon" width="32" height="100">
+  <object type="UP" x="192" y="3104" width="32" height="32"/>
+  <object type="DOWN" x="384" y="2976" width="32" height="32"/>
+  <object type="DOWN" x="832" y="2816" width="32" height="32"/>
+  <object type="UP" x="832" y="2656" width="32" height="32"/>
+  <object type="UP" x="576" y="2368" width="32" height="32"/>
+  <object type="UP" x="352" y="2304" width="32" height="32"/>
+  <object type="UP" x="864" y="2496" width="32" height="32"/>
+  <object type="UP" x="832" y="1824" width="32" height="32"/>
+  <object type="UP" x="160" y="1888" width="32" height="32"/>
+  <object type="UP" x="480" y="2912" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="PathFinding" width="32" height="100"/>
+ <objectgroup name="Enemies" width="32" height="100"/>
+ <objectgroup name="Particles" width="32" height="100"/>
+ <layer name="transparent" width="32" height="100" opacity="0.32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3XMQqAMAxA0dz/DtETVa9kBcUOdnCpUN6Dv2QK2RIBAAAAAAAAAHyVV8vfi0zgvOEaz02zmY2w1fZaabpnAAAAMLPsNOovL5385e8ODM0UQgAyAAA=
+  </data>
+ </layer>
+</map>
