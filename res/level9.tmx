@@ -66,7 +66,7 @@
   <object type="UP FIRE" x="1408" y="832" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Static" width="100" height="100">
-  <object type="player_start" x="2144" y="384" width="32" height="32"/>
+  <object type="player_start" x="1312" y="352" width="32" height="32"/>
   <object type="goal_up" x="2720" y="1280" width="32" height="32"/>
   <object type="key_object 1" x="1184" y="192" width="32" height="32"/>
  </objectgroup>

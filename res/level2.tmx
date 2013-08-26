@@ -9,12 +9,12 @@
  </tileset>
  <layer name="background" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3OAQ0AAAgDoPcvYF1b3LlBAhIAAAAAAAAAAAAA2uY6AAC8sg2CM0EAMgAA
+   H4sIAAAAAAAAA+3TMQrCQBCF4ZQxQc+jBr2RXmf1RBtPtLHzNcI2O0UwMyD/Bz/bDLxquw4AAAAAAAAAAAAAAAAAEGWvDoH7F3UN3L+pe+A+fiuph3pWr3WTjLs1sprVq3qtm2zcrVHUot7Va90U424rvdqpQY2Ou19HdVJnNQXsw0frnyen/dY/z077rX9enPYB/K8Px4WVzgAyAAA=
   </data>
  </layer>
  <layer name="platforms" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3RUQrCMAwG4B1Kd0/tiTZPNL2Ae6gYgvrSQsF9H/yUZrAkdJoAAAAAAAAAAADguOaU04+cB83YU9z1nx1lz2jZs9ZzCfdbqsX6pebaof+2517PLdwfqRbrJeQ1R+kwC21Gv8WI/rHn6P6lsX/e5ds++duntPbv8T/g7QkqwtqgADIAAA==
+   H4sIAAAAAAAAA+3VWUoDQRRG4Qok4rAKhxh9N+KwCocYXY5Tou+6I12QCj77N9zCy4V6abuTSM4Hh0qnoSoFXZ2UAAAAAAAAAAAAAAAAAABYXoehA+tFdVVPrVjDFtbf7KS0pbbVjuqrXTVQe2q/0+x6fq+VM81/ri7UpRqpKzVW1+qm4fVnJe5zGaxaazZWz/CrGz/c/XW1Yd/l/urIOrbxTX3b+B7un6jTsH6Tv6Vk1uct+i/nrZt+33/zkJ/ZNt65JX7P+Zlt81mM8n9PtedP66vmXH4vMc+vU/pch99LzIvncWBjvq57Hkvnux/mi+dxbGO+rnseS+d7FOa71fWdulcP6lFN1FQ9qecFeR9gsfwALJVZWQAyAAA=
   </data>
  </layer>
  <objectgroup name="Collision" width="32" height="100">
@@ -40,10 +40,12 @@
  </objectgroup>
  <objectgroup name="PathFinding" width="32" height="100"/>
  <objectgroup name="Enemies" width="32" height="100"/>
- <objectgroup name="Particles" width="32" height="100"/>
- <layer name="transparent" width="32" height="100">
+ <objectgroup name="Particles" width="32" height="100">
+  <object type="floaty_particle.plist" x="512" y="2656" width="32" height="32"/>
+ </objectgroup>
+ <layer name="transparent" width="32" height="100" opacity="0.83">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3OAQkAAAgDsJeyfzVLHATZEiwBAACgba4DAAAAAAAAAADAKwv9PuPrADIAAA==
+   H4sIAAAAAAAAA+3SsQ2DMBAFUDNBskxqsghkhLAIsDJXu3CT+Cyk96RfXPV9tksBAADg316jDwAAAAAAAPCDZSpljXymMf179B6RM6n/EXk25t7myLsx9/aNbI05uz97//q9s/ev983+f6Pvf/T/A4A7uQCeVXRYADIAAA==
   </data>
  </layer>
 </map>
