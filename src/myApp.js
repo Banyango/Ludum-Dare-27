@@ -25,8 +25,8 @@
  ****************************************************************************/
 
 var Keys = {},
-    levelIndex = 4,
-    isDebug = true;
+    levelIndex = 1,
+    isDebug = false;
 
 var keyColors = [
     new cc.Color3B(0,255,8), new cc.Color3B(0,115,255),
