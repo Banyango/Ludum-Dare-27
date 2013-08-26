@@ -41,7 +41,6 @@ var Helloworld = cc.Layer.extend({
     tileMap:null,
     camera:null,
     timeStep:(1.0 / 60.0),
-    deltaT:0,
     secondCounter:10,
     font:null,
     spores:[],
@@ -387,9 +386,9 @@ var Helloworld = cc.Layer.extend({
     },
     update:function (delta) {
 
-        this.deltaT += delta;
+        delta = 1.0/60.0;
 
-        if (this.deltaT >= this.timeStep && !this.isPaused) {
+        if (!this.isPaused) {
             this.player.update(delta, this.camera);
 
             this.egg.update(delta);
