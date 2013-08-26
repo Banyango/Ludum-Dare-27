@@ -15,7 +15,7 @@ var EndScene = cc.Scene.extend({
 
         this.addChild(layer);
 
-        cc.AudioEngine.getInstance().playMusic("/res/intro.mp3", true);
+        cc.AudioEngine.getInstance().playMusic("/res/ludum_dare_win_song.mp3", true);
     }
 });
 
