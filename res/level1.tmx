@@ -39,7 +39,7 @@
  <objectgroup name="Particles" width="32" height="100">
   <object type="floaty_particle.plist" x="544" y="2624" width="32" height="32"/>
  </objectgroup>
- <layer name="Transparent" width="32" height="100" opacity="0.68">
+ <layer name="transparent" width="32" height="100" opacity="0.68">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3OMQ0AIBRDQfwLwA8gCQMwfAckdLlL3ty2BgAAAAAAAAAAAMAPPbA5brNKWeEPq0rZVVJ6H4B3BxX82hsAMgAA
   </data>

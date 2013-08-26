@@ -28,7 +28,9 @@ var g_ressources = [
     {type:"tmx", src:"/res/level4.tmx"},
     {type:"tmx", src:"/res/level5.tmx"},
     {type:"tmx", src:"/res/level6.tmx"},
-    {type:"tmx", src:"/res/level7.tmx"}
+    {type:"tmx", src:"/res/level7.tmx"},
+    {type:"tmx", src:"/res/level8.tmx"},
+    {type:"tmx", src:"/res/level9.tmx"}
     //bgm
 //
 //    //effect

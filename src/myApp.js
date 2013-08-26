@@ -25,11 +25,11 @@
  ****************************************************************************/
 
 var Keys = {},
-    levelIndex = 7,
+    levelIndex = 9,
     isDebug = true;
 
 var keyColors = [
-    new cc.Color3B(0,115,8), new cc.Color3B(0,115,255),
+    new cc.Color3B(0,255,8), new cc.Color3B(0,115,255),
     new cc.Color3B(255,115,255), new cc.Color3B(255,255,0),
     new cc.Color3B(255,0,0), new cc.Color3B(255,0,149),
     new cc.Color3B(100,230,45), new cc.Color3B(100,230,45),
@@ -414,16 +414,23 @@ var Helloworld = cc.Layer.extend({
 
             for (var j = this.eaters.length-1; j >=0 ; j--) {
                 this.eaters[j].update(delta);
-                this.eaters[j].testCollision(this.tileMap.getObjectGroup("Collision"));
-                this.eaters[j].testPathFinding(this.tileMap.getObjectGroup("PathFinding"));
+                if (!this.eaters[j].isDead) {
+                    this.eaters[j].testCollision(this.tileMap.getObjectGroup("Collision"));
+                    this.eaters[j].testPathFinding(this.tileMap.getObjectGroup("PathFinding"));
+                }
 
-                if (this.eaters[j].testPlayer(this.player) && !this.isResetting) {
-                    this.isResetting = true;
-                    this.blowUp();
+                if (!this.isResetting) {
+                    if (this.eaters[j].testPlayer(this.player)) {
+                        if (!this.eaters[j].isDead) {
+                            this.isResetting = true;
+                            this.blowUp();
+                        }
+                    }
                 }
 
                 if (this.eaters[j].isCleanUp) {
-                    this.eaters.split(j, 1);
+                    this.tileMap.removeChild(this.eaters[j].sprite);
+                    this.eaters.splice(j, 1);
                 }
             }
 

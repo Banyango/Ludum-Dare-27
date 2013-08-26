@@ -63,6 +63,8 @@ var Eater = cc.Node.extend({
             particle.setPosition(cc.p(this.position.x + this.sprite.getBoundingBox().size.width / 2, this.position.y + this.sprite.getBoundingBox().size.height / 2));
             particle.setAutoRemoveOnFinish(true);
 
+            this.sprite.stopAllActions();
+
             this.sprite.getParent().addChild(particle, 7);
 
             this.sprite.runAction(fadeOut);

@@ -153,7 +153,7 @@ var PlatformPlayer = cc.Node.extend({
         }
 
         var minMovement = cc.p(-850, 450);
-        var maxMovement = cc.p(850, -350 - this.spawnBurst);
+        var maxMovement = cc.p(850, -450 - this.spawnBurst);
 
         this.velocity = cc.pClamp(this.velocity, minMovement, maxMovement);
 
