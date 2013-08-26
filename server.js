@@ -12,6 +12,11 @@ server.get('/main.js', function (req, res) {
     res.sendfile(__dirname + '/src/main.js');
 });
 
+server.get('/index-small.html', function (req, res) {
+    res.sendfile('index-small.html');
+    console.log('Sent index-small.html');
+});
+
 server.get('/', function (req, res) {
     res.sendfile('index.html');
     console.log('Sent index.html');

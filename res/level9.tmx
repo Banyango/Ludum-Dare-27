@@ -68,10 +68,12 @@
   <object x="2080" y="480" width="128" height="96"/>
   <object x="1248" y="864" width="448" height="128"/>
   <object type="LAVA" x="1696" y="864" width="480" height="32"/>
+  <object x="2624" y="1056" width="288" height="96"/>
+  <object x="2784" y="1152" width="128" height="224"/>
  </objectgroup>
  <objectgroup name="Static" width="100" height="100">
-  <object type="player_start" x="1312" y="352" width="32" height="32"/>
-  <object type="goal_up" x="2720" y="1280" width="32" height="32"/>
+  <object type="player_start" x="2688" y="1280" width="32" height="32"/>
+  <object type="goal_up" x="2752" y="1280" width="32" height="32"/>
   <object type="key_object 1" x="832" y="352" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Beacon" width="100" height="100">
