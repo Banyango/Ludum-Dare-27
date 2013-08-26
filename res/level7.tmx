@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="100" height="50" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="speed" value="80"/>
+ </properties>
+ <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32">
+  <image source="tile_set.png" width="1536" height="288"/>
+ </tileset>
+ <layer name="platforms" width="100" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2ZDW7iMBCF51ABiXCdFqntXqbtiSgnolxgGa2f8mVwWiAJ7aJ50sj5tZ1582fHLJFIJBKJRCKRSCQSiUQikUgkEolEIpFIJBKJRCIxBvujfBxle5TPIrq2/8F53QNcf67Px3K8hXxAdG2Pa3p3O3D+ifblKOujtEfZhL6Txw7Og+vn4SiNdfr8DEJ90zdqrTiT3+h8U8ZryngLjL8P4+3Rsk8e3yOHSzvVBW1bx/QZ6The4/vkVM9J7ws79b0P+3oOkV8+e0+gT0gv0qW+3TmT/zyWe8sijGM8pt4Y+9SH9+exa22nsZCtdL4Oohioud4L3GbdXmuxh7pZ2Lj4ELkSL89hTPH6ZH39M4cxbumde4HyOPXP+KF77gubEePUcpCPLZ6dl5fSsqbwZw/W9zn106Kve4HrJOqJOXWq/Bn5VZ9NGDPm7Jg/yFU7wbx+G1Tn1PJvXGeMsUPae4w7rZ3afsw9Hr/cd97L9db6Me5ecojzoZqzVi/FPF2Dv98WWVbu657rUrlA/K7LO7UxY+x0PhS72vDM9qqvvw2aIosirvOh+Spece0Q14WsO70/1VuCcsvjQP8+l5119RTXJ+KwwfjM76qlnotoHk92mufmwGtF3uyfbV0D1TG161qPMS48WL/WFTeM79Kr0Ja+2oE5+PWD9etb9deWuazsXz6XcFx/R3z4+ZOdrjnnileRg62N48S/tRZDBK6NGbeJuC5XLSSwNpJY5b7ik2KTX1NOZn3bWseL+D8UeS7PMsfPmdMjHzzeXdBPE2QIC+t8RftKcRzmWMadSxHzB3Oy69h9xP1ziXvMGXqutkczV837iv535RskvPedryhOLa2L4Ysr58R1smz05cs36tB6QbKyzr7Fh+asfCKf0jvio7ZfMweYo/zbd9bxwn2Hc2OX9u7GgLle8eQr/xiKW3qPMWYFcR5Yf3BdQj+KtfNc+Tzucx8gb2GOl/BRy+e3hnMjPvzYfT36it9XffFsnf/IFpjHa7XGVNA8GVvph7Xjc3OJ87Gxbp+qCcd/8NzcIB+0e/oJa9uVdTb6ZP0at1abTwWfI+uJ+A+I8YvX3Gea0l6bG24J+oh/C23MdS0upI+4v8K1SVw7TpnPWW/X/jfEdY/OFYum5mOoxvO4zvrq3DpL9q51+rr0xz0S2b74iLEoxinu5ch+pwLXSXFMro1pJ+RrYePWjBGxb/7HY311aZ0lTob2B7VHxVhFXuLafa5/UjU+4v40eYl2IZEdaz9DepRtq5bUdeUQ3dOx/E3/cdXurO8Xl65DxAV9g7VS/OfB9QnzRc1fpoTsbHulyNbEh66rdlye0Yf+2YnPuL/oXBys7xdD/jFU76qmUt0S19crO/3XSzskJ9wvmXovUd+1v1JivtGa5VwudwPvs3/uP13b7nEc/Vzj0+5pa4zX5GaOfd1ob/faRj5iHqzpnXvv5G+OOCWMtbv/ofVY9W59X2Gson/EmorrdN6bCz9tt9+1zcj3X3HOPZO4Zx7zNeMq+ZujpiJ+g/3eqo3xKto8fSbyxVpyTvy0/d+ypX/U6lbWV/QPns8Zqxx/AcmPBs4gTgAA
+  </data>
+ </layer>
+ <objectgroup name="Collision" width="100" height="50">
+  <object x="96" y="1024" width="224" height="32"/>
+  <object x="288" y="1056" width="64" height="64"/>
+  <object x="320" y="1120" width="128" height="128"/>
+  <object x="416" y="1248" width="160" height="96"/>
+  <object x="672" y="1088" width="128" height="64"/>
+  <object x="736" y="1152" width="64" height="96"/>
+  <object x="512" y="1344" width="736" height="96"/>
+  <object x="800" y="1216" width="224" height="32"/>
+  <object x="1152" y="1280" width="384" height="64"/>
+  <object x="1056" y="1216" width="32" height="32"/>
+  <object x="800" y="1120" width="64" height="32"/>
+  <object x="736" y="992" width="64" height="96"/>
+  <object x="928" y="1024" width="64" height="32"/>
+  <object x="992" y="704" width="192" height="416"/>
+  <object x="640" y="992" width="96" height="32"/>
+  <object type="WATER" x="96" y="1056" width="2016" height="608"/>
+  <object x="1184" y="832" width="192" height="224"/>
+  <object x="1280" y="992" width="192" height="192"/>
+  <object type="door_object 1" x="992" y="1120" width="32" height="96"/>
+  <object x="1440" y="1344" width="96" height="96"/>
+  <object x="1536" y="1408" width="352" height="64"/>
+  <object x="1856" y="1056" width="96" height="352"/>
+  <object x="1536" y="960" width="96" height="128"/>
+  <object x="1792" y="960" width="128" height="96"/>
+  <object x="1792" y="1280" width="64" height="32"/>
+  <object x="1824" y="1184" width="32" height="32"/>
+  <object x="1664" y="1152" width="96" height="32"/>
+  <object x="1664" y="1376" width="96" height="32"/>
+  <object x="1632" y="1056" width="64" height="32"/>
+  <object x="1760" y="992" width="32" height="32"/>
+  <object x="1344" y="800" width="544" height="32"/>
+  <object x="1824" y="832" width="64" height="128"/>
+  <object x="1632" y="960" width="32" height="32"/>
+  <object x="800" y="992" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="Static" width="100" height="50">
+  <object type="player_start" x="192" y="992" width="32" height="32"/>
+  <object type="goal_up" x="704" y="960" width="32" height="32"/>
+  <object type="key_object 1" x="1568" y="928" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="Beacon" width="100" height="50">
+  <object type="UP WATER" x="320" y="1024" width="32" height="32"/>
+  <object type="UP" x="192" y="992" width="32" height="32"/>
+  <object type="UP WATER" x="1216" y="1248" width="32" height="32"/>
+  <object type="UP WATER" x="1696" y="1344" width="32" height="32"/>
+  <object type="UP WATER" x="1408" y="960" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="PathFinding" width="100" height="50"/>
+ <objectgroup name="Enemies" width="100" height="50"/>
+ <objectgroup name="Particles" width="100" height="50"/>
+ <layer name="transparent" width="100" height="50" opacity="0.42">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2YYW7DIAyFuf8dSk605kRptmiz5L4+20zdEn68T7JCQ6DEzxhIa0IIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEKIUfqXLcRuru4/y7fE/LOjVvVZ/dfV2DhWsI8TrBf1zF/V81WfWbsZ9MC43X9sO8F6UR/5bHHP4P2e1Pm51l0/M+nhx3LMi0f71mNpPF9E+Q11rZ6x6wb/ib5C3+J/4PhZbmTzPhrr1eDc8O9wb6+5y+4xq+rX9vzuPgfdSR+mVbQGrcH40dc25/1938fiylcT6XGULW59nNo9ZlX9YajNCu2wXPm/0gPbmNZ29WPa3/TlXxDp8c7eCdfLSEvzQdQP6sH8X+lhz7Cc62NuBi0OIj2iHDJSxnWZxb7XJOsn2mdZ3ONa0EmbbD9l45kF//5ejyyHnFlm+yzvZ5xDnbRh+zbUdxYwZnFuX2k2NvSl9/OjPccU25ttQf9+zZ8F/157O+ccOGo2Lu+/LA9m2mY5ayY92LvNZBb/I3vpSlucL34tmgV2VrMym9sj37vw9+i5MoptXHuz/Xamq+0f7tDvTOu5xQfb57BzIMboQtqirmwfzGJ95DsW07OKG9QRc+BM+Yq9iz+LjRrb7+McYPE6Et+RLpnOXm/UaMbvJEYWh79Ze/3ciObAUZflEruiv6PxsPMO9rW3V43Y3JwFFofRGjiSn7PzOO7lMFYx3jF3VjpuQTm6epuFT6AH+TcgTgAA
+  </data>
+ </layer>
+</map>

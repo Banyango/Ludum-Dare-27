@@ -9,7 +9,7 @@
  </tileset>
  <layer name="platforms" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2WbY6DMAxEc61WXAi6l9zeqOwF9g/WjkaObSBFq2qeZBVBwsuHHdqaEEIIIYQQQgghhBBCCCGEEPu5Udzp2b0Q2PdWvHdP3o/+JYl5i4V+o3sLXXOg/7FrRc8jf83/gKjkapRDR/w4DsxVznPPEeH5LXr+Gdr38rzqPjJ/WwMLc+J1BPY96p8puOYjN5L5zfdzIiKq88f3WdtpC3w2UZsj/mwPMOe/tmBsH6wm9vgzsN48N48hAv04r2gc3vfTg/fL62N+y90sDzH3s7lZLvC3kefR6N6o74D5I3gOV/v5efUc9vpW/ZgH/Jz3KPNPHe+r/Z0PDDqyOTR6F0avr/nX7TqqFW98nt/eVzlb2R/VSsXfg/0vJ3jNVuo30l+B8+lqP1I5Q9/p3/Nfqef3aoLH5bXDOOPHsJxfqZ3VQa+ORmH5PifterUwyp+B7lF+rPeKv7f+eHaszT9TemH7nI0v8nN7zqXe/T08/5n/mUTPv9J9r/bQiTHCz1TX5Yw/4lP8R7nCn61V1N/GN2r+R/drlP/biSv93ni4v/feK/0e7/Zna8B+Dm9fq1Gpj8x/dfwCUkpsdwAyAAA=
+   H4sIAAAAAAAAA+2XC26DMBBEfS2iXIi0l2x6otALNKqy6nS6P8A1arQrjUgAe/zsXQNTa+1013TQcb7rcuDxKO7iL/7iL/7iL/7iL/7iL/7iL/7iL/7iL/7iL/7iL/7iL/7iL/5n4EedgB//e5qcfq1zp6B/vPcSaDbm0Tt3od9an+L/0saGrP+R/v+B/wWUyVUvh9h/DT/689jRNxsav8jyx/FaeZ713sIvcyDCfSzjj23X5r/4zySuec8bI+IXv48d8iLLj/3JveeH8NqZ7sn4M3+0Bjje14c4ZB2kJjz/tfsf1pvmzWPwAvmz48D7vOD10tpg3WTyEHM/YpNc4Gcjc+D1ns8B8feC339G+/P8ZPdhabvFXzze2+/8wLqZEv5nw/fWvvcHDvEQ/+j9FPtCWfzivzx+e7WC163jDfrL7K3s79UKXl97ZP+bIp6zhdpl+K1jlH9acD715F8be79n9vrv/W6T+uOa4HFp96H28KMk5xfylzqw6qjXd6zk+2xP+VdwLfT6vhX/KNC7Fz/We8Zfe5+b2s+9Y2n6nmJJ1lkL3o+i9cc+tX74/Jq4Npuf52GE/zWQ5b/Qea320BPVw58jOy97/L14Fv+tMcI/miuvvYyvF//W9erl/6ZopL82Hm6v9TvSX4u/9o/mgP1Z2rpmlamPyH+0PgGI2WopADIAAA==
   </data>
  </layer>
  <objectgroup name="Collision" width="32" height="100">
@@ -50,7 +50,7 @@
   <object x="480" y="2304" width="41" height="32"/>
   <object x="864" y="2432" width="32" height="32"/>
   <object x="768" y="2336" width="64" height="64"/>
-  <object x="896" y="2272" width="64" height="64"/>
+  <object x="896" y="2272" width="96" height="64"/>
   <object x="768" y="2144" width="128" height="64"/>
   <object x="960" y="2464" width="32" height="64"/>
   <object type="WATER" x="896" y="1984" width="128" height="32"/>
@@ -75,6 +75,7 @@
   <object x="896" y="1952" width="96" height="32"/>
   <object x="960" y="2176" width="32" height="32"/>
   <object x="640" y="2592" width="32" height="32"/>
+  <object type="WATER" x="256" y="2720" width="96" height="32"/>
  </objectgroup>
  <objectgroup name="Static" width="32" height="100">
   <object type="player_start" x="192" y="3104" width="32" height="32"/>
@@ -101,7 +102,7 @@
  <objectgroup name="Particles" width="32" height="100"/>
  <layer name="transparent" width="32" height="100" opacity="0.32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3XMQqAMAxA0dz/DtETVa9kBcUOdnCpUN6Dv2QK2RIBAAAAAAAAAHyVV8vfi0zgvOEaz02zmY2w1fZaabpnAAAAMLPsNOovL5385e8ODM0UQgAyAAA=
+   H4sIAAAAAAAAA+3XMQ6AIAxAUe5/h+qJ0CuJiUYGGXBAY95L/tKJdKIpAQAAAAAAAAC94mh6+yE/sO9wTtdOo5qNsJTWUq46ZwAAPFP/7QD4rmg06i7Pjdzl9zZgJmL0ADIAAA==
   </data>
  </layer>
 </map>

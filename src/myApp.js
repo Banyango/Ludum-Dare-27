@@ -25,7 +25,7 @@
  ****************************************************************************/
 
 var Keys = {},
-    levelIndex = 6,
+    levelIndex = 7,
     isDebug = true;
 
 var keyColors = [
@@ -126,6 +126,12 @@ var Helloworld = cc.Layer.extend({
         this.player.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
 
         this.tileMap.addChild(this.player.sprite, 5);
+
+        var transparentLayer = this.tileMap.getLayer("transparent");
+
+        if (transparentLayer != null) {
+            this.tileMap.reorderChild(this.tileMap.getLayer("transparent"), 12);
+        }
 
         this.tileMap.position = cc.p(cc.Director.getInstance().width / 2, cc.Director.getInstance().height / 2);
 
