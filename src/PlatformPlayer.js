@@ -89,7 +89,7 @@ var PlatformPlayer = cc.Node.extend({
             this.velocity = cc.pAdd(this.velocity, jumpVelocity);
         }
 
-        this.spawnBurst = 6000;
+        this.spawnBurst = 10000;
     },
     velocityUp:function (delta) {
         var gravity = cc.p(0.0, -640.0);

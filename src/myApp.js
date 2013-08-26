@@ -321,6 +321,7 @@ var Helloworld = cc.Layer.extend({
         this.player.position = cc.p(this.player.lastSpawnBeacon.position.x + this.player.lastSpawnBeacon.getBoundingBox().size.width / 2, this.player.lastSpawnBeacon.position.y + this.player.lastSpawnBeacon.getBoundingBox().size.height / 2);
 
         if (this.player.lastSpawnBeacon.isHighJump) {
+            this.camera.isPlatformLockCamera = false;
             this.player.spawnJumpHigh();
         } else {
             this.player.spawnJump();
