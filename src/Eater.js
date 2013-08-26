@@ -235,6 +235,8 @@ var Eater = cc.Node.extend({
 
             this.sprite.runAction(sequence);
 
+            cc.AudioEngine.getInstance().playEffect("/res/chomp.wav", false);
+
             return true;
         }
 

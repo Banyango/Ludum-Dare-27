@@ -498,6 +498,17 @@ var HelloWorldScene = cc.Scene.extend({
             layer.init(level);
         }
 
+        if (levelIndex == 1) {
+            cc.AudioEngine.getInstance().playMusic("/res/intro.mp3", true);
+        } else if (levelIndex == 3 || levelIndex == 4 ) {
+            cc.AudioEngine.getInstance().playMusic("/res/ludum_dare_innocent_mysterious.mp3", true);
+        } else if (levelIndex <= 7 && levelIndex > 3) {
+            cc.AudioEngine.getInstance().playMusic("/res/ludum_dare_quiet.mp3", true);
+        } else if(levelIndex > 7){
+            cc.AudioEngine.getInstance().playMusic("/res/ludum_dare_intense.mp3", true);
+        }
+
+
         this.addChild(layer);
     }
 });

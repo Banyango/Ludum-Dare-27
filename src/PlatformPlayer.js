@@ -62,6 +62,8 @@ var PlatformPlayer = cc.Node.extend({
         var fadeOut = cc.FadeOut.create(0.5);
 
         this.sprite.runAction(fadeOut);
+
+        cc.AudioEngine.getInstance().playEffect("/res/hurt.wav", false);
     },
     spawnJump:function(){
         var jumpVelocity;
@@ -104,6 +106,7 @@ var PlatformPlayer = cc.Node.extend({
         if (this.isOnGround && (Keys[cc.KEY.space])) {
             var jumpVelocity = cc.p(0, 8700);
             this.velocity = cc.pAdd(this.velocity, jumpVelocity);
+            cc.AudioEngine.getInstance().playEffect("/res/jump.wav", false);
         }
 
         if ((Keys[cc.KEY.a] || Keys[cc.KEY.left])) {
@@ -136,6 +139,7 @@ var PlatformPlayer = cc.Node.extend({
         if (this.isOnGround && (Keys[cc.KEY.space])) {
             var jumpVelocity = cc.p(0, -8700);
             this.velocity = cc.pAdd(this.velocity, jumpVelocity);
+            cc.AudioEngine.getInstance().playEffect("/res/jump.wav", false);
         }
 
         if ((Keys[cc.KEY.a] || Keys[cc.KEY.left])) {

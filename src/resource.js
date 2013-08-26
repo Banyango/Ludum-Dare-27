@@ -30,9 +30,13 @@ var g_ressources = [
     {type:"tmx", src:"/res/level6.tmx"},
     {type:"tmx", src:"/res/level7.tmx"},
     {type:"tmx", src:"/res/level8.tmx"},
-    {type:"tmx", src:"/res/level9.tmx"}
+    {type:"tmx", src:"/res/level9.tmx"},
     //bgm
 //
 //    //effect
-//    {type:"effect", src:"/res/alien_hurt_3.wav"}
+    {type:"effect", src:"/res/checkpoint.wav"},
+    {type:"effect", src:"/res/chomp.wav"},
+    {type:"effect", src:"/res/hurt.wav"},
+    {type:"effect", src:"/res/jump.wav"},
+    {type:"effect", src:"/res/win.wav"}
 ];

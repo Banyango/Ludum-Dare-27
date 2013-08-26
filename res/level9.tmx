@@ -68,7 +68,6 @@
   <object x="2080" y="480" width="128" height="96"/>
   <object x="1248" y="864" width="448" height="128"/>
   <object type="LAVA" x="1696" y="864" width="480" height="32"/>
-  <object type="UP FIRE" x="1408" y="832" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Static" width="100" height="100">
   <object type="player_start" x="1312" y="352" width="32" height="32"/>
@@ -86,6 +85,7 @@
   <object type="UP" x="2144" y="384" width="32" height="32"/>
   <object type="UP FIRE" x="2240" y="832" width="32" height="32"/>
   <object type="UP" x="1312" y="352" width="32" height="32"/>
+  <object type="UP FIRE" x="1408" y="832" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="PathFinding" width="100" height="100"/>
  <objectgroup name="Enemies" width="100" height="100">
