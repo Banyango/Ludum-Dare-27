@@ -22,6 +22,7 @@ var Spore = cc.Node.extend({
     collisionBox:null,
     direction:null,
     sporeType:null,
+    isHighJump:false,
     initialize:function(){
         this.idleAnimation = new cc.Animation();
 

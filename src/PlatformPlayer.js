@@ -28,6 +28,7 @@ var PlatformPlayer = cc.Node.extend({
     isDead:false,
     shouldBlowUp:null,
     powerUp:null,
+    spawnBurst:0,
     init:function () {
         this.sprite = new cc.Sprite();
 
@@ -75,6 +76,21 @@ var PlatformPlayer = cc.Node.extend({
             this.velocity = cc.pAdd(this.velocity, jumpVelocity);
         }
     },
+    spawnJumpHigh:function(){
+        var jumpVelocity;
+
+        this.velocity = cc.p(0, 0);
+
+        if (this.direction == DirectionEnum.UP) {
+            jumpVelocity = cc.p(0, 25500);
+            this.velocity = cc.pAdd(this.velocity, jumpVelocity);
+        } else if (this.direction == DirectionEnum.DOWN) {
+            jumpVelocity = cc.p(0, -25500);
+            this.velocity = cc.pAdd(this.velocity, jumpVelocity);
+        }
+
+        this.spawnBurst = 6000;
+    },
     velocityUp:function (delta) {
         var gravity = cc.p(0.0, -640.0);
         var gravityStep = cc.pMult(gravity, delta);
@@ -101,9 +117,11 @@ var PlatformPlayer = cc.Node.extend({
         }
 
         var minMovement = cc.p(-850, -450);
-        var maxMovement = cc.p(850, 350);
+        var maxMovement = cc.p(850, 350 + this.spawnBurst);
 
         this.velocity = cc.pClamp(this.velocity, minMovement, maxMovement);
+
+        this.spawnBurst = 0;
     },
     velocityDown:function (delta) {
         var gravity = cc.p(0.0, 640.0);
@@ -135,9 +153,11 @@ var PlatformPlayer = cc.Node.extend({
         }
 
         var minMovement = cc.p(-850, 350);
-        var maxMovement = cc.p(850, -450);
+        var maxMovement = cc.p(850, -450 - this.spawnBurst);
 
         this.velocity = cc.pClamp(this.velocity, minMovement, maxMovement);
+
+        this.spawnBurst = 0;
     },
     update:function (delta, camera) {
 
@@ -322,7 +342,7 @@ var PlatformPlayer = cc.Node.extend({
             this.displayedFrame = AnimationEnum.IDLE;
         }
     },
-    testCollision:function (objects, camera, keys) {
+    testCollision:function (objects, camera) {
         this.isOnGround = false;
 
         var collisionRect = cc.RectMake(

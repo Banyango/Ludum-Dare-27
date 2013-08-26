@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="32" height="100" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="speed" value="80"/>
+ </properties>
+ <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32">
+  <image source="tile_set.png" width="1536" height="288"/>
+ </tileset>
+ <layer name="platforms" width="32" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAHg2usW81gAyAAA=
+  </data>
+ </layer>
+ <objectgroup name="Collision" width="32" height="100"/>
+ <objectgroup name="Static" width="32" height="100">
+  <object type="player_start" x="384" y="2752" width="32" height="32"/>
+  <object type="goal_up" x="160" y="3104" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="Beacon" width="32" height="100"/>
+ <objectgroup name="PathFinding" width="32" height="100"/>
+ <objectgroup name="Enemies" width="32" height="100"/>
+ <objectgroup name="Particles" width="32" height="100">
+  <object type="fog_particle.plist" x="608" y="2016" width="32" height="32"/>
+ </objectgroup>
+</map>

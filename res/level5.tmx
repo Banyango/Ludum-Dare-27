@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="100" height="32" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="speed" value="80"/>
+ </properties>
+ <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32">
+  <image source="tile_set.png" width="1536" height="288"/>
+ </tileset>
+ <layer name="platforms" width="100" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2YC26DMBBEfShaqTkQEtym4cIFlZVWo117wRCTME8amfhDyAyxDSkRQgghhBBCCCGEkLvzO+u5lp6W9mlW1+ga74T2uwTzOB/mcS2Yx7XI5YHrRyQzUseW/4f071dNSr1T/22I+OzJQ/r3QTGPOHq/m8sF567F1379jP5PUDKPONZzRqn/0m+Lr5hXa/A3e+3RdZXUIV6KvHZvD/PKPL6UPpXa+597zjq0v890fB4t5q53ni8t/16Rxzt7diboX+mePmq+Yh7/4P5J+yJly/XDO7f1PqqD487pd2Vw/2TloWWNPyuPn1kPo4yM6YL9ZYwo0n8PuC5rr7Eec8C5qsZvbJffLEpQl1Qd6gGy6haNRpt1PtHgXMORWO83rfXAkm7P5RF5PtZtOU9yPg07xnp5ltrHgq+fgGQybBTmskf6fGPh+8Z0jzy2IL7I8RFq4fEf29QEpQAyAAA=
+  </data>
+ </layer>
+ <objectgroup name="Collision" width="100" height="32">
+  <object x="128" y="896" width="320" height="64"/>
+  <object x="448" y="832" width="128" height="128"/>
+  <object x="576" y="736" width="128" height="224"/>
+  <object x="704" y="640" width="128" height="320"/>
+  <object x="960" y="640" width="128" height="320"/>
+  <object x="1216" y="640" width="128" height="320"/>
+  <object type="WATER" x="832" y="896" width="128" height="64"/>
+  <object type="WATER" x="1088" y="896" width="128" height="64"/>
+  <object x="1344" y="736" width="96" height="64"/>
+  <object x="1536" y="768" width="96" height="64"/>
+  <object x="1728" y="832" width="96" height="64"/>
+  <object x="1920" y="832" width="32" height="32"/>
+  <object x="2080" y="832" width="32" height="32"/>
+  <object type="WATER" x="1344" y="864" width="384" height="96"/>
+  <object type="WATER" x="2272" y="864" width="384" height="96"/>
+  <object type="WATER" x="1824" y="864" width="352" height="96"/>
+  <object x="2176" y="832" width="96" height="64"/>
+  <object x="2336" y="512" width="544" height="128"/>
+  <object x="2176" y="480" width="160" height="32"/>
+  <object x="2016" y="352" width="288" height="32"/>
+  <object x="2080" y="672" width="96" height="32"/>
+  <object x="2304" y="352" width="32" height="128"/>
+  <object x="1952" y="352" width="96" height="288"/>
+  <object x="2272" y="576" width="64" height="32"/>
+  <object x="2048" y="576" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="Static" width="100" height="32">
+  <object type="player_start" x="2208" y="800" width="32" height="32"/>
+  <object type="goal_up" x="416" y="192" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="Beacon" width="100" height="32">
+  <object type="UP" x="1248" y="608" width="32" height="32"/>
+  <object type="UP" x="288" y="864" width="32" height="32"/>
+  <object type="UP high" x="2208" y="800" width="32" height="32"/>
+  <object type="UP" x="1760" y="800" width="32" height="32"/>
+  <object type="DOWN" x="2208" y="384" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="PathFinding" width="100" height="32"/>
+ <objectgroup name="Enemies" width="100" height="32"/>
+ <objectgroup name="Particles" width="100" height="32"/>
+ <layer name="transparent" width="100" height="32" opacity="0.39">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3LQQ6DQAgFUO9/B+uJrCeyloVsCJPMpunC95IfIMCyAAAAAAAAAAAAAMD/rZFXZLuT/Tro62/uuvuZv62Za32SPfKOHHey3wd9/c1ddz/zdzRzrU9yRj6R607256Cvv7nr7mf+rmauFfitL2MBXowAMgAA
+  </data>
+ </layer>
+</map>

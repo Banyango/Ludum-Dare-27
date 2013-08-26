@@ -25,7 +25,7 @@
  ****************************************************************************/
 
 var Keys = {},
-    levelIndex = 3,
+    levelIndex = 5,
     isDebug = true;
 
 var keyColors = [
@@ -194,8 +194,12 @@ var Helloworld = cc.Layer.extend({
             spore.initialize();
             spore.collisionBox = cc.RectMake(sporeObj.x, sporeObj.y, sporeObj.width, sporeObj.height);
             spore.position = cc.p(sporeObj.x, sporeObj.y);
-            spore.direction = sporeObj.type.replace("FIRE","").replace("WATER", "").replace("FLOAT","").trim();
-            spore.sporeType = sporeObj.type.replace("UP","").replace("DOWN","").trim();
+            spore.direction = sporeObj.type.replace("high","").replace("FIRE","").replace("WATER", "").replace("FLOAT","").trim();
+            spore.sporeType = sporeObj.type.replace("high","").replace("UP","").replace("DOWN","").trim();
+
+            if (sporeObj.type.match("high") != null) {
+                spore.isHighJump = true;
+            }
 
             this.tileMap.addChild(spore.sprite, 4);
 
@@ -315,7 +319,14 @@ var Helloworld = cc.Layer.extend({
     respawnPlayer:function () {
         this.player.sprite.setOpacity(255);
         this.player.position = cc.p(this.player.lastSpawnBeacon.position.x + this.player.lastSpawnBeacon.getBoundingBox().size.width / 2, this.player.lastSpawnBeacon.position.y + this.player.lastSpawnBeacon.getBoundingBox().size.height / 2);
-        this.player.spawnJump();
+
+        if (this.player.lastSpawnBeacon.isHighJump) {
+            this.player.spawnJumpHigh();
+        } else {
+            this.player.spawnJump();
+        }
+
+
         if (this.player.nextDirection != null) {
             this.player.direction = this.player.nextDirection;
         }
