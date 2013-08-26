@@ -34,7 +34,7 @@ var EndLayer = cc.Layer.extend({
 
         this.setKeyboardEnabled(true);
 
-        this.schedule(this.changeScene,1,0,10);
+        this.schedule(this.changeScene,1,0,20);
 
     },
     onKeyDown:function (e) {
@@ -49,8 +49,7 @@ var EndLayer = cc.Layer.extend({
         }
     },
     changeScene:function () {
-        this.unschedule(this.changeScene);
-        cc.Director.getInstance().pushScene(new IntroScene());
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(4, new IntroScene(), new cc.Color3B(0, 0, 0)));
     }
 
 });

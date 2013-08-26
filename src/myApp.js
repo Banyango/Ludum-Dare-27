@@ -470,7 +470,11 @@ var Helloworld = cc.Layer.extend({
     },
     gotoNextLevel:function() {
         levelIndex++;
-        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(12, new HelloWorldScene(), new cc.Color3B(0,0,0)));
+        if (levelIndex <= 9) {
+            cc.Director.getInstance().replaceScene(cc.TransitionFade.create(12, new HelloWorldScene(), new cc.Color3B(0, 0, 0)));
+        } else {
+            cc.Director.getInstance().replaceScene(cc.TransitionFade.create(12, new EndScene(), new cc.Color3B(0, 0, 0)));
+        }
     },
     onKeyDown:function (e) {
         Keys[e] = true;
@@ -492,13 +496,11 @@ var HelloWorldScene = cc.Scene.extend({
 
         var layer;
         if (levelIndex > 9) {
-            var scene = new EndScene();
-            cc.Director.getInstance().pushScene(scene);
 
-            return;
         } else {
             layer = new Helloworld();
             layer.init(level);
+            this.addChild(layer);
         }
 
         if (levelIndex == 1) {
@@ -512,7 +514,6 @@ var HelloWorldScene = cc.Scene.extend({
         }
 
 
-        this.addChild(layer);
     }
 });
 
