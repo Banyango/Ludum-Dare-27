@@ -25,7 +25,7 @@
  ****************************************************************************/
 
 var Keys = {},
-    levelIndex = 1,
+    levelIndex = 8,
     isDebug = false;
 
 var keyColors = [
@@ -37,6 +37,8 @@ var keyColors = [
 
 var Helloworld = cc.Layer.extend({
 
+    lowDetail:false,
+    delta:0,
     player:null,
     tileMap:null,
     camera:null,
@@ -108,15 +110,17 @@ var Helloworld = cc.Layer.extend({
 
         var parallaxNode = cc.ParallaxNode.create();
 
-        var background = new cc.Sprite();
-        background.initWithFile("/res/ludum_dare_background.png");
-        background.setPosition(cc.p(400, 500));
-        background.setScaleX(8);
-        background.setScaleY(8);
-        background.getTexture().setAliasTexParameters();
+        if (!document['ccConfig'].lowDetail) {
+            var background = new cc.Sprite();
+            background.initWithFile("/res/ludum_dare_background.png");
+            background.setPosition(cc.p(400, 500));
+            background.setScaleX(8);
+            background.setScaleY(8);
+            background.getTexture().setAliasTexParameters();
 
-        parallaxNode.addChild(background, 1, cc.p(0.02, 0.02), cc.p(512, 256));
-        this.addChild(parallaxNode, 0);
+            parallaxNode.addChild(background, 1, cc.p(0.02, 0.02), cc.p(512, 256));
+            this.addChild(parallaxNode, 0);
+        }
 
         this.player = new PlatformPlayer();
         this.player.init();
@@ -262,23 +266,25 @@ var Helloworld = cc.Layer.extend({
             this.eaters.push(eater);
         }
 
-        objectGroup = this.tileMap.getObjectGroup("Particles");
+        if (!document['ccConfig'].lowDetail) {
+            objectGroup = this.tileMap.getObjectGroup("Particles");
 
-        if (objectGroup.length == 0) {
-            console.log("particles are empty");
-        }
+            if (objectGroup.length == 0) {
+                console.log("particles are empty");
+            }
 
-        if (objectGroup) {
-            for (var n = 0; n < objectGroup.getObjects().length; n++) {
+            if (objectGroup) {
+                for (var n = 0; n < objectGroup.getObjects().length; n++) {
 
-                var particleObj = objectGroup.getObjects()[n];
+                    var particleObj = objectGroup.getObjects()[n];
 
-                var particle = new cc.ParticleSystemQuad();
-                particle.initWithFile("/res/" + particleObj.type);
-                particle.setPosition(cc.p(particleObj.x + particleObj.width / 2, particleObj.y + particleObj.height / 2));
-                particle.setPositionType(cc.PARTICLE_TYPE_RELATIVE);
+                    var particle = new cc.ParticleSystemQuad();
+                    particle.initWithFile("/res/" + particleObj.type);
+                    particle.setPosition(cc.p(particleObj.x + particleObj.width / 2, particleObj.y + particleObj.height / 2));
+                    particle.setPositionType(cc.PARTICLE_TYPE_RELATIVE);
 
-                this.tileMap.addChild(particle, 10);
+                    this.tileMap.addChild(particle, 10);
+                }
             }
         }
 
@@ -386,7 +392,9 @@ var Helloworld = cc.Layer.extend({
     },
     update:function (delta) {
 
-        if (!this.isPaused) {
+        this.delta += delta;
+
+        if (this.delta >= this.timeStep && !this.isPaused) {
             this.player.update(delta, this.camera);
 
             this.egg.update(delta);

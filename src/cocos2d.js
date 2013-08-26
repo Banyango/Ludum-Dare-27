@@ -27,6 +27,7 @@
 (function () {
     var d = document;
     var c = {
+        lowDetail:false,
         COCOS2D_DEBUG:2, //0 to turn debug off, 1 for basic debug, and 2 for full debug
         box2d:false,
         chipmunk:false,
@@ -51,6 +52,10 @@
             'src/myApp.js'
         ]
     };
+
+    if (d.getElementById('lowdetail') != null) {
+        c.lowDetail = true;
+    }
 
     if(!d.createElement('canvas').getContext){
         var s = d.createElement('div');

@@ -6,6 +6,8 @@ var g_ressources = [
     {type:"image", src:"/res/ludum_dare_background.png"},
     {type:"image", src:"/res/spore.png"},
     {type:"image", src:"/res/egg_goal_spritesheet.png"},
+    {type:"image", src:"/res/particle_effect.png"},
+    {type:"image", src:"/res/particle_effect_skinny.png"},
     {type:"image", src:"/res/eater.png"},
     {type:"image", src:"/res/door.png"},
     {type:"image", src:"/res/key.png"},
