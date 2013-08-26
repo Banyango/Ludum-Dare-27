@@ -389,7 +389,7 @@ var Helloworld = cc.Layer.extend({
 
         this.delta += delta;
 
-        if (this.delta >= this.timeStep && !this.isPaused) {
+        if (!this.isPaused) {
             this.player.update(delta, this.camera);
 
             this.egg.update(delta);
