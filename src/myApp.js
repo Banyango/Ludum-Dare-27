@@ -386,8 +386,6 @@ var Helloworld = cc.Layer.extend({
     },
     update:function (delta) {
 
-        delta = 1.0/60.0;
-
         if (!this.isPaused) {
             this.player.update(delta, this.camera);
 
