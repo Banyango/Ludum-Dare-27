@@ -491,8 +491,11 @@ var HelloWorldScene = cc.Scene.extend({
         }
 
         var layer;
-        if (levelIndex > 12) {
-//        layer = GameOverScene.layer();
+        if (levelIndex > 9) {
+            var scene = new EndScene();
+            cc.Director.getInstance().pushScene(scene);
+
+            return;
         } else {
             layer = new Helloworld();
             layer.init(level);

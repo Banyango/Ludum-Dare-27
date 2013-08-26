@@ -63,7 +63,10 @@
  </objectgroup>
  <objectgroup name="PathFinding" width="100" height="32"/>
  <objectgroup name="Enemies" width="100" height="32"/>
- <objectgroup name="Particles" width="100" height="32"/>
+ <objectgroup name="Particles" width="100" height="32">
+  <object type="floaty_particle.plist" x="352" y="864" width="32" height="32"/>
+  <object type="floaty_particle.plist" x="992" y="608" width="32" height="32"/>
+ </objectgroup>
  <layer name="transparent" width="100" height="32" opacity="0.39">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3QQQrEIAwF0N7/Dp2eyOmJnI4L3YRIXQxMF+/BxwQTELcNAAAAAAAAAAAAAP5vb3m1HD2j3id13B132fzK3pH08dyTmae6e2f876i0vFvOnlGXSR13x102v7J3Jn08SzLzVHfvjP8d1ZZPy9Uz6jqp4+64y+ZX9q6kj2dNZoDf+QJW5zsCADIAAA==

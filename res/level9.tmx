@@ -103,7 +103,10 @@
   <object x="1744" y="464" width="32" height="32"/>
   <object x="1920" y="448" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="Particles" width="100" height="100"/>
+ <objectgroup name="Particles" width="100" height="100">
+  <object type="floaty_particle.plist" x="2496" y="608" width="32" height="32"/>
+  <object type="floaty_particle.plist" x="640" y="192" width="32" height="32"/>
+ </objectgroup>
  <layer name="transparent" width="100" height="100" opacity="0.44">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3d3W6CQBCG4b3/S1DbXoscKm2vRQ+p1jJxvjCQSqCpssL7JBP+NoTssOwKm5gSAAAAADyvl0681vE26RUBAAAAAJ7JsY6tB6anXBx9e/XPgXGKdM1H4du7OwSGO6RrPtbpWndVHfs6Sl9f+7rqtvTjla9re1PHyZcqtw7H5+5tRPRR+7A6U30qvnyfxTo1Odv5MYX2nTpldM4qnGeuPkdEH8uH9R1Wd/a8tzzo3tb9rTajMgqVUf6Ujyo17WeXltGPXDziu/YYlxB9LB/2zNKzR/e86rgM28qJravOT17G9q18W8+7lS/n3C6k+93DQu2hm58+1jYO97vMxejmw/Kg9vCRhj+vjiHUt8f1Q1jXse0vUaSmLzp4uSIs1Q7n6t1DdX/x7XMd32n48yrWZbfuVa/aX4RlrGdtH8P5buV5rs6pXffnnuijuh5L4yb1Oxrnaoys/kdjhDgWjv1PHKehuc/H0NhKy70vb5WtBpxzSJmlyOHd1a18YhpL+I3yTHjPlZdy6gtAC/nIC/nIy2bqC0AL46u88PsjL4x380J/nhf6j7zwPjEvtI/HinOILKz/1ncSfZeP81Ti/K1Nas9b0RwJfU/BeJrfoDkOmsMS69u+Se1TM39C+YrftJQ7fd9iHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgUeb8n5h/9QPp5e7dQJwAAA==

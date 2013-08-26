@@ -67,7 +67,11 @@
  </objectgroup>
  <objectgroup name="PathFinding" width="100" height="50"/>
  <objectgroup name="Enemies" width="100" height="50"/>
- <objectgroup name="Particles" width="100" height="50"/>
+ <objectgroup name="Particles" width="100" height="50">
+  <object type="rain_particle.plist" x="160" y="640" width="32" height="32"/>
+  <object type="rain_particle.plist" x="480" y="640" width="32" height="32"/>
+  <object type="rain_particle.plist" x="832" y="640" width="32" height="32"/>
+ </objectgroup>
  <layer name="transparent" width="100" height="50" opacity="0.4">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+2YYW7DIAyFuf8dSk605kRptmiz5L4+20zdEn68T7JCQ6DEzxhIa0IIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEKIUfqXLcRuru4/y7fE/LOjVvVZ/dfV2DhWsI8TrBf1zF/V81WfWbsZ9MC43X9sO8F6UR/5bHHP4P2e1Pm51l0/M+nhx3LMi0f71mNpPF9E+Q11rZ6x6wb/ib5C3+J/4PhZbmTzPhrr1eDc8O9wb6+5y+4xq+rX9vzuPgfdSR+mVbQGrcH40dc25/1938fiylcT6XGULW59nNo9ZlX9YajNCu2wXPm/0gPbmNZ29WPa3/TlXxDp8c7eCdfLSEvzQdQP6sH8X+lhz7Cc62NuBi0OIj2iHDJSxnWZxb7XJOsn2mdZ3ONa0EmbbD9l45kF//5ejyyHnFlm+yzvZ5xDnbRh+zbUdxYwZnFuX2k2NvSl9/OjPccU25ttQf9+zZ8F/157O+ccOGo2Lu+/LA9m2mY5ayY92LvNZBb/I3vpSlucL34tmgV2VrMym9sj37vw9+i5MoptXHuz/Xamq+0f7tDvTOu5xQfb57BzIMboQtqirmwfzGJ95DsW07OKG9QRc+BM+Yq9iz+LjRrb7+McYPE6Et+RLpnOXm/UaMbvJEYWh79Ze/3ciObAUZflEruiv6PxsPMO9rW3V43Y3JwFFofRGjiSn7PzOO7lMFYx3jF3VjpuQTm6epuFT6AH+TcgTgAA

@@ -114,6 +114,9 @@
  <objectgroup name="Enemies" width="32" height="100"/>
  <objectgroup name="Particles" width="32" height="100">
   <object type="floaty_particle.plist" x="544" y="3104" width="32" height="32"/>
+  <object type="floaty_particle.plist" x="512" y="128" width="32" height="32"/>
+  <object type="floaty_particle.plist" x="672" y="320" width="32" height="32"/>
+  <object type="floaty_particle.plist" x="768" y="1248" width="32" height="32"/>
  </objectgroup>
  <layer name="transparent" width="32" height="100">
   <data encoding="base64" compression="gzip">

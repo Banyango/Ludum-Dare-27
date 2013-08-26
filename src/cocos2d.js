@@ -39,14 +39,7 @@
         //SingleEngineFile:'',
         appFiles:[
             'src/resource.js',
-            'src/PlatformPlayer.js',
-            'src/Camera.js',
-            'src/Spore.js',
-            'src/Egg.js',
-            'src/Eater.js',
-            'src/Door.js',
-            'src/Key.js',
-            'src/myApp.js'
+            'src/files.min.js'
         ]
     };
 

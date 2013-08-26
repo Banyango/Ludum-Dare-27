@@ -9,6 +9,9 @@ var g_ressources = [
     {type:"image", src:"/res/eater.png"},
     {type:"image", src:"/res/door.png"},
     {type:"image", src:"/res/key.png"},
+    {type:"image", src:"/res/title.png"},
+    {type:"image", src:"/res/title_2.png"},
+    {type:"image", src:"/res/win.png"},
 
     //plist
     {type:"plist", src:"/res/player_spritesheet.plist"},
@@ -19,6 +22,9 @@ var g_ressources = [
     {type:"plist", src:"/res/water_particle.plist"},
     {type:"plist", src:"/res/floaty_particle.plist"},
     {type:"plist", src:"/res/fog_particle.plist"},
+    {type:"plist", src:"/res/lava_particle.plist"},
+    {type:"plist", src:"/res/rain_particle.plist"},
+    {type:"plist", src:"/res/glow_particle.plist"},
     //fnt
 //    {type:"fnt", src:"/res/2plyrFont2PlyrFont.fnt"},
     //tmx

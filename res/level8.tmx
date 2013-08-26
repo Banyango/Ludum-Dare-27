@@ -89,7 +89,10 @@
  <objectgroup name="Enemies" width="32" height="100">
   <object x="320" y="2304" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="Particles" width="32" height="100"/>
+ <objectgroup name="Particles" width="32" height="100">
+  <object type="lava_particle.plist" x="640" y="2368" width="32" height="32"/>
+  <object type="floaty_particle.plist" x="256" y="736" width="32" height="32"/>
+ </objectgroup>
  <layer name="transparent" width="32" height="100" opacity="0.61">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+2UTW7CMBCFHZWu6Y2olOQ8VIJchrJLchlgFzhIt4VFPeKNmEaU5sfFrfo+aeQfxu/Zgx3nCCGEkPsz9fEUUSOk/xCdmY/nkf6qMURn7uNlpL9qDNEJ4T8doRPCfxbZf/4L/Idq0P+ydui3KMQZ/rJ/iG/4GJ0Q33Aldv1jEtufEHIfDmiLSP57H5mPNJL/JDnXoDFzZSDta2datMaPyTlPQv8L9d+jzdFmPf2v5Vem32BcY18lIjP9yujkrh8FtC0l5iTkfCk8KuRLPaS/RE7uLndT69SVHLqiqefT/UitH5JzaN0brClNrqwtME5dvxrU8Dlgreqrh3i38/U+yO9yN/VtyLyuK6B1cLepWvvt8sZlTxOE3gV9o1qXBfbW3NAZipx1acYF/GRftftcs/Zb+glsLapvswkhhBBCCCGEdGXtY4N2i3jF+OjjHWPtr0x/h7w15jcIm6f6qy/8t8g/tdbtjKbOqb76r8285ts9nVrnIoQQQgghhPw/3nx8AGUC+uQAMgAA
