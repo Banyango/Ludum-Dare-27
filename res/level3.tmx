@@ -7,7 +7,7 @@
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32">
   <image source="tile_set.png" width="1536" height="288"/>
  </tileset>
- <layer name="background" width="32" height="100">
+ <layer name="background" width="32" height="100" opacity="0.76">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3SsQ3CQAwF0GwAG8FGsA0wDjTAOKRJ6DDdFQ6iwFeg96QvS5fCjuVhAAAAAAAAAAAAAKC3Q8deq8i6uMf44dsmsu0wy7gwxy6yT2b5tUfkkry3/9zOUuGcvPXa/5Js/+/7Pzb1VNg/2/81cmvqvbB/tv8pMjf1Wdi/1/1/o/r+4d+9ABu0zngAMgAA
   </data>
