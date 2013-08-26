@@ -7,9 +7,14 @@
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32">
   <image source="tile_set.png" width="1536" height="288"/>
  </tileset>
+ <layer name="background" width="32" height="100" opacity="0.48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3XTQrCMBCG4fQo/utx/NeTqcfRjXocV+rOWRQMdCI1pEm07wMfFCJOKJ10aszb0aR1y6z+rsxeclB+/2ntWydTvf/nMhfJVantWvNxU+rfyzwkT2VvrrWQXDV8avcLYwaSoWRUhNphfQupuZSsJOsE9dsgZE/6CNmTPmL0JAAd5w/nD/5PR+a1rqRXVOfIsWTS8Dw3lf+fSeZFdY7cSLaR5kn7fAn9DVKHfb7E+gapsxe0W07v/RT7sHuhzfOH/Ry4rptkPweu6ybZ9991DQC2nN6fKXA+4ldovRqzb7Vejdm3Wq/StwAAAAAAAABy8wITL4mvADIAAA==
+  </data>
+ </layer>
  <layer name="platforms" width="32" height="100">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="Collision" width="32" height="100">
@@ -73,6 +78,8 @@
   <object x="256" y="896" width="96" height="64"/>
   <object x="-64" y="960" width="64" height="704"/>
   <object x="416" y="1664" width="32" height="32"/>
+  <object x="896" y="1184" width="96" height="128"/>
+  <object x="992" y="0" width="32" height="128"/>
  </objectgroup>
  <objectgroup name="Static" width="32" height="100">
   <object type="player_start" x="384" y="128" width="32" height="32"/>
@@ -89,7 +96,7 @@
   <object type="UP" x="384" y="128" width="32" height="32"/>
   <object type="DOWN" x="512" y="1088" width="32" height="32"/>
   <object type="UP" x="960" y="288" width="32" height="32"/>
-  <object type="DOWN" x="640" y="1216" width="32" height="32"/>
+  <object type="DOWN" x="576" y="1216" width="32" height="32"/>
   <object type="UP" x="512" y="1856" width="32" height="32"/>
   <object type="UP" x="32" y="1344" width="32" height="32"/>
   <object type="UP" x="320" y="1120" width="32" height="32"/>
