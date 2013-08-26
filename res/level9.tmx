@@ -73,7 +73,7 @@
  <objectgroup name="Static" width="100" height="100">
   <object type="player_start" x="1312" y="352" width="32" height="32"/>
   <object type="goal_up" x="2720" y="1280" width="32" height="32"/>
-  <object type="key_object 1" x="1184" y="192" width="32" height="32"/>
+  <object type="key_object 1" x="832" y="352" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Beacon" width="100" height="100">
   <object type="UP FIRE" x="1408" y="544" width="32" height="32"/>
@@ -85,6 +85,7 @@
   <object type="UP" x="896" y="352" width="32" height="32"/>
   <object type="UP" x="2144" y="384" width="32" height="32"/>
   <object type="UP FIRE" x="2240" y="832" width="32" height="32"/>
+  <object type="UP" x="1312" y="352" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="PathFinding" width="100" height="100"/>
  <objectgroup name="Enemies" width="100" height="100">
