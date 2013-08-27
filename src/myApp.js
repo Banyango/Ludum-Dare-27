@@ -25,7 +25,7 @@
  ****************************************************************************/
 
 var Keys = {},
-    levelIndex = 4,
+    levelIndex = 1,
     isDebug = false;
 
 var keyColors = [
