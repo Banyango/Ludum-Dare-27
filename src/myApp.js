@@ -25,7 +25,7 @@
  ****************************************************************************/
 
 var Keys = {},
-    levelIndex = 8,
+    levelIndex = 1,
     isDebug = false;
 
 var keyColors = [
@@ -38,6 +38,7 @@ var keyColors = [
 var Helloworld = cc.Layer.extend({
 
     lowDetail:false,
+    checkTunnelling:false,
     delta:0,
     player:null,
     tileMap:null,
@@ -395,69 +396,78 @@ var Helloworld = cc.Layer.extend({
         this.delta += delta;
 
         if (this.delta >= this.timeStep && !this.isPaused) {
-            this.player.update(delta, this.camera);
+            var miniDelta = Math.round(delta / this.timeStep);
 
-            this.egg.update(delta);
-
-            this.player.testCollision(this.tileMap.getObjectGroup("Collision"), this.camera);
-
-            this.player.testBeacon(this.spores, this.camera);
-
-            this.player.testDoors(this.doors, this.tileMap.getObjectGroup("Collision"), this.keys);
-
-            this.player.testKeys(this.keys);
-
-            if (this.player.testGoal(this.egg)) {
-                this.player.isDead = true;
-                this.unscheduleAllCallbacks();
-                this.gotoNextLevel();
+            if (miniDelta > 6) {
+                miniDelta = 6;
             }
 
-            for (var i = 0; i < this.spores.length; i++) {
-                this.spores[i].update(delta);
-            }
+            for (var subTimeStep = 0; subTimeStep <= miniDelta; subTimeStep++) {
+                this.player.update(this.timeStep, this.camera);
 
-            for (var j = this.eaters.length-1; j >=0 ; j--) {
-                this.eaters[j].update(delta);
-                if (!this.eaters[j].isDead) {
-                    this.eaters[j].testCollision(this.tileMap.getObjectGroup("Collision"));
-                    this.eaters[j].testPathFinding(this.tileMap.getObjectGroup("PathFinding"));
+                this.egg.update(this.timeStep);
+
+                this.player.testCollision(this.tileMap.getObjectGroup("Collision"), this.camera);
+
+                this.player.testBeacon(this.spores, this.camera);
+
+                this.player.testDoors(this.doors, this.tileMap.getObjectGroup("Collision"), this.keys);
+
+                this.player.testKeys(this.keys);
+
+                if (this.player.testGoal(this.egg)) {
+                    this.player.isDead = true;
+                    this.unscheduleAllCallbacks();
+                    this.gotoNextLevel();
                 }
 
-                if (!this.isResetting) {
-                    if (this.eaters[j].testPlayer(this.player)) {
-                        if (!this.eaters[j].isDead) {
-                            this.isResetting = true;
-                            this.blowUp();
+                for (var j = this.eaters.length - 1; j >= 0; j--) {
+                    this.eaters[j].update(this.timeStep);
+                    if (!this.eaters[j].isDead) {
+                        this.eaters[j].testCollision(this.tileMap.getObjectGroup("Collision"));
+                        this.eaters[j].testPathFinding(this.tileMap.getObjectGroup("PathFinding"));
+                    }
+
+                    if (!this.isResetting) {
+                        if (this.eaters[j].testPlayer(this.player)) {
+                            if (!this.eaters[j].isDead) {
+                                this.isResetting = true;
+                                this.blowUp();
+                            }
                         }
+                    }
+
+                    if (this.eaters[j].isCleanUp) {
+                        this.tileMap.removeChild(this.eaters[j].sprite);
+                        this.eaters.splice(j, 1);
                     }
                 }
 
-                if (this.eaters[j].isCleanUp) {
-                    this.tileMap.removeChild(this.eaters[j].sprite);
-                    this.eaters.splice(j, 1);
+                if (this.player.shouldBlowUp && !this.isResetting) {
+                    this.isResetting = true;
+                    this.blowUp();
+                }
+
+                this.setViewPointCenter();
+
+                if (Keys[cc.KEY.y] && !this.isResetting) {
+                    this.isResetting = true;
+                    this.blowUp();
                 }
             }
 
+            for (var i = 0; i < this.spores.length; i++) {
+                this.spores[i].update(this.timeStep);
+            }
+
             for (var k = 0; k < this.doors.length; k++) {
-                this.doors[k].update(delta);
+                this.doors[k].update(this.timeStep);
             }
 
             for (var m = 0; m < this.keys.length; m++) {
-                this.keys[m].update(delta);
+                this.keys[m].update(this.timeStep);
             }
 
-            if (this.player.shouldBlowUp && !this.isResetting) {
-                this.isResetting = true;
-                this.blowUp();
-            }
-
-            this.setViewPointCenter();
-
-            if (Keys[cc.KEY.y] && !this.isResetting) {
-                this.isResetting = true;
-                this.blowUp();
-            }
         }
 
         if (Keys[cc.KEY.escape] && this.pauseButtonTick <= 0) {
