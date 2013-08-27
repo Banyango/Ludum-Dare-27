@@ -25,7 +25,7 @@
  ****************************************************************************/
 
 var Keys = {},
-    levelIndex = 1,
+    levelIndex = 4,
     isDebug = false;
 
 var keyColors = [
@@ -398,11 +398,7 @@ var Helloworld = cc.Layer.extend({
         if (this.delta >= this.timeStep && !this.isPaused) {
             var miniDelta = Math.round(delta / this.timeStep);
 
-            if (miniDelta > 6) {
-                miniDelta = 6;
-            }
-
-            for (var subTimeStep = 0; subTimeStep <= miniDelta; subTimeStep++) {
+            for (var subTimeStep = 0; subTimeStep < miniDelta; subTimeStep++) {
                 this.player.update(this.timeStep, this.camera);
 
                 this.egg.update(this.timeStep);
