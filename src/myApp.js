@@ -519,7 +519,6 @@ var HelloWorldScene = cc.Scene.extend({
             cc.AudioEngine.getInstance().playMusic("/res/ludum_dare_intense.mp3", true);
         }
 
-        document['ccConfig'].googleEvents.push(['_trackEvent', 'Level Progress', "Next Level", levelIndex]);
     }
 });
 
