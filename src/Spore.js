@@ -72,6 +72,11 @@ var Spore = cc.Node.extend({
             this.sprite.setPosition(cc.p(this.position.x + this.sprite.getBoundingBox().size.width / 2, this.position.y + this.sprite.getBoundingBox().size.height / 2));
         }
 
+        if (this.isHighJump) {
+            this.sprite.setScaleX(7);
+            this.sprite.setScaleY(7);
+        }
+
         if (this.sporeType == "FIRE") {
             this.sprite.setColor(new cc.Color3B(200, 0, 0));
         } else if (this.sporeType == "WATER") {

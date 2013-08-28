@@ -1,10 +1,4 @@
 /****************************************************************************
- Copyright (c) 2010-2012 cocos2d-x.org
- Copyright (c) 2008-2010 Ricardo Quesada
- Copyright (c) 2011      Zynga Inc.
-
- http://www.cocos2d-x.org
-
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
@@ -55,6 +49,7 @@ var Helloworld = cc.Layer.extend({
     colourLayer:null,
     isPaused:false,
     pauseFont:null,
+    isNextLevel:false,
     pauseButtonTick:0,
     init:function (tmxFile) {
 
@@ -411,12 +406,6 @@ var Helloworld = cc.Layer.extend({
 
                 this.player.testKeys(this.keys);
 
-                if (this.player.testGoal(this.egg)) {
-                    this.player.isDead = true;
-                    this.unscheduleAllCallbacks();
-                    this.gotoNextLevel();
-                }
-
                 for (var j = this.eaters.length - 1; j >= 0; j--) {
                     this.eaters[j].update(this.timeStep);
                     if (!this.eaters[j].isDead) {
@@ -462,6 +451,12 @@ var Helloworld = cc.Layer.extend({
 
             for (var m = 0; m < this.keys.length; m++) {
                 this.keys[m].update(this.timeStep);
+            }
+
+            if (this.player.testGoal(this.egg)) {
+                this.player.isDead = true;
+                this.unscheduleAllCallbacks();
+                this.gotoNextLevel();
             }
 
         }
