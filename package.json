@@ -1,12 +1,8 @@
 {
-    "name": "LudumDare27-warmup",
-    "version": "0.0.1",
+    "name": "Xhon",
+    "version": "0.0.1",    
     "dependencies": {
-        "express": "3.1.x",
+        "express": ">=3.11.0",
         "twitter-bootstrap":"x.x.x"
-    },
-    "engines": {
-        "node": "0.10.x",
-        "npm": "1.2.x"
     }
 }
