@@ -54,8 +54,6 @@
         ]
     };
 
-    c.googleEvents = _gaq;
-
     if (d.getElementById('lowdetail') != null) {
         c.lowDetail = true;
     }
